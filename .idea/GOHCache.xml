@@ -10,6 +10,41 @@
             </set>
           </value>
         </entry>
+        <entry key="AiUser">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/server/model/user/ai_user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AiUserApi">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/server/api/v1/user/ai_user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AiUserRouter">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/server/router/user/ai_user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AiUserSearch">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/server/model/user/request/ai_user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AiUserService">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/server/service/user/ai_user.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="AliyunOSS">
           <value>
             <set>
@@ -23,6 +58,7 @@
             <set>
               <option value="file://$PROJECT_DIR$/server/api/v1/enter.go" />
               <option value="file://$PROJECT_DIR$/server/api/v1/system/enter.go" />
+              <option value="file://$PROJECT_DIR$/server/api/v1/user/enter.go" />
               <option value="file://$PROJECT_DIR$/server/plugin/email/api/enter.go" />
             </set>
           </value>
@@ -1008,6 +1044,7 @@
               <option value="file://$PROJECT_DIR$/server/plugin/email/router/enter.go" />
               <option value="file://$PROJECT_DIR$/server/router/enter.go" />
               <option value="file://$PROJECT_DIR$/server/router/system/enter.go" />
+              <option value="file://$PROJECT_DIR$/server/router/user/enter.go" />
             </set>
           </value>
         </entry>
@@ -1032,6 +1069,7 @@
               <option value="file://$PROJECT_DIR$/server/plugin/email/service/enter.go" />
               <option value="file://$PROJECT_DIR$/server/service/enter.go" />
               <option value="file://$PROJECT_DIR$/server/service/system/enter.go" />
+              <option value="file://$PROJECT_DIR$/server/service/user/enter.go" />
             </set>
           </value>
         </entry>
@@ -1764,7 +1802,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239106" />
+              <option name="lastModified" value="1753022579361" />
               <option name="schema">
                 <list>
                   <option value="ApiGroup" />
@@ -1776,7 +1814,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/auto_code_history.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169006" />
+              <option name="lastModified" value="1753020870651" />
               <option name="schema">
                 <list>
                   <option value="AutoCodeHistoryApi" />
@@ -1788,14 +1826,14 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/auto_code_mcp.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169015" />
+              <option name="lastModified" value="1753020870652" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/auto_code_package.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169026" />
+              <option name="lastModified" value="1753020870653" />
               <option name="schema">
                 <list>
                   <option value="AutoCodePackageApi" />
@@ -1807,7 +1845,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/auto_code_plugin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169034" />
+              <option name="lastModified" value="1753020870653" />
               <option name="schema">
                 <list>
                   <option value="AutoCodePluginApi" />
@@ -1819,7 +1857,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/auto_code_template.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169043" />
+              <option name="lastModified" value="1753020870653" />
               <option name="schema">
                 <list>
                   <option value="AutoCodeTemplateApi" />
@@ -1831,7 +1869,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/casbin_rule.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239112" />
+              <option name="lastModified" value="1753020870654" />
               <option name="schema">
                 <list>
                   <option value="CasbinRuleApi" />
@@ -1843,7 +1881,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239242" />
+              <option name="lastModified" value="1753020870656" />
               <option name="schema">
                 <list>
                   <option value="ApiGroup" />
@@ -1855,7 +1893,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_api.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169062" />
+              <option name="lastModified" value="1753020870656" />
               <option name="schema">
                 <list>
                   <option value="SystemApiApi" />
@@ -1867,7 +1905,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_authority.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169070" />
+              <option name="lastModified" value="1753020870656" />
               <option name="schema">
                 <list>
                   <option value="AuthorityApi" />
@@ -1879,7 +1917,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_authority_btn.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169079" />
+              <option name="lastModified" value="1753020870657" />
               <option name="schema">
                 <list>
                   <option value="AuthorityBtnApi" />
@@ -1891,7 +1929,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_auto_code.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169088" />
+              <option name="lastModified" value="1753020870658" />
               <option name="schema">
                 <list>
                   <option value="AutoCodeApi" />
@@ -1903,7 +1941,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_captcha.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169097" />
+              <option name="lastModified" value="1753020870658" />
               <option name="schema">
                 <list>
                   <option value="BaseApi" />
@@ -1915,7 +1953,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_casbin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169106" />
+              <option name="lastModified" value="1753020870658" />
               <option name="schema">
                 <list>
                   <option value="CasbinApi" />
@@ -1927,7 +1965,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_dictionary.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169114" />
+              <option name="lastModified" value="1753020870659" />
               <option name="schema">
                 <list>
                   <option value="DictionaryApi" />
@@ -1939,7 +1977,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_dictionary_detail.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169122" />
+              <option name="lastModified" value="1753020870661" />
               <option name="schema">
                 <list>
                   <option value="DictionaryDetailApi" />
@@ -1951,7 +1989,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_export_template.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169132" />
+              <option name="lastModified" value="1753020870661" />
               <option name="schema">
                 <list>
                   <option value="SysExportTemplateApi" />
@@ -1963,7 +2001,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_initdb.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169143" />
+              <option name="lastModified" value="1753020870661" />
               <option name="schema">
                 <list>
                   <option value="DBApi" />
@@ -1975,7 +2013,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_jwt_blacklist.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169151" />
+              <option name="lastModified" value="1753020870662" />
               <option name="schema">
                 <list>
                   <option value="JwtApi" />
@@ -1987,7 +2025,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169159" />
+              <option name="lastModified" value="1753020870663" />
               <option name="schema">
                 <list>
                   <option value="AuthorityMenuApi" />
@@ -1999,7 +2037,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_operation_record.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169167" />
+              <option name="lastModified" value="1753020870665" />
               <option name="schema">
                 <list>
                   <option value="OperationRecordApi" />
@@ -2011,7 +2049,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_params.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169175" />
+              <option name="lastModified" value="1753020870665" />
               <option name="schema">
                 <list>
                   <option value="SysParamsApi" />
@@ -2023,7 +2061,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_system.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169182" />
+              <option name="lastModified" value="1753020870665" />
               <option name="schema">
                 <list>
                   <option value="SystemApi" />
@@ -2035,14 +2073,38 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/system/sys_user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169190" />
+              <option name="lastModified" value="1753020870667" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/server/api/v1/user/ai_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1753022579363" />
+              <option name="schema">
+                <list>
+                  <option value="AiUserApi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/server/api/v1/user/enter.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1753022579365" />
+              <option name="schema">
+                <list>
+                  <option value="ApiGroup" />
+                </list>
+              </option>
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/config/auto_code.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169214" />
+              <option name="lastModified" value="1753020870671" />
               <option name="schema">
                 <list>
                   <option value="Autocode" />
@@ -2054,7 +2116,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/captcha.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169221" />
+              <option name="lastModified" value="1753020870671" />
               <option name="schema">
                 <list>
                   <option value="Captcha" />
@@ -2066,7 +2128,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/config.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169228" />
+              <option name="lastModified" value="1753020870671" />
               <option name="schema">
                 <list>
                   <option value="Server" />
@@ -2078,7 +2140,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/cors.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169236" />
+              <option name="lastModified" value="1753020870672" />
               <option name="schema">
                 <list>
                   <option value="CORS" />
@@ -2091,7 +2153,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/db_list.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169243" />
+              <option name="lastModified" value="1753020870673" />
               <option name="schema">
                 <list>
                   <option value="GeneralDB" />
@@ -2104,7 +2166,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/disk.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169252" />
+              <option name="lastModified" value="1753020870675" />
               <option name="schema">
                 <list>
                   <option value="Disk" />
@@ -2117,7 +2179,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/email.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169260" />
+              <option name="lastModified" value="1753020870675" />
               <option name="schema">
                 <list>
                   <option value="Email" />
@@ -2129,7 +2191,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/excel.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169267" />
+              <option name="lastModified" value="1753020870675" />
               <option name="schema">
                 <list>
                   <option value="Excel" />
@@ -2141,7 +2203,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/gorm_mssql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169274" />
+              <option name="lastModified" value="1753020870677" />
               <option name="schema">
                 <list>
                   <option value="Mssql" />
@@ -2153,7 +2215,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/gorm_mysql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169284" />
+              <option name="lastModified" value="1753020870677" />
               <option name="schema">
                 <list>
                   <option value="Mysql" />
@@ -2165,7 +2227,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/gorm_oracle.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169293" />
+              <option name="lastModified" value="1753020870677" />
               <option name="schema">
                 <list>
                   <option value="Oracle" />
@@ -2177,7 +2239,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/gorm_pgsql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169301" />
+              <option name="lastModified" value="1753020870678" />
               <option name="schema">
                 <list>
                   <option value="Pgsql" />
@@ -2189,7 +2251,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/gorm_sqlite.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169311" />
+              <option name="lastModified" value="1753020870679" />
               <option name="schema">
                 <list>
                   <option value="Sqlite" />
@@ -2201,7 +2263,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/jwt.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169323" />
+              <option name="lastModified" value="1753020870679" />
               <option name="schema">
                 <list>
                   <option value="JWT" />
@@ -2213,7 +2275,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/mcp.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169338" />
+              <option name="lastModified" value="1753020870679" />
               <option name="schema">
                 <list>
                   <option value="MCP" />
@@ -2225,7 +2287,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/mongo.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169352" />
+              <option name="lastModified" value="1753020870680" />
               <option name="schema">
                 <list>
                   <option value="Mongo" />
@@ -2238,7 +2300,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/oss_aliyun.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169370" />
+              <option name="lastModified" value="1753020870682" />
               <option name="schema">
                 <list>
                   <option value="AliyunOSS" />
@@ -2250,7 +2312,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/oss_aws.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169380" />
+              <option name="lastModified" value="1753020870682" />
               <option name="schema">
                 <list>
                   <option value="AwsS3" />
@@ -2262,7 +2324,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/oss_cloudflare.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169393" />
+              <option name="lastModified" value="1753020870682" />
               <option name="schema">
                 <list>
                   <option value="CloudflareR2" />
@@ -2274,7 +2336,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/oss_huawei.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169405" />
+              <option name="lastModified" value="1753020870683" />
               <option name="schema">
                 <list>
                   <option value="HuaWeiObs" />
@@ -2286,7 +2348,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/oss_local.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169415" />
+              <option name="lastModified" value="1753020870684" />
               <option name="schema">
                 <list>
                   <option value="Local" />
@@ -2298,7 +2360,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/oss_minio.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169427" />
+              <option name="lastModified" value="1753020870684" />
               <option name="schema">
                 <list>
                   <option value="Minio" />
@@ -2310,7 +2372,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/oss_qiniu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169437" />
+              <option name="lastModified" value="1753020870684" />
               <option name="schema">
                 <list>
                   <option value="Qiniu" />
@@ -2322,7 +2384,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/oss_tencent.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169455" />
+              <option name="lastModified" value="1753020870685" />
               <option name="schema">
                 <list>
                   <option value="TencentCOS" />
@@ -2334,7 +2396,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/redis.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169466" />
+              <option name="lastModified" value="1753020870687" />
               <option name="schema">
                 <list>
                   <option value="Redis" />
@@ -2346,7 +2408,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/system.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169477" />
+              <option name="lastModified" value="1753020870687" />
               <option name="schema">
                 <list>
                   <option value="System" />
@@ -2358,7 +2420,7 @@
         <entry key="file://$PROJECT_DIR$/server/config/zap.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169486" />
+              <option name="lastModified" value="1753020870687" />
               <option name="schema">
                 <list>
                   <option value="Zap" />
@@ -2370,14 +2432,14 @@
         <entry key="file://$PROJECT_DIR$/server/core/internal/constant.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169568" />
+              <option name="lastModified" value="1753020870689" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/core/internal/cutter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169576" />
+              <option name="lastModified" value="1753020870689" />
               <option name="schema">
                 <list>
                   <option value="Cutter" />
@@ -2389,7 +2451,7 @@
         <entry key="file://$PROJECT_DIR$/server/core/internal/zap_core.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169584" />
+              <option name="lastModified" value="1753020870690" />
               <option name="schema">
                 <list>
                   <option value="ZapCore" />
@@ -2401,49 +2463,49 @@
         <entry key="file://$PROJECT_DIR$/server/core/server.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169513" />
+              <option name="lastModified" value="1753020870691" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/core/server_run.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169523" />
+              <option name="lastModified" value="1753020870694" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/core/viper.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169533" />
+              <option name="lastModified" value="1753020870694" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/core/zap.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169544" />
+              <option name="lastModified" value="1753020870694" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/docs/docs.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169609" />
+              <option name="lastModified" value="1753020870697" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/global/global.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169650" />
+              <option name="lastModified" value="1753020870701" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/global/model.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169657" />
+              <option name="lastModified" value="1753020870701" />
               <option name="schema">
                 <list>
                   <option value="GVA_MODEL" />
@@ -2455,14 +2517,14 @@
         <entry key="file://$PROJECT_DIR$/server/initialize/db_list.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169678" />
+              <option name="lastModified" value="1753020870704" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/ensure_tables.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169685" />
+              <option name="lastModified" value="1753020870705" />
               <option name="schema">
                 <list>
                   <option value="ensureTables" />
@@ -2474,63 +2536,63 @@
         <entry key="file://$PROJECT_DIR$/server/initialize/gorm.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169694" />
+              <option name="lastModified" value="1753020870708" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/gorm_biz.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239108" />
+              <option name="lastModified" value="1753022579356" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/gorm_mssql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169711" />
+              <option name="lastModified" value="1753020870709" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/gorm_mysql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169719" />
+              <option name="lastModified" value="1753020870711" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/gorm_oracle.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169726" />
+              <option name="lastModified" value="1753020870711" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/gorm_pgsql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169734" />
+              <option name="lastModified" value="1753020870711" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/gorm_sqlite.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169742" />
+              <option name="lastModified" value="1753020870712" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/init.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169751" />
+              <option name="lastModified" value="1753020870712" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/internal/gorm.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169875" />
+              <option name="lastModified" value="1753020870714" />
               <option name="schema">
                 <list>
                   <option value="_gorm" />
@@ -2542,7 +2604,7 @@
         <entry key="file://$PROJECT_DIR$/server/initialize/internal/gorm_logger_writer.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169881" />
+              <option name="lastModified" value="1753020870714" />
               <option name="schema">
                 <list>
                   <option value="Writer" />
@@ -2554,7 +2616,7 @@
         <entry key="file://$PROJECT_DIR$/server/initialize/internal/mongo.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169889" />
+              <option name="lastModified" value="1753020870715" />
               <option name="schema">
                 <list>
                   <option value="mongo" />
@@ -2566,14 +2628,14 @@
         <entry key="file://$PROJECT_DIR$/server/initialize/mcp.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169760" />
+              <option name="lastModified" value="1753020870716" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/mongo.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169768" />
+              <option name="lastModified" value="1753020870716" />
               <option name="schema">
                 <list>
                   <option value="mongo" />
@@ -2586,56 +2648,56 @@
         <entry key="file://$PROJECT_DIR$/server/initialize/other.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169776" />
+              <option name="lastModified" value="1753020870716" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/plugin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169784" />
+              <option name="lastModified" value="1753020870717" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/plugin_biz_v1.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169793" />
+              <option name="lastModified" value="1753020870718" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/plugin_biz_v2.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169801" />
+              <option name="lastModified" value="1753020870718" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/redis.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169808" />
+              <option name="lastModified" value="1753020870719" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/register_init.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169816" />
+              <option name="lastModified" value="1753020870719" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/reload.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169823" />
+              <option name="lastModified" value="1753020870721" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/router.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169832" />
+              <option name="lastModified" value="1753020870721" />
               <option name="schema">
                 <list>
                   <option value="justFilesFilesystem" />
@@ -2647,49 +2709,49 @@
         <entry key="file://$PROJECT_DIR$/server/initialize/router_biz.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239283" />
+              <option name="lastModified" value="1753022579360" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/timer.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169850" />
+              <option name="lastModified" value="1753020870722" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/initialize/validator.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169857" />
+              <option name="lastModified" value="1753020870723" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/main.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725168887" />
+              <option name="lastModified" value="1753020870725" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/mcp/client/client.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169947" />
+              <option name="lastModified" value="1753020870728" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/mcp/client/client_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169955" />
+              <option name="lastModified" value="1753020870728" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/mcp/current_time.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169914" />
+              <option name="lastModified" value="1753020870728" />
               <option name="schema">
                 <list>
                   <option value="CurrentTime" />
@@ -2701,14 +2763,14 @@
         <entry key="file://$PROJECT_DIR$/server/mcp/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169922" />
+              <option name="lastModified" value="1753020870729" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/mcp/get_nickname.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169929" />
+              <option name="lastModified" value="1753020870731" />
               <option name="schema">
                 <list>
                   <option value="GetNickname" />
@@ -2720,42 +2782,42 @@
         <entry key="file://$PROJECT_DIR$/server/middleware/casbin_rbac.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169978" />
+              <option name="lastModified" value="1753020870731" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/middleware/cors.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169986" />
+              <option name="lastModified" value="1753020870731" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/middleware/email.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725169994" />
+              <option name="lastModified" value="1753020870733" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/middleware/error.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170002" />
+              <option name="lastModified" value="1753020870733" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/middleware/jwt.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170010" />
+              <option name="lastModified" value="1753020870735" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/middleware/limit_ip.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170022" />
+              <option name="lastModified" value="1753020870735" />
               <option name="schema">
                 <list>
                   <option value="LimitConfig" />
@@ -2767,14 +2829,14 @@
         <entry key="file://$PROJECT_DIR$/server/middleware/loadtls.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170033" />
+              <option name="lastModified" value="1753020870736" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/middleware/logger.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170042" />
+              <option name="lastModified" value="1753020870737" />
               <option name="schema">
                 <list>
                   <option value="LogLayout" />
@@ -2787,7 +2849,7 @@
         <entry key="file://$PROJECT_DIR$/server/middleware/operation.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170050" />
+              <option name="lastModified" value="1753020870737" />
               <option name="schema">
                 <list>
                   <option value="responseBodyWriter" />
@@ -2799,21 +2861,21 @@
         <entry key="file://$PROJECT_DIR$/server/middleware/timeout.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170057" />
+              <option name="lastModified" value="1753020870737" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/model/common/basetypes.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170100" />
+              <option name="lastModified" value="1753020870740" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/model/common/clearDB.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170107" />
+              <option name="lastModified" value="1753020870741" />
               <option name="schema">
                 <list>
                   <option value="ClearDB" />
@@ -2825,7 +2887,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/common/request/common.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170128" />
+              <option name="lastModified" value="1753020870743" />
               <option name="schema">
                 <list>
                   <option value="PageInfo" />
@@ -2841,7 +2903,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/common/response/common.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170156" />
+              <option name="lastModified" value="1753020870743" />
               <option name="schema">
                 <list>
                   <option value="PageResult" />
@@ -2853,7 +2915,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/common/response/response.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170167" />
+              <option name="lastModified" value="1753020870745" />
               <option name="schema">
                 <list>
                   <option value="Response" />
@@ -2865,7 +2927,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/casbin_rule.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239256" />
+              <option name="lastModified" value="1753020870756" />
               <option name="schema">
                 <list>
                   <option value="CasbinRule" />
@@ -2877,7 +2939,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/casbin_rule.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239306" />
+              <option name="lastModified" value="1753020870756" />
               <option name="schema">
                 <list>
                   <option value="CasbinRuleSearch" />
@@ -2889,7 +2951,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/jwt.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170581" />
+              <option name="lastModified" value="1753020870758" />
               <option name="schema">
                 <list>
                   <option value="CustomClaims" />
@@ -2902,7 +2964,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_api.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170591" />
+              <option name="lastModified" value="1753020870758" />
               <option name="schema">
                 <list>
                   <option value="SearchApiParams" />
@@ -2914,7 +2976,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_authority_btn.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170602" />
+              <option name="lastModified" value="1753020870758" />
               <option name="schema">
                 <list>
                   <option value="SysAuthorityBtnReq" />
@@ -2926,7 +2988,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_auto_code.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170610" />
+              <option name="lastModified" value="1753020870760" />
               <option name="schema">
                 <list>
                   <option value="AutoCode" />
@@ -2944,7 +3006,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_auto_code_mcp.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170620" />
+              <option name="lastModified" value="1753020870762" />
               <option name="schema">
                 <list>
                   <option value="AutoMcpTool" />
@@ -2956,7 +3018,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_auto_code_package.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170629" />
+              <option name="lastModified" value="1753020870762" />
               <option name="schema">
                 <list>
                   <option value="SysAutoCodePackageCreate" />
@@ -2968,7 +3030,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_auto_history.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170642" />
+              <option name="lastModified" value="1753020870762" />
               <option name="schema">
                 <list>
                   <option value="SysAutoHistoryCreate" />
@@ -2981,7 +3043,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_casbin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170652" />
+              <option name="lastModified" value="1753020870762" />
               <option name="schema">
                 <list>
                   <option value="CasbinInfo" />
@@ -2994,7 +3056,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_dictionary_detail.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170661" />
+              <option name="lastModified" value="1753020870764" />
               <option name="schema">
                 <list>
                   <option value="SysDictionaryDetailSearch" />
@@ -3006,7 +3068,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_export_template.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170669" />
+              <option name="lastModified" value="1753020870764" />
               <option name="schema">
                 <list>
                   <option value="SysExportTemplateSearch" />
@@ -3018,7 +3080,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_init.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170680" />
+              <option name="lastModified" value="1753020870764" />
               <option name="schema">
                 <list>
                   <option value="InitDB" />
@@ -3030,7 +3092,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170692" />
+              <option name="lastModified" value="1753020870765" />
               <option name="schema">
                 <list>
                   <option value="AddMenuAuthorityInfo" />
@@ -3042,7 +3104,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_operation_record.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170701" />
+              <option name="lastModified" value="1753020870767" />
               <option name="schema">
                 <list>
                   <option value="SysOperationRecordSearch" />
@@ -3054,7 +3116,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_params.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170709" />
+              <option name="lastModified" value="1753020870767" />
               <option name="schema">
                 <list>
                   <option value="SysParamsSearch" />
@@ -3066,7 +3128,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/request/sys_user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170718" />
+              <option name="lastModified" value="1753020870768" />
               <option name="schema">
                 <list>
                   <option value="Register" />
@@ -3085,7 +3147,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/response/sys_api.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170747" />
+              <option name="lastModified" value="1753020870769" />
               <option name="schema">
                 <list>
                   <option value="SysAPIResponse" />
@@ -3099,7 +3161,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/response/sys_authority.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170757" />
+              <option name="lastModified" value="1753020870769" />
               <option name="schema">
                 <list>
                   <option value="SysAuthorityResponse" />
@@ -3112,7 +3174,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/response/sys_authority_btn.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170766" />
+              <option name="lastModified" value="1753020870769" />
               <option name="schema">
                 <list>
                   <option value="SysAuthorityBtnRes" />
@@ -3124,7 +3186,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/response/sys_auto_code.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170777" />
+              <option name="lastModified" value="1753020870771" />
               <option name="schema">
                 <list>
                   <option value="Db" />
@@ -3138,7 +3200,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/response/sys_captcha.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170786" />
+              <option name="lastModified" value="1753020870773" />
               <option name="schema">
                 <list>
                   <option value="SysCaptchaResponse" />
@@ -3150,7 +3212,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/response/sys_casbin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170795" />
+              <option name="lastModified" value="1753020870773" />
               <option name="schema">
                 <list>
                   <option value="PolicyPathResponse" />
@@ -3162,7 +3224,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/response/sys_menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170804" />
+              <option name="lastModified" value="1753020870773" />
               <option name="schema">
                 <list>
                   <option value="SysMenusResponse" />
@@ -3176,7 +3238,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/response/sys_system.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170813" />
+              <option name="lastModified" value="1753020870773" />
               <option name="schema">
                 <list>
                   <option value="SysConfigResponse" />
@@ -3188,7 +3250,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/response/sys_user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170822" />
+              <option name="lastModified" value="1753020870775" />
               <option name="schema">
                 <list>
                   <option value="SysUserResponse" />
@@ -3201,7 +3263,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_api.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170369" />
+              <option name="lastModified" value="1753020870775" />
               <option name="schema">
                 <list>
                   <option value="SysApi" />
@@ -3214,7 +3276,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_authority.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170382" />
+              <option name="lastModified" value="1753020870777" />
               <option name="schema">
                 <list>
                   <option value="SysAuthority" />
@@ -3226,7 +3288,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_authority_btn.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170394" />
+              <option name="lastModified" value="1753020870777" />
               <option name="schema">
                 <list>
                   <option value="SysAuthorityBtn" />
@@ -3238,7 +3300,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_authority_menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170406" />
+              <option name="lastModified" value="1753020870779" />
               <option name="schema">
                 <list>
                   <option value="SysMenu" />
@@ -3251,7 +3313,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_auto_code_history.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170419" />
+              <option name="lastModified" value="1753020870779" />
               <option name="schema">
                 <list>
                   <option value="SysAutoCodeHistory" />
@@ -3263,7 +3325,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_auto_code_package.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170432" />
+              <option name="lastModified" value="1753020870779" />
               <option name="schema">
                 <list>
                   <option value="SysAutoCodePackage" />
@@ -3275,7 +3337,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_base_menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170444" />
+              <option name="lastModified" value="1753020870780" />
               <option name="schema">
                 <list>
                   <option value="SysBaseMenu" />
@@ -3289,7 +3351,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_dictionary.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170456" />
+              <option name="lastModified" value="1753020870781" />
               <option name="schema">
                 <list>
                   <option value="SysDictionary" />
@@ -3301,7 +3363,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_dictionary_detail.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170466" />
+              <option name="lastModified" value="1753020870781" />
               <option name="schema">
                 <list>
                   <option value="SysDictionaryDetail" />
@@ -3313,7 +3375,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_export_template.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170478" />
+              <option name="lastModified" value="1753020870782" />
               <option name="schema">
                 <list>
                   <option value="SysExportTemplate" />
@@ -3327,7 +3389,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_jwt_blacklist.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170487" />
+              <option name="lastModified" value="1753020870782" />
               <option name="schema">
                 <list>
                   <option value="JwtBlacklist" />
@@ -3339,7 +3401,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_menu_btn.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170498" />
+              <option name="lastModified" value="1753020870784" />
               <option name="schema">
                 <list>
                   <option value="SysBaseMenuBtn" />
@@ -3351,7 +3413,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_operation_record.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170510" />
+              <option name="lastModified" value="1753020870784" />
               <option name="schema">
                 <list>
                   <option value="SysOperationRecord" />
@@ -3363,7 +3425,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_params.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170520" />
+              <option name="lastModified" value="1753020870784" />
               <option name="schema">
                 <list>
                   <option value="SysParams" />
@@ -3375,7 +3437,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_system.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170532" />
+              <option name="lastModified" value="1753020870785" />
               <option name="schema">
                 <list>
                   <option value="System" />
@@ -3387,7 +3449,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170542" />
+              <option name="lastModified" value="1753020870787" />
               <option name="schema">
                 <list>
                   <option value="SysUser" />
@@ -3399,7 +3461,7 @@
         <entry key="file://$PROJECT_DIR$/server/model/system/sys_user_authority.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170553" />
+              <option name="lastModified" value="1753020870788" />
               <option name="schema">
                 <list>
                   <option value="SysUserAuthority" />
@@ -3408,10 +3470,34 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/server/model/user/ai_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1753022579357" />
+              <option name="schema">
+                <list>
+                  <option value="AiUser" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/server/model/user/request/ai_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1753022579358" />
+              <option name="schema">
+                <list>
+                  <option value="AiUserSearch" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/api/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170885" />
+              <option name="lastModified" value="1753020870790" />
               <option name="schema">
                 <list>
                   <option value="api" />
@@ -3423,7 +3509,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/api/info.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170892" />
+              <option name="lastModified" value="1753020870790" />
               <option name="schema">
                 <list>
                   <option value="info" />
@@ -3435,7 +3521,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/config/config.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170915" />
+              <option name="lastModified" value="1753020870793" />
               <option name="schema">
                 <list>
                   <option value="Config" />
@@ -3447,49 +3533,49 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/gen/gen.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170938" />
+              <option name="lastModified" value="1753020870793" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/initialize/api.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170961" />
+              <option name="lastModified" value="1753020870794" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/initialize/gorm.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170969" />
+              <option name="lastModified" value="1753020870794" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/initialize/menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170977" />
+              <option name="lastModified" value="1753020870795" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/initialize/router.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170985" />
+              <option name="lastModified" value="1753020870795" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/initialize/viper.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170994" />
+              <option name="lastModified" value="1753020870797" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/model/info.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171024" />
+              <option name="lastModified" value="1753020870799" />
               <option name="schema">
                 <list>
                   <option value="Info" />
@@ -3501,7 +3587,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/model/request/info.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171044" />
+              <option name="lastModified" value="1753020870800" />
               <option name="schema">
                 <list>
                   <option value="InfoSearch" />
@@ -3513,7 +3599,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/plugin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725170866" />
+              <option name="lastModified" value="1753020870800" />
               <option name="schema">
                 <list>
                   <option value="plugin" />
@@ -3525,14 +3611,14 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/plugin/plugin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171071" />
+              <option name="lastModified" value="1753020870801" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/router/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171095" />
+              <option name="lastModified" value="1753020870803" />
               <option name="schema">
                 <list>
                   <option value="router" />
@@ -3544,7 +3630,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/router/info.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171103" />
+              <option name="lastModified" value="1753020870803" />
               <option name="schema">
                 <list>
                   <option value="info" />
@@ -3556,7 +3642,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/service/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171126" />
+              <option name="lastModified" value="1753020870805" />
               <option name="schema">
                 <list>
                   <option value="service" />
@@ -3568,7 +3654,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/announcement/service/info.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171134" />
+              <option name="lastModified" value="1753020870805" />
               <option name="schema">
                 <list>
                   <option value="info" />
@@ -3580,7 +3666,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/api/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171188" />
+              <option name="lastModified" value="1753020870807" />
               <option name="schema">
                 <list>
                   <option value="ApiGroup" />
@@ -3592,7 +3678,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/api/sys_email.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171195" />
+              <option name="lastModified" value="1753020870808" />
               <option name="schema">
                 <list>
                   <option value="EmailApi" />
@@ -3604,7 +3690,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/config/email.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171219" />
+              <option name="lastModified" value="1753020870809" />
               <option name="schema">
                 <list>
                   <option value="Email" />
@@ -3616,14 +3702,14 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/global/gloabl.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171244" />
+              <option name="lastModified" value="1753020870810" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/plugin/email/main.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171169" />
+              <option name="lastModified" value="1753020870810" />
               <option name="schema">
                 <list>
                   <option value="emailPlugin" />
@@ -3635,7 +3721,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/model/response/email.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171278" />
+              <option name="lastModified" value="1753020870812" />
               <option name="schema">
                 <list>
                   <option value="Email" />
@@ -3647,7 +3733,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/router/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171302" />
+              <option name="lastModified" value="1753020870814" />
               <option name="schema">
                 <list>
                   <option value="RouterGroup" />
@@ -3659,7 +3745,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/router/sys_email.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171310" />
+              <option name="lastModified" value="1753020870814" />
               <option name="schema">
                 <list>
                   <option value="EmailRouter" />
@@ -3671,7 +3757,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/service/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171335" />
+              <option name="lastModified" value="1753020870816" />
               <option name="schema">
                 <list>
                   <option value="ServiceGroup" />
@@ -3683,7 +3769,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/service/sys_email.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171343" />
+              <option name="lastModified" value="1753020870817" />
               <option name="schema">
                 <list>
                   <option value="EmailService" />
@@ -3695,7 +3781,7 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/email/utils/email.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171365" />
+              <option name="lastModified" value="1753020870817" />
               <option name="schema">
                 <list>
                   <option value="loginAuth" />
@@ -3707,14 +3793,14 @@
         <entry key="file://$PROJECT_DIR$/server/plugin/plugin-tool/utils/check.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725171400" />
+              <option name="lastModified" value="1753020870819" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/router/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239143" />
+              <option name="lastModified" value="1753022579361" />
               <option name="schema">
                 <list>
                   <option value="RouterGroup" />
@@ -3726,7 +3812,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/casbin_rule.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239102" />
+              <option name="lastModified" value="1753020870865" />
               <option name="schema">
                 <list>
                   <option value="CasbinRuleRouter" />
@@ -3738,7 +3824,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239158" />
+              <option name="lastModified" value="1753020870865" />
               <option name="schema">
                 <list>
                   <option value="RouterGroup" />
@@ -3750,7 +3836,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_api.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172356" />
+              <option name="lastModified" value="1753020870868" />
               <option name="schema">
                 <list>
                   <option value="ApiRouter" />
@@ -3762,7 +3848,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_authority.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172363" />
+              <option name="lastModified" value="1753020870868" />
               <option name="schema">
                 <list>
                   <option value="AuthorityRouter" />
@@ -3774,7 +3860,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_authority_btn.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172370" />
+              <option name="lastModified" value="1753020870869" />
               <option name="schema">
                 <list>
                   <option value="AuthorityBtnRouter" />
@@ -3786,7 +3872,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_auto_code.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172378" />
+              <option name="lastModified" value="1753020870870" />
               <option name="schema">
                 <list>
                   <option value="AutoCodeRouter" />
@@ -3798,7 +3884,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_auto_code_history.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172386" />
+              <option name="lastModified" value="1753020870871" />
               <option name="schema">
                 <list>
                   <option value="AutoCodeHistoryRouter" />
@@ -3810,7 +3896,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_base.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172394" />
+              <option name="lastModified" value="1753020870871" />
               <option name="schema">
                 <list>
                   <option value="BaseRouter" />
@@ -3822,7 +3908,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_casbin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172402" />
+              <option name="lastModified" value="1753020870871" />
               <option name="schema">
                 <list>
                   <option value="CasbinRouter" />
@@ -3834,7 +3920,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_dictionary.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172410" />
+              <option name="lastModified" value="1753020870872" />
               <option name="schema">
                 <list>
                   <option value="DictionaryRouter" />
@@ -3846,7 +3932,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_dictionary_detail.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172419" />
+              <option name="lastModified" value="1753020870873" />
               <option name="schema">
                 <list>
                   <option value="DictionaryDetailRouter" />
@@ -3858,7 +3944,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_export_template.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172427" />
+              <option name="lastModified" value="1753020870873" />
               <option name="schema">
                 <list>
                   <option value="SysExportTemplateRouter" />
@@ -3870,7 +3956,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_initdb.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172435" />
+              <option name="lastModified" value="1753020870874" />
               <option name="schema">
                 <list>
                   <option value="InitRouter" />
@@ -3882,7 +3968,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_jwt.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172443" />
+              <option name="lastModified" value="1753020870874" />
               <option name="schema">
                 <list>
                   <option value="JwtRouter" />
@@ -3894,7 +3980,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172451" />
+              <option name="lastModified" value="1753020870876" />
               <option name="schema">
                 <list>
                   <option value="MenuRouter" />
@@ -3906,7 +3992,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_operation_record.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172459" />
+              <option name="lastModified" value="1753020870876" />
               <option name="schema">
                 <list>
                   <option value="OperationRecordRouter" />
@@ -3918,7 +4004,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_params.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172466" />
+              <option name="lastModified" value="1753020870876" />
               <option name="schema">
                 <list>
                   <option value="SysParamsRouter" />
@@ -3930,7 +4016,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_system.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172474" />
+              <option name="lastModified" value="1753020870876" />
               <option name="schema">
                 <list>
                   <option value="SysRouter" />
@@ -3942,7 +4028,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/system/sys_user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172481" />
+              <option name="lastModified" value="1753020870878" />
               <option name="schema">
                 <list>
                   <option value="UserRouter" />
@@ -3951,10 +4037,34 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/server/router/user/ai_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1753022579358" />
+              <option name="schema">
+                <list>
+                  <option value="AiUserRouter" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/server/router/user/enter.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1753022579366" />
+              <option name="schema">
+                <list>
+                  <option value="RouterGroup" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/server/service/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239217" />
+              <option name="lastModified" value="1753022579317" />
               <option name="schema">
                 <list>
                   <option value="ServiceGroup" />
@@ -3966,7 +4076,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/auto_code_history.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172575" />
+              <option name="lastModified" value="1753020870884" />
               <option name="schema">
                 <list>
                   <option value="autoCodeHistory" />
@@ -3978,14 +4088,14 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/auto_code_mcp.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172582" />
+              <option name="lastModified" value="1753020870885" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/service/system/auto_code_package.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172590" />
+              <option name="lastModified" value="1753020870887" />
               <option name="schema">
                 <list>
                   <option value="autoCodePackage" />
@@ -3997,7 +4107,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/auto_code_package_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172598" />
+              <option name="lastModified" value="1753020870887" />
               <option name="schema">
                 <list>
                   <option value="args" />
@@ -4010,7 +4120,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/auto_code_plugin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172606" />
+              <option name="lastModified" value="1753020870887" />
               <option name="schema">
                 <list>
                   <option value="autoCodePlugin" />
@@ -4022,7 +4132,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/auto_code_template.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172614" />
+              <option name="lastModified" value="1753020870887" />
               <option name="schema">
                 <list>
                   <option value="autoCodeTemplate" />
@@ -4034,7 +4144,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/auto_code_template_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172622" />
+              <option name="lastModified" value="1753020870889" />
               <option name="schema">
                 <list>
                   <option value="args" />
@@ -4047,7 +4157,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/casbin_rule.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239103" />
+              <option name="lastModified" value="1753020870889" />
               <option name="schema">
                 <list>
                   <option value="CasbinRuleService" />
@@ -4059,7 +4169,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752736239241" />
+              <option name="lastModified" value="1753020870889" />
               <option name="schema">
                 <list>
                   <option value="ServiceGroup" />
@@ -4071,7 +4181,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/jwt_black_list.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172638" />
+              <option name="lastModified" value="1753020870890" />
               <option name="schema">
                 <list>
                   <option value="JwtService" />
@@ -4083,7 +4193,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_api.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172649" />
+              <option name="lastModified" value="1753020870891" />
               <option name="schema">
                 <list>
                   <option value="ApiService" />
@@ -4095,7 +4205,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_authority.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172657" />
+              <option name="lastModified" value="1753020870891" />
               <option name="schema">
                 <list>
                   <option value="AuthorityService" />
@@ -4107,7 +4217,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_authority_btn.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172665" />
+              <option name="lastModified" value="1753020870892" />
               <option name="schema">
                 <list>
                   <option value="AuthorityBtnService" />
@@ -4119,7 +4229,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_auto_code_interface.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172673" />
+              <option name="lastModified" value="1753020870892" />
               <option name="schema">
                 <list>
                   <option value="AutoCodeService" />
@@ -4131,7 +4241,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_auto_code_mssql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172682" />
+              <option name="lastModified" value="1753020870894" />
               <option name="schema">
                 <list>
                   <option value="autoCodeMssql" />
@@ -4143,7 +4253,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_auto_code_mysql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172691" />
+              <option name="lastModified" value="1753020870894" />
               <option name="schema">
                 <list>
                   <option value="autoCodeMysql" />
@@ -4155,7 +4265,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_auto_code_oracle.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172698" />
+              <option name="lastModified" value="1753020870894" />
               <option name="schema">
                 <list>
                   <option value="autoCodeOracle" />
@@ -4167,7 +4277,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_auto_code_pgsql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172707" />
+              <option name="lastModified" value="1753020870895" />
               <option name="schema">
                 <list>
                   <option value="autoCodePgsql" />
@@ -4179,7 +4289,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_auto_code_sqlite.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172717" />
+              <option name="lastModified" value="1753020870896" />
               <option name="schema">
                 <list>
                   <option value="autoCodeSqlite" />
@@ -4191,7 +4301,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_base_menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172726" />
+              <option name="lastModified" value="1753020870896" />
               <option name="schema">
                 <list>
                   <option value="BaseMenuService" />
@@ -4203,7 +4313,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_casbin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172735" />
+              <option name="lastModified" value="1753020870896" />
               <option name="schema">
                 <list>
                   <option value="CasbinService" />
@@ -4215,7 +4325,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_dictionary.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172748" />
+              <option name="lastModified" value="1753020870897" />
               <option name="schema">
                 <list>
                   <option value="DictionaryService" />
@@ -4227,7 +4337,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_dictionary_detail.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172758" />
+              <option name="lastModified" value="1753020870899" />
               <option name="schema">
                 <list>
                   <option value="DictionaryDetailService" />
@@ -4239,7 +4349,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_export_template.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172766" />
+              <option name="lastModified" value="1753020870899" />
               <option name="schema">
                 <list>
                   <option value="SysExportTemplateService" />
@@ -4251,7 +4361,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_initdb.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172775" />
+              <option name="lastModified" value="1753020870899" />
               <option name="schema">
                 <list>
                   <option value="orderedInitializer" />
@@ -4264,7 +4374,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_initdb_mssql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172785" />
+              <option name="lastModified" value="1753020870899" />
               <option name="schema">
                 <list>
                   <option value="MssqlInitHandler" />
@@ -4276,7 +4386,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_initdb_mysql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172794" />
+              <option name="lastModified" value="1753020870901" />
               <option name="schema">
                 <list>
                   <option value="MysqlInitHandler" />
@@ -4288,7 +4398,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_initdb_pgsql.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172805" />
+              <option name="lastModified" value="1753020870903" />
               <option name="schema">
                 <list>
                   <option value="PgsqlInitHandler" />
@@ -4300,7 +4410,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_initdb_sqlite.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172815" />
+              <option name="lastModified" value="1753020870903" />
               <option name="schema">
                 <list>
                   <option value="SqliteInitHandler" />
@@ -4312,7 +4422,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172824" />
+              <option name="lastModified" value="1753020870903" />
               <option name="schema">
                 <list>
                   <option value="MenuService" />
@@ -4324,7 +4434,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_operation_record.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172833" />
+              <option name="lastModified" value="1753020870905" />
               <option name="schema">
                 <list>
                   <option value="OperationRecordService" />
@@ -4336,7 +4446,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_params.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172842" />
+              <option name="lastModified" value="1753020870905" />
               <option name="schema">
                 <list>
                   <option value="SysParamsService" />
@@ -4348,7 +4458,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_system.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172850" />
+              <option name="lastModified" value="1753020870905" />
               <option name="schema">
                 <list>
                   <option value="SystemConfigService" />
@@ -4360,7 +4470,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/system/sys_user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172858" />
+              <option name="lastModified" value="1753020870906" />
               <option name="schema">
                 <list>
                   <option value="UserService" />
@@ -4369,10 +4479,34 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/server/service/user/ai_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1753104426311" />
+              <option name="schema">
+                <list>
+                  <option value="AiUserService" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/server/service/user/enter.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1753022579365" />
+              <option name="schema">
+                <list>
+                  <option value="ServiceGroup" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/server/source/system/api.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172917" />
+              <option name="lastModified" value="1753020870910" />
               <option name="schema">
                 <list>
                   <option value="initApi" />
@@ -4384,7 +4518,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/api_ignore.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172924" />
+              <option name="lastModified" value="1753020870910" />
               <option name="schema">
                 <list>
                   <option value="initApiIgnore" />
@@ -4396,7 +4530,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/authorities_menus.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172932" />
+              <option name="lastModified" value="1753020870910" />
               <option name="schema">
                 <list>
                   <option value="initMenuAuthority" />
@@ -4408,7 +4542,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/authority.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172940" />
+              <option name="lastModified" value="1753020870912" />
               <option name="schema">
                 <list>
                   <option value="initAuthority" />
@@ -4420,7 +4554,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/casbin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172949" />
+              <option name="lastModified" value="1753020870914" />
               <option name="schema">
                 <list>
                   <option value="initCasbin" />
@@ -4432,7 +4566,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/dictionary.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172958" />
+              <option name="lastModified" value="1753020870914" />
               <option name="schema">
                 <list>
                   <option value="initDict" />
@@ -4444,7 +4578,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/dictionary_detail.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172965" />
+              <option name="lastModified" value="1753020870914" />
               <option name="schema">
                 <list>
                   <option value="initDictDetail" />
@@ -4456,7 +4590,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/excel_template.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172973" />
+              <option name="lastModified" value="1753020870915" />
               <option name="schema">
                 <list>
                   <option value="initExcelTemplate" />
@@ -4468,7 +4602,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172981" />
+              <option name="lastModified" value="1753020870916" />
               <option name="schema">
                 <list>
                   <option value="initMenu" />
@@ -4480,7 +4614,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725172989" />
+              <option name="lastModified" value="1753020870917" />
               <option name="schema">
                 <list>
                   <option value="initUser" />
@@ -4492,28 +4626,28 @@
         <entry key="file://$PROJECT_DIR$/server/task/clearTable.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173011" />
+              <option name="lastModified" value="1753020870917" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/ast.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173192" />
+              <option name="lastModified" value="1753020870919" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/ast_auto_enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173199" />
+              <option name="lastModified" value="1753020870920" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/ast_enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173206" />
+              <option name="lastModified" value="1753020870921" />
               <option name="schema">
                 <list>
                   <option value="Visitor" />
@@ -4525,49 +4659,49 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/ast_gorm.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173215" />
+              <option name="lastModified" value="1753020870921" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/ast_init_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173223" />
+              <option name="lastModified" value="1753020870923" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/ast_rollback.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173231" />
+              <option name="lastModified" value="1753020870923" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/ast_router.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173239" />
+              <option name="lastModified" value="1753020870925" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/ast_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173246" />
+              <option name="lastModified" value="1753020870925" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/ast_type.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173253" />
+              <option name="lastModified" value="1753020870926" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/import.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173260" />
+              <option name="lastModified" value="1753020870926" />
               <option name="schema">
                 <list>
                   <option value="Import" />
@@ -4579,14 +4713,14 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/interfaces.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173268" />
+              <option name="lastModified" value="1753020870927" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/ast/interfaces_base.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173277" />
+              <option name="lastModified" value="1753020870927" />
               <option name="schema">
                 <list>
                   <option value="Base" />
@@ -4598,7 +4732,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/package_enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173287" />
+              <option name="lastModified" value="1753020870928" />
               <option name="schema">
                 <list>
                   <option value="PackageEnter" />
@@ -4610,7 +4744,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/package_enter_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173293" />
+              <option name="lastModified" value="1753020870928" />
               <option name="schema">
                 <list>
                   <option value="fields" />
@@ -4623,7 +4757,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/package_initialize_gorm.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173301" />
+              <option name="lastModified" value="1753020870929" />
               <option name="schema">
                 <list>
                   <option value="PackageInitializeGorm" />
@@ -4635,7 +4769,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/package_initialize_gorm_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173309" />
+              <option name="lastModified" value="1753020870930" />
               <option name="schema">
                 <list>
                   <option value="fields" />
@@ -4648,7 +4782,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/package_initialize_router.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173316" />
+              <option name="lastModified" value="1753020870930" />
               <option name="schema">
                 <list>
                   <option value="PackageInitializeRouter" />
@@ -4660,7 +4794,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/package_initialize_router_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173324" />
+              <option name="lastModified" value="1753020870931" />
               <option name="schema">
                 <list>
                   <option value="fields" />
@@ -4673,7 +4807,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/package_module_enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173331" />
+              <option name="lastModified" value="1753020870932" />
               <option name="schema">
                 <list>
                   <option value="PackageModuleEnter" />
@@ -4685,7 +4819,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/package_module_enter_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173340" />
+              <option name="lastModified" value="1753020870933" />
               <option name="schema">
                 <list>
                   <option value="fields" />
@@ -4698,7 +4832,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173352" />
+              <option name="lastModified" value="1753020870934" />
               <option name="schema">
                 <list>
                   <option value="PluginEnter" />
@@ -4710,7 +4844,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_enter_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173360" />
+              <option name="lastModified" value="1753020870935" />
               <option name="schema">
                 <list>
                   <option value="fields" />
@@ -4723,7 +4857,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_gen.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173368" />
+              <option name="lastModified" value="1753020870936" />
               <option name="schema">
                 <list>
                   <option value="PluginGen" />
@@ -4735,7 +4869,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_gen_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173376" />
+              <option name="lastModified" value="1753020870936" />
               <option name="schema">
                 <list>
                   <option value="fields" />
@@ -4748,7 +4882,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_initialize_gorm.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173383" />
+              <option name="lastModified" value="1753020870936" />
               <option name="schema">
                 <list>
                   <option value="PluginInitializeGorm" />
@@ -4760,7 +4894,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_initialize_gorm_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173391" />
+              <option name="lastModified" value="1753020870937" />
               <option name="schema">
                 <list>
                   <option value="fields" />
@@ -4773,7 +4907,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_initialize_router.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173399" />
+              <option name="lastModified" value="1753020870939" />
               <option name="schema">
                 <list>
                   <option value="PluginInitializeRouter" />
@@ -4785,7 +4919,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_initialize_router_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173407" />
+              <option name="lastModified" value="1753020870939" />
               <option name="schema">
                 <list>
                   <option value="fields" />
@@ -4798,7 +4932,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_initialize_v2.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173415" />
+              <option name="lastModified" value="1753020870941" />
               <option name="schema">
                 <list>
                   <option value="PluginInitializeV2" />
@@ -4810,7 +4944,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/ast/plugin_initialize_v2_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173422" />
+              <option name="lastModified" value="1753020870941" />
               <option name="schema">
                 <list>
                   <option value="fields" />
@@ -4823,21 +4957,21 @@
         <entry key="file://$PROJECT_DIR$/server/utils/autocode/template_funcs.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173445" />
+              <option name="lastModified" value="1753020870943" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/breakpoint_continue.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173037" />
+              <option name="lastModified" value="1753020870943" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/captcha/redis.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173466" />
+              <option name="lastModified" value="1753020870946" />
               <option name="schema">
                 <list>
                   <option value="RedisStore" />
@@ -4849,49 +4983,49 @@
         <entry key="file://$PROJECT_DIR$/server/utils/casbin_util.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173046" />
+              <option name="lastModified" value="1753020870947" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/claims.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173053" />
+              <option name="lastModified" value="1753020870947" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/directory.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173062" />
+              <option name="lastModified" value="1753020870948" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/fmt_plus.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173071" />
+              <option name="lastModified" value="1753020870949" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/hash.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173080" />
+              <option name="lastModified" value="1753020870950" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/human_duration.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173088" />
+              <option name="lastModified" value="1753020870950" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/human_duration_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173097" />
+              <option name="lastModified" value="1753020870950" />
               <option name="schema">
                 <list>
                   <option value="args" />
@@ -4903,21 +5037,21 @@
         <entry key="file://$PROJECT_DIR$/server/utils/json.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173106" />
+              <option name="lastModified" value="1753020870952" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/json_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173114" />
+              <option name="lastModified" value="1753020870952" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/jwt.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173123" />
+              <option name="lastModified" value="1753020870952" />
               <option name="schema">
                 <list>
                   <option value="JWT" />
@@ -4929,28 +5063,28 @@
         <entry key="file://$PROJECT_DIR$/server/utils/plugin/plugin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173483" />
+              <option name="lastModified" value="1753020870954" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/plugin/v2/plugin.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173501" />
+              <option name="lastModified" value="1753020870954" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/request/http.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173525" />
+              <option name="lastModified" value="1753020870956" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/server.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173132" />
+              <option name="lastModified" value="1753020870956" />
               <option name="schema">
                 <list>
                   <option value="Server" />
@@ -4966,7 +5100,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/system_events.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173141" />
+              <option name="lastModified" value="1753020870956" />
               <option name="schema">
                 <list>
                   <option value="SystemEvents" />
@@ -4978,7 +5112,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/timer/timed_task.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173546" />
+              <option name="lastModified" value="1753020870958" />
               <option name="schema">
                 <list>
                   <option value="task" />
@@ -4992,7 +5126,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/timer/timed_task_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173553" />
+              <option name="lastModified" value="1753020870958" />
               <option name="schema">
                 <list>
                   <option value="mockJob" />
@@ -5004,7 +5138,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/upload/aliyun_oss.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173579" />
+              <option name="lastModified" value="1753020870959" />
               <option name="schema">
                 <list>
                   <option value="AliyunOSS" />
@@ -5016,7 +5150,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/upload/aws_s3.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173588" />
+              <option name="lastModified" value="1753020870960" />
               <option name="schema">
                 <list>
                   <option value="AwsS3" />
@@ -5028,7 +5162,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/upload/cloudflare_r2.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173596" />
+              <option name="lastModified" value="1753020870960" />
               <option name="schema">
                 <list>
                   <option value="CloudflareR2" />
@@ -5040,7 +5174,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/upload/local.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173604" />
+              <option name="lastModified" value="1753020870960" />
               <option name="schema">
                 <list>
                   <option value="Local" />
@@ -5052,7 +5186,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/upload/minio_oss.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173612" />
+              <option name="lastModified" value="1753020870963" />
               <option name="schema">
                 <list>
                   <option value="Minio" />
@@ -5064,7 +5198,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/upload/obs.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173619" />
+              <option name="lastModified" value="1753020870964" />
               <option name="schema">
                 <list>
                   <option value="Obs" />
@@ -5076,7 +5210,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/upload/qiniu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173627" />
+              <option name="lastModified" value="1753020870964" />
               <option name="schema">
                 <list>
                   <option value="Qiniu" />
@@ -5088,7 +5222,7 @@
         <entry key="file://$PROJECT_DIR$/server/utils/upload/tencent_cos.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173636" />
+              <option name="lastModified" value="1753020870964" />
               <option name="schema">
                 <list>
                   <option value="TencentCOS" />
@@ -5100,21 +5234,21 @@
         <entry key="file://$PROJECT_DIR$/server/utils/upload/upload.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173644" />
+              <option name="lastModified" value="1753020870965" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/validator.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173148" />
+              <option name="lastModified" value="1753020870967" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/validator_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173157" />
+              <option name="lastModified" value="1753020870967" />
               <option name="schema">
                 <list>
                   <option value="PageInfoTest" />
@@ -5126,14 +5260,14 @@
         <entry key="file://$PROJECT_DIR$/server/utils/verify.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173165" />
+              <option name="lastModified" value="1753020870967" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/server/utils/zip.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752725173173" />
+              <option name="lastModified" value="1753020870968" />
             </ScannedPath>
           </value>
         </entry>
@@ -5143,6 +5277,11 @@
       <map>
         <entry key="_gorm" value="_gorm" />
         <entry key="add_menu_authority_info" value="AddMenuAuthorityInfo" />
+        <entry key="ai_user" value="AiUser" />
+        <entry key="ai_user_api" value="AiUserApi" />
+        <entry key="ai_user_router" value="AiUserRouter" />
+        <entry key="ai_user_search" value="AiUserSearch" />
+        <entry key="ai_user_service" value="AiUserService" />
         <entry key="aliyun_oss" value="AliyunOSS" />
         <entry key="api" value="api" />
         <entry key="api_group" value="ApiGroup" />
