@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6b0c7771-2735-47a9-9b5c-af342cd1a481" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/AI-VideoCloud/web/public/logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AI-VideoCloud/web/public/logo1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/login_right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/GOHCache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GOHCache.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gin_vue.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/thriftCompilerAssist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/thriftCompilerAssist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/api/v1/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/api/v1/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/initialize/gorm_biz.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/initialize/gorm_biz.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/initialize/router_biz.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/initialize/router_biz.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/router/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/router/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/service/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/service/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/source/example/file_upload_download.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/source/example/file_upload_download.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/public/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/public/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/components/bottomInfo/bottomInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/components/bottomInfo/bottomInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/components/upload/QR-code.vue" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/components/upload/QR-code.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/core/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/core/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/pathInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/pathInfo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/view/about/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/view/about/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/view/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/view/login/index.vue" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../go语言/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/AI-VideoCloud" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/AI-VideoCloud" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="308gh91uwqgMBwmT3NqVqzyTQYr" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "yg",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "D:/gowork/gin_vue/AI-VideoCloud/web/public",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "D:\\golangs\\GoLand 2025.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\gowork\gin_vue\AI-VideoCloud\web\public" />
+      <recent name="D:\gowork\gin_vue\AI-VideoCloud\web\src\assets" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-3b128438d3f6-4b567d62c776-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.26094.127" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-GO-251.26094.127" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="6b0c7771-2735-47a9-9b5c-af342cd1a481" name="更改" comment="" />
+      <created>1753014730470</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753014730470</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
