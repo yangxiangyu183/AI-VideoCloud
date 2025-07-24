@@ -59,6 +59,8 @@
   "/src/view/superAdmin/operation/sysOperationRecord.vue": "SysOperationRecord",
   "/src/view/superAdmin/params/sysParams.vue": "SysParams",
   "/src/view/superAdmin/user/user.vue": "User",
+  "/src/view/system/casbinRule/casbinRule.vue": "CasbinRule",
+  "/src/view/system/casbinRule/casbinRuleForm.vue": "CasbinRuleForm",
   "/src/view/system/state.vue": "State",
   "/src/view/systemTools/autoCode/component/fieldDialog.vue": "FieldDialog",
   "/src/view/systemTools/autoCode/component/previewCodeDialog.vue": "PreviewCodeDialog",
@@ -74,6 +76,8 @@
   "/src/view/systemTools/installPlugin/index.vue": "Index",
   "/src/view/systemTools/pubPlug/pubPlug.vue": "PubPlug",
   "/src/view/systemTools/system/system.vue": "Config",
+  "/src/view/task_bor/task/task.vue": "Task",
+  "/src/view/task_bor/task/taskForm.vue": "TaskForm",
   "/src/plugin/announcement/form/info.vue": "InfoForm",
   "/src/plugin/announcement/view/info.vue": "Info",
   "/src/plugin/email/view/index.vue": "Email"
