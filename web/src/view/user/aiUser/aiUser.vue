@@ -227,7 +227,7 @@ const rule = reactive({
                    trigger: ['input', 'blur'],
               }
               ],
-               permissions : [{
+               userEmail : [{
                    required: true,
                    message: '',
                    trigger: ['input','blur'],

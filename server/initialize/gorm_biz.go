@@ -8,7 +8,7 @@ import (
 
 func bizModel() error {
 	db := global.GVA_DB
-	err := db.AutoMigrate(system.CasbinRule{}, user.AiUser{})
+	err := db.AutoMigrate(system.CasbinRule{}, user.AiUser{}, user.AiUser{}, user.AdminUser{})
 	if err != nil {
 		return err
 	}

@@ -76,6 +76,8 @@
   "/src/view/systemTools/installPlugin/index.vue": "Index",
   "/src/view/systemTools/pubPlug/pubPlug.vue": "PubPlug",
   "/src/view/systemTools/system/system.vue": "Config",
+  "/src/view/user/adminUser/adminUser.vue": "AdminUser",
+  "/src/view/user/adminUser/adminUserForm.vue": "AdminUserForm",
   "/src/view/user/aiUser/aiUser.vue": "AiUser",
   "/src/view/user/aiUser/aiUserForm.vue": "AiUserForm",
   "/src/plugin/announcement/form/info.vue": "InfoForm",

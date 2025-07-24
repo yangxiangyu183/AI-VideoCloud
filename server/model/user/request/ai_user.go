@@ -1,4 +1,3 @@
-
 package request
 
 import (
@@ -6,7 +5,7 @@ import (
 	"time"
 )
 
-type AiUserSearch struct{
-    CreatedAtRange []time.Time `json:"createdAtRange" form:"createdAtRange[]"`
-    request.PageInfo
+type AiUserSearch struct {
+	CreatedAtRange []time.Time `json:"createdAtRange" form:"createdAtRange[]"`
+	request.PageInfo
 }
