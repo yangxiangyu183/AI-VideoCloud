@@ -1,7 +1,7 @@
 {
   "/src/view/about/index.vue": "About",
-  "/src/view/alert/alertEvents/alertEvents.vue": "AlertEvents",
-  "/src/view/alert/alertEvents/alertEventsForm.vue": "AlertEventsForm",
+  "/src/view/alert_video/alert/alert.vue": "Alert",
+  "/src/view/alert_video/alert/alertForm.vue": "AlertForm",
   "/src/view/dashboard/components/banner.vue": "Banner",
   "/src/view/dashboard/components/card.vue": "Card",
   "/src/view/dashboard/components/charts-content-numbers.vue": "ChartsContentNumbers",

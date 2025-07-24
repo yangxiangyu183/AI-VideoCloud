@@ -99,8 +99,8 @@ mcp:
     url_prefix: ""
 minio:
     endpoint: 14.103.235.213:9000
-    access-key-id: yuange
-    access-key-secret: yuange85741
+    access-key-id: minio
+    access-key-secret: minio123456
     bucket-name: test
     use-ssl: false
     base-path: ""

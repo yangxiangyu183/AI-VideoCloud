@@ -11,3 +11,18 @@
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 14:35:47.242	[34minfo[0m	D:/gowork/gin_vue/AI-VideoCloud/server/initialize/gorm.go:77	register table success
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 14:35:47.261	[34minfo[0m	D:/gowork/gin_vue/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 14:35:47.714	[34minfo[0m	D:/gowork/gin_vue/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 15:40:55.671	[34minfo[0m	D:/gowork/gin_vue/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 15:40:55.697	[34minfo[0m	D:/gowork/gin_vue/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 15:40:56.366	[34minfo[0m	D:/gowork/gin_vue/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 15:49:44.082	[34minfo[0m	D:/gowork/gin_vue/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 15:49:44.089	[34minfo[0m	D:/gowork/gin_vue/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 15:51:32.091	[34minfo[0m	D:/gowork/gin_vue/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 15:51:32.101	[34minfo[0m	D:/gowork/gin_vue/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 15:51:32.541	[34minfo[0m	D:/gowork/gin_vue/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 19:03:31.498	[34minfo[0m	D:/gowork/gin_vue/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 19:03:31.516	[34minfo[0m	D:/gowork/gin_vue/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 19:22:25.256	[34minfo[0m	D:/gowork/gin_vue/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 19:22:25.275	[34minfo[0m	D:/gowork/gin_vue/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 19:22:25.746	[34minfo[0m	D:/gowork/gin_vue/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 22:40:58.605	[34minfo[0m	D:/gowork/gin_vue/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 22:40:58.613	[34minfo[0m	D:/gowork/gin_vue/server/core/server_run.go:59	WEB服务已关闭

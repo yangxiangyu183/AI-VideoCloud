@@ -1,3 +1,3 @@
 package alert
 
-type ServiceGroup struct{ AlertEventsService }
+type ServiceGroup struct{}

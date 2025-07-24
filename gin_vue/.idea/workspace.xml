@@ -5,36 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b0c7771-2735-47a9-9b5c-af342cd1a481" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/AI-VideoCloud/web/public/logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AI-VideoCloud/web/public/logo1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/login_right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GOHCache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GOHCache.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gin_vue.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/thriftCompilerAssist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/thriftCompilerAssist.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/api/v1/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/api/v1/enter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/initialize/gorm_biz.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/initialize/gorm_biz.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/initialize/router_biz.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/initialize/router_biz.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/router/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/router/enter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/service/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/service/enter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/server/source/example/file_upload_download.go" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/server/source/example/file_upload_download.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/public/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/public/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/assets/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/components/bottomInfo/bottomInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/components/bottomInfo/bottomInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/components/upload/QR-code.vue" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/components/upload/QR-code.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/core/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/core/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/pathInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/pathInfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/view/about/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/view/about/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI-VideoCloud/web/src/view/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/AI-VideoCloud/web/src/view/login/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/.idea/GOHCache.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/.idea/thriftCompilerAssist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/api/client/client.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/api/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/api/request/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/api/router/api.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/api/router/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/rpc/grpc/rpc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/rpc/init/mysql/init.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/rpc/init/mysql/mysql.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/rpc/proto/user.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/service/appconfig/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/service/appconfig/dev.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/service/login/register.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/service/login/user/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/service/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../videos/service/server/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +39,7 @@
         <entry key="$PROJECT_DIR$/AI-VideoCloud" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/AI-VideoCloud" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectColorInfo">{
@@ -62,25 +53,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "yg",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "D:/gowork/gin_vue/AI-VideoCloud/web/public",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "D:\\golangs\\GoLand 2025.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;yg&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/17380&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\golangs\\GoLand 2025.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\gowork\gin_vue\AI-VideoCloud\web\public" />
