@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bd4e9b50-b16b-4193-a0e8-e6d9a4ac09fa" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/GOHCache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GOHCache.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/v1/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/v1/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/v1/user/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/v1/user/ai_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/v1/user/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/v1/user/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/initialize/gorm_biz.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/initialize/gorm_biz.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/initialize/router_biz.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/initialize/router_biz.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/user/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/user/ai_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/user/request/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/user/request/ai_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/example/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/example/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/user/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/user/ai_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/user/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/user/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/user/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/user/ai_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/user/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/user/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pathInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/pathInfo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/view/user/aiUser/aiUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/view/user/aiUser/aiUser.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/view/user/aiUser/aiUserForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/view/user/aiUser/aiUserForm.vue" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="308tbmVrUWhe6TWXvJNzLg3UULZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.GoLinterPluginOnboarding": "true",
+    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "zy",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "C:/Users/31905",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "E:\\GoLand 2025.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-3b128438d3f6-4b567d62c776-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.26094.127" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-GO-251.26094.127" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="bd4e9b50-b16b-4193-a0e8-e6d9a4ac09fa" name="更改" comment="" />
+      <created>1753021102965</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753021102965</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
