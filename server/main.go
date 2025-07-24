@@ -48,4 +48,8 @@ func initializeSystem() {
 	if global.GVA_DB != nil {
 		initialize.RegisterTables() // 初始化表
 	}
+	//err := middleware.InitCOSClient()
+	//if err != nil {
+	//	return
+	//}
 }

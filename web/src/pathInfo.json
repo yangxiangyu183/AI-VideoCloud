@@ -11,6 +11,10 @@
   "/src/view/dashboard/components/table.vue": "Table",
   "/src/view/dashboard/components/wiki.vue": "Wiki",
   "/src/view/dashboard/index.vue": "Dashboard",
+  "/src/view/device/deviceGroup/deviceGroup.vue": "DeviceGroup",
+  "/src/view/device/deviceGroup/deviceGroupForm.vue": "DeviceGroupForm",
+  "/src/view/device/monitorDevice/monitorDevice.vue": "MonitorDevice",
+  "/src/view/device/monitorDevice/monitorDeviceForm.vue": "MonitorDeviceForm",
   "/src/view/error/index.vue": "Error",
   "/src/view/error/reload.vue": "Reload",
   "/src/view/example/breakpoint/breakpoint.vue": "BreakPoint",
@@ -76,10 +80,15 @@
   "/src/view/systemTools/installPlugin/index.vue": "Index",
   "/src/view/systemTools/pubPlug/pubPlug.vue": "PubPlug",
   "/src/view/systemTools/system/system.vue": "Config",
+<<<<<<< HEAD
   "/src/view/user/adminUser/adminUser.vue": "AdminUser",
   "/src/view/user/adminUser/adminUserForm.vue": "AdminUserForm",
   "/src/view/user/aiUser/aiUser.vue": "AiUser",
   "/src/view/user/aiUser/aiUserForm.vue": "AiUserForm",
+=======
+  "/src/view/task_bor/task/task.vue": "Task",
+  "/src/view/task_bor/task/taskForm.vue": "TaskForm",
+>>>>>>> hjy
   "/src/plugin/announcement/form/info.vue": "InfoForm",
   "/src/plugin/announcement/view/info.vue": "Info",
   "/src/plugin/email/view/index.vue": "Email"

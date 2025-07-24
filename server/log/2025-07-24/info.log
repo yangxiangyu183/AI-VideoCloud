@@ -1,0 +1,8 @@
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:19:14.531	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:19:14.557	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:19:15.293	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:24:14.886	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:24:14.891	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:24:43.770	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:24:43.801	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:24:44.459	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/initialize/router.go:120	router register success
