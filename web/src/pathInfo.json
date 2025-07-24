@@ -1,5 +1,7 @@
 {
   "/src/view/about/index.vue": "About",
+  "/src/view/alert_video/alert/alert.vue": "Alert",
+  "/src/view/alert_video/alert/alertForm.vue": "AlertForm",
   "/src/view/dashboard/components/banner.vue": "Banner",
   "/src/view/dashboard/components/card.vue": "Card",
   "/src/view/dashboard/components/charts-content-numbers.vue": "ChartsContentNumbers",
@@ -80,15 +82,13 @@
   "/src/view/systemTools/installPlugin/index.vue": "Index",
   "/src/view/systemTools/pubPlug/pubPlug.vue": "PubPlug",
   "/src/view/systemTools/system/system.vue": "Config",
-<<<<<<< HEAD
+  "/src/view/task/task/task.vue": "Task",
+  "/src/view/task_bor/task/task.vue": "Task",
+  "/src/view/task_bor/task/taskForm.vue": "TaskForm",
   "/src/view/user/adminUser/adminUser.vue": "AdminUser",
   "/src/view/user/adminUser/adminUserForm.vue": "AdminUserForm",
   "/src/view/user/aiUser/aiUser.vue": "AiUser",
   "/src/view/user/aiUser/aiUserForm.vue": "AiUserForm",
-=======
-  "/src/view/task_bor/task/task.vue": "Task",
-  "/src/view/task_bor/task/taskForm.vue": "TaskForm",
->>>>>>> hjy
   "/src/plugin/announcement/form/info.vue": "InfoForm",
   "/src/plugin/announcement/view/info.vue": "Info",
   "/src/plugin/email/view/index.vue": "Email"

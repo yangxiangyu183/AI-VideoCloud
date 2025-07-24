@@ -6,3 +6,6 @@
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:24:43.770	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/initialize/gorm.go:77	register table success
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:24:43.801	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 11:24:44.459	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/AI-VideoCloud/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 22:16:35.759	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/vc/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 22:16:35.790	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/vc/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-24 22:16:36.428	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/vc/AI-VideoCloud/server/initialize/router.go:120	router register success
