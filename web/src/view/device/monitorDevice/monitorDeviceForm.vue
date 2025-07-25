@@ -43,7 +43,7 @@ defineOptions({
 // 自动获取字典
 import { getDictFunc } from '@/utils/format'
 import { useRoute, useRouter } from "vue-router"
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref, reactive } from 'vue'
 
 
@@ -122,6 +122,28 @@ const save = async() => {
                type: 'success',
                message: '创建/更改成功'
              })
+             
+             // 如果是创建操作，询问是否跳转到视频监控页面
+             if (type.value === 'create') {
+               ElMessageBox.confirm(
+                 '设备创建成功！是否立即跳转到视频监控页面查看视频流？',
+                 '跳转确认',
+                 {
+                   confirmButtonText: '跳转到监控页面',
+                   cancelButtonText: '返回设备列表',
+                   type: 'success',
+                 }
+               ).then(() => {
+                 // 跳转到视频监控页面
+                 router.push('/device/videoMonitor')
+               }).catch(() => {
+                 // 返回设备列表
+                 router.push('/device/monitorDevice')
+               })
+             } else {
+               // 更新操作直接返回列表
+               router.push('/device/monitorDevice')
+             }
            }
        })
 }

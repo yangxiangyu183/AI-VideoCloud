@@ -54,6 +54,7 @@
         <div class="gva-btn-list">
             <el-button v-auth="btnAuth.add" type="primary" icon="plus" @click="openDialog()">新增</el-button>
             <el-button v-auth="btnAuth.batchDelete" icon="delete" style="margin-left: 10px;" :disabled="!multipleSelection.length" @click="onDelete">删除</el-button>
+            <el-button type="success" icon="video-play" @click="goToVideoMonitor">视频监控</el-button>
             <ExportTemplate v-auth="btnAuth.exportTemplate" template-id="device_MonitorDevice" />
             <ExportExcel v-auth="btnAuth.exportExcel" template-id="device_MonitorDevice" filterDeleted/>
             <ImportExcel v-auth="btnAuth.importExcel" template-id="device_MonitorDevice" @on-success="getTableData" />
@@ -174,6 +175,7 @@ import {
 import { getDictFunc, formatDate, formatBoolean, filterDict ,filterDataSource, returnArrImg, onDownloadFile } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 // 引入按钮权限标识
 import { useBtnAuth } from '@/utils/btnAuth'
 import { useAppStore } from "@/pinia"
@@ -195,6 +197,7 @@ defineOptions({
 // 提交按钮loading
 const btnLoading = ref(false)
 const appStore = useAppStore()
+const router = useRouter()
 
 // 控制更多查询条件显示/隐藏状态
 const showAllQuery = ref(false)
@@ -459,6 +462,11 @@ const getDetails = async (row) => {
 const closeDetailShow = () => {
   detailShow.value = false
   detailForm.value = {}
+}
+
+// 跳转到视频监控页面
+const goToVideoMonitor = () => {
+  router.push('/device/videoMonitor')
 }
 
 
