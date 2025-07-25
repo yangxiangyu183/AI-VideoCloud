@@ -1,0 +1,3 @@
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-25 16:52:57.355	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/vc/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-25 16:52:57.438	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/vc/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-25 16:52:59.227	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/vc/AI-VideoCloud/server/initialize/router.go:120	router register success
