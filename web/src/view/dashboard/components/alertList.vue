@@ -45,7 +45,7 @@
 
 <script setup>
   import { ref } from 'vue'
-  import { Picture, Bell, Ship, Bicycle, Drone, Car, User } from '@element-plus/icons-vue'
+  import { Picture, Bell, Ship, Bicycle, Drone, TruckFilled, User } from '@element-plus/icons-vue'
 
   // 预警数据 - 根据图片中的实际数据
   const alertList = ref([
@@ -74,7 +74,7 @@
       time: '2025-07-23 09:20',
       area: '北京天安门',
       type: '车辆违停识别',
-      icon: Car,
+      icon: TruckFilled,
       thumbnail: '/path/to/parking-image.jpg'
     },
     {
