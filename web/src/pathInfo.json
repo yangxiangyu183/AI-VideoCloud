@@ -10,7 +10,6 @@
   "/src/view/dashboard/components/charts.vue": "Charts",
   "/src/view/dashboard/components/notice.vue": "Notice",
   "/src/view/dashboard/components/quickLinks.vue": "QuickLinks",
-  "/src/view/dashboard/components/alertList.vue": "AlertList",
   "/src/view/dashboard/index.vue": "Dashboard",
   "/src/view/device/deviceGroup/deviceGroup.vue": "DeviceGroup",
   "/src/view/device/deviceGroup/deviceGroupForm.vue": "DeviceGroupForm",
