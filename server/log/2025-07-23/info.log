@@ -1,3 +1,87 @@
+<<<<<<< HEAD
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 07:15:30.448	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 07:15:30.557	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 09:04:51.928	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 09:04:51.936	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 09:04:52.157	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:39:15.018	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:39:15.031	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:39:39.349	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:39:39.419	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:39:39.800	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:46:19.749	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:46:19.749	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:46:37.479	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:46:37.490	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:46:37.787	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:51:25.748	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:51:25.749	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:51:44.731	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:51:44.745	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 10:51:45.143	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 15:05:25.927	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 15:05:25.944	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 15:05:48.628	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 15:05:48.666	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 15:05:49.572	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 16:58:53.167	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 16:58:53.172	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 16:59:17.461	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 16:59:17.492	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 16:59:18.392	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:01:33.999	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:01:34.000	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:20:38.418	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:20:38.467	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:20:40.002	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:32:41.868	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:32:41.874	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:33:04.812	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:33:04.840	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 17:33:05.706	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:11:03.040	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:11:03.049	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:11:16.487	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:11:16.507	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:11:17.491	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:11:50.254	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:11:50.254	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:22:06.086	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:22:06.117	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:22:06.672	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:30:28.624	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:30:28.630	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:30:42.476	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:30:42.488	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:30:43.466	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:35:56.867	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:35:56.869	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:36:04.220	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:36:04.242	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:36:04.416	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:42:47.244	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:42:47.258	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:42:59.567	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:42:59.579	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:42:59.813	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:43:45.069	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:43:45.069	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:43:56.366	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:43:56.383	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:43:57.071	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:56:39.837	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:56:39.839	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 20:54:51.039	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 20:54:51.062	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 20:54:51.399	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 20:59:06.192	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 20:59:06.204	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 20:59:20.846	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 20:59:20.890	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 20:59:21.245	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 22:41:10.450	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 22:41:10.456	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+=======
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 09:03:58.170	[34minfo[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/initialize/gorm.go:77	register table success
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 09:03:58.210	[34minfo[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 09:03:58.892	[34minfo[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/initialize/router.go:120	router register success
@@ -51,3 +135,4 @@
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 21:01:04.655	[34minfo[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/api/v1/device/monitor_device.go:43	开始视频审核流程	{"streamUrl": "C:\\Users\\34965\\Desktop\\fun\\Seventeen浏览器十周年.mp4"}
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 22:41:17.801	[34minfo[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 22:41:17.802	[34minfo[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+>>>>>>> hjy
