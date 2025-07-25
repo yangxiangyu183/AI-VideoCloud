@@ -1837,7 +1837,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753347700892" />
+              <option name="lastModified" value="1753427012352" />
               <option name="schema">
                 <list>
                   <option value="ApiGroup" />
@@ -2545,7 +2545,7 @@
         <entry key="file://$PROJECT_DIR$/server/global/global.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753347538727" />
+              <option name="lastModified" value="1753427012352" />
             </ScannedPath>
           </value>
         </entry>
@@ -2590,7 +2590,7 @@
         <entry key="file://$PROJECT_DIR$/server/initialize/gorm_biz.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753347700897" />
+              <option name="lastModified" value="1753427012352" />
             </ScannedPath>
           </value>
         </entry>
@@ -2756,7 +2756,7 @@
         <entry key="file://$PROJECT_DIR$/server/initialize/router_biz.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753347700897" />
+              <option name="lastModified" value="1753427012352" />
             </ScannedPath>
           </value>
         </entry>
@@ -2777,7 +2777,7 @@
         <entry key="file://$PROJECT_DIR$/server/main.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753347538747" />
+              <option name="lastModified" value="1753427012784" />
             </ScannedPath>
           </value>
         </entry>
@@ -3871,7 +3871,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753347700897" />
+              <option name="lastModified" value="1753427012799" />
               <option name="schema">
                 <list>
                   <option value="RouterGroup" />
@@ -4147,7 +4147,7 @@
         <entry key="file://$PROJECT_DIR$/server/service/enter.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753347700897" />
+              <option name="lastModified" value="1753427012799" />
               <option name="schema">
                 <list>
                   <option value="ServiceGroup" />
@@ -4697,7 +4697,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753347538861" />
+              <option name="lastModified" value="1753427012805" />
               <option name="schema">
                 <list>
                   <option value="initMenu" />

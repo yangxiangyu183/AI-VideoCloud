@@ -3,6 +3,7 @@ package global
 import (
 	"fmt"
 	"github.com/mark3labs/mcp-go/server"
+	"github.com/tencentyun/cos-go-sdk-v5"
 	"sync"
 
 	"github.com/gin-gonic/gin"
@@ -39,6 +40,7 @@ var (
 	GVA_MCP_SERVER          *server.MCPServer
 	BlackCache              local_cache.Cache
 	lock                    sync.RWMutex
+	CosClient               *cos.Client
 )
 
 // GetGlobalDBByDBName 通过名称获取db list中的db
