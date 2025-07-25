@@ -1,4 +1,0 @@
-/*! 
- Build based on gin-vue-admin 
- Time : 1753275382000 */
-import{I as e,J as t,O as a,K as n,g as s,i as o,o as u,w as r,c as i,Y as l,F as m,h as f,t as c,v as d,X as I}from"./087AC4D233B64EB0index.D_4CqggS.js";const p=Object.assign({name:"MenuItem"},{__name:"menuItem",props:{routerInfo:{default:function(){return null},type:Object}},setup(p){const _=e(),{config:y}=t(_),g=a("isCollapse",{default:!1}),h=n(()=>y.value.layout_side_item_height+"px");return(e,t)=>{const a=s("el-icon"),n=s("el-menu-item");return u(),o(n,{index:p.routerInfo.name,style:I({height:h.value})},{title:r(()=>[f(c(p.routerInfo.meta.title),1)]),default:r(()=>[p.routerInfo.meta.icon?(u(),o(a,{key:0},{default:r(()=>[(u(),o(l(p.routerInfo.meta.icon)))]),_:1})):(u(),i(m,{key:1},[f(c(d(g)?p.routerInfo.meta.title[0]:""),1)],64))]),_:1},8,["index","style"])}}});export{p as default};
