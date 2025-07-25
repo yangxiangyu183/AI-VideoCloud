@@ -1,3 +1,0 @@
-[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 19:46:49.338	[33mwarn[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/api/v1/device/monitor_device.go:51	视频审核失败，继续创建设备	{"error": "无法获取任务ID"}
-[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 20:04:24.324	[33mwarn[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/api/v1/device/monitor_device.go:55	视频审核失败，继续创建设备	{"error": "无法获取任务ID"}
-[github.com/flipped-aurora/gin-vue-admin/server]2025-07-23 21:01:04.919	[33mwarn[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/api/v1/device/monitor_device.go:55	视频审核失败，继续创建设备	{"error": "无法获取任务ID"}

@@ -1,1 +1,0 @@
-[github.com/flipped-aurora/gin-vue-admin/server]2025-07-21 19:31:18.760	[33mwarn[0m	D:/gowork/gin_vue/server/utils/upload/upload.go:39	你配置了使用minio，但是初始化失败，请检查minio可用性或安全配置: The Access Key Id you provided does not exist in our records.
