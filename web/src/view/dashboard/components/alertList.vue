@@ -1,16 +1,13 @@
-<!--
-    @auther: bypanghu<bypanghu@163.com>
-    @date: 2024/5/8
-!-->
 <template>
   <div class="alert-list-container">
-    <!-- Header with More button -->
-    <div class="alert-list-header">
+    <!-- Header -->
+    <div class="alert-header">
       <div class="header-left">
-        <span class="header-title">最近预警列表清单</span>
+        <el-icon class="bell-icon"><Bell /></el-icon>
+        <span class="title">最近预警列表清单</span>
       </div>
       <div class="header-right">
-        <el-button type="primary" size="small" text>更多</el-button>
+        <span class="more-link">更多</span>
       </div>
     </div>
 
@@ -20,17 +17,29 @@
         v-for="(alert, index) in alertList"
         :key="index"
         class="alert-item"
-        @click="handleAlertClick(alert)"
       >
-        <div class="alert-thumbnail">
-          <div class="thumbnail-placeholder">
-            <el-icon><component :is="alert.icon" /></el-icon>
-          </div>
-        </div>
         <div class="alert-content">
-          <div class="alert-time">{{ alert.time }}</div>
-          <div class="alert-area">{{ alert.area }}</div>
-          <div class="alert-type">{{ alert.type }}</div>
+          <div class="alert-left">
+            <div class="alert-icon">
+              <el-icon><VideoCamera /></el-icon>
+            </div>
+            <div class="alert-info">
+              <div class="alert-time">{{ alert.time }}</div>
+              <div class="alert-location">
+                <span class="label">监控区域:</span>
+                <span class="value">{{ alert.location }}</span>
+              </div>
+              <div class="alert-type">
+                <span class="label">预警类型:</span>
+                <span class="value">{{ alert.type }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="alert-right">
+            <div class="alert-image">
+              <img :src="alert.image" :alt="alert.type" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -44,89 +53,67 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-  import { Picture, Bell, Ship, Bicycle, Drone, TruckFilled, User } from '@element-plus/icons-vue'
+import { ref } from 'vue'
+import { Bell, VideoCamera } from '@element-plus/icons-vue'
 
-  // 预警数据 - 根据图片中的实际数据
-  const alertList = ref([
-    {
-      time: '2025-07-23 09:27',
-      area: '杭州西湖',
-      type: '小船皮筏艇识别',
-      icon: Ship,
-      thumbnail: '/path/to/boat-image.jpg'
-    },
-    {
-      time: '2025-07-23 09:25',
-      area: '桂林阳桥',
-      type: '非机动车识别',
-      icon: Bicycle,
-      thumbnail: '/path/to/motorcycle-image.jpg'
-    },
-    {
-      time: '2025-07-23 09:22',
-      area: '千岛湖',
-      type: '无人机识别',
-      icon: Drone,
-      thumbnail: '/path/to/drone-image.jpg'
-    },
-    {
-      time: '2025-07-23 09:20',
-      area: '北京天安门',
-      type: '车辆违停识别',
-      icon: TruckFilled,
-      thumbnail: '/path/to/parking-image.jpg'
-    },
-    {
-      time: '2025-07-23 09:18',
-      area: '上海外滩',
-      type: '人员聚集识别',
-      icon: User,
-      thumbnail: '/path/to/crowd-image.jpg'
-    },
-    {
-      time: '2025-07-23 09:15',
-      area: '深圳湾',
-      type: '异常行为识别',
-      icon: Picture,
-      thumbnail: '/path/to/behavior-image.jpg'
-    }
-  ])
-
-  // 处理预警点击
-  const handleAlertClick = (alert) => {
-    console.log('Alert clicked:', alert)
-    // 这里可以添加跳转到预警详情页面的逻辑
+// 预警数据 - 根据图片中的实际数据
+const alertList = ref([
+  {
+    time: '2025-07-17 13:40',
+    location: '杭州西湖',
+    type: '小船皮筏艇识别',
+    image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTIwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik00MCAzMEg4MFY1MEg0MFYzMFoiIGZpbGw9IiNEREREREQiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSI0OCIgeT0iMjgiPgo8cGF0aCBkPSJNOSAyTDcuMTcgNEg0QzIuOSA0IDIgNC45IDIgNlYxOEMyIDEwLjEgMi45IDIwIDQgMjBIMjBDMjEuMSAyMCAyMiAxOS4xIDIyIDE4VjZDMjIgNC45IDIxLjEgNCAyMCA0SDE2LjgzTDE1IDJIOVpNMTIgMTdDOS4yNCAyNyA3IDE0Ljc2IDcgMTJDNyA5LjI0IDkuMjQgNyAxMiA3QzE0Ljc2IDcgMTcgOS4yNCAxNyAxMkMxNyAxNC43NiAxNC43NiAxNyAxMiAxN1oiIGZpbGw9IiM5OTk5OTkiLz4KPC9zdmc+Cjwvc3ZnPgo='
+  },
+  {
+    time: '2025-07-17 10:28',
+    location: '杭州西湖',
+    type: '小船皮筏艇识别',
+    image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTIwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik00MCAzMEg4MFY1MEg0MFYzMFoiIGZpbGw9IiNEREREREQiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSI0OCIgeT0iMjgiPgo8cGF0aCBkPSJNOSAyTDcuMTcgNEg0QzIuOSA0IDIgNC45IDIgNlYxOEMyIDEwLjEgMi45IDIwIDQgMjBIMjBDMjEuMSAyMCAyMiAxOS4xIDIyIDE4VjZDMjIgNC45IDIxLjEgNCAyMCA0SDE2LjgzTDE1IDJIOVpNMTIgMTdDOS4yNCAyNyA3IDE0Ljc2IDcgMTJDNyA5LjI0IDkuMjQgNyAxMiA3QzE0Ljc2IDcgMTcgOS4yNCAxNyAxMkMxNyAxNC43NiAxNC43NiAxNyAxMiAxN1oiIGZpbGw9IiM5OTk5OTkiLz4KPC9zdmc+Cjwvc3ZnPgo='
   }
+])
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .alert-list-container {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: #fff;
 }
 
-.alert-list-header {
+.alert-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid #e4e7ed;
-  background: #fafafa;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
 
   .header-left {
-    .header-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #303133;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .bell-icon {
+      color: #666;
+      font-size: 16px;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
     }
   }
 
   .header-right {
-    .el-button {
-      font-size: 12px;
+    .more-link {
       color: #409eff;
+      font-size: 14px;
+      cursor: pointer;
+      
+      &:hover {
+        color: #66b1ff;
+      }
     }
   }
 }
@@ -134,74 +121,88 @@
 .alert-list {
   flex: 1;
   overflow-y: auto;
-  padding: 0;
+  padding: 0 20px;
 }
 
 .alert-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #f5f7fa;
-  }
+  padding: 16px 0;
+  border-bottom: 1px solid #f5f5f5;
 
   &:last-child {
     border-bottom: none;
   }
-}
 
-.alert-thumbnail {
-  width: 40px;
-  height: 40px;
-  margin-right: 12px;
-  flex-shrink: 0;
-
-  .thumbnail-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 6px;
+  .alert-content {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
 
-    .el-icon {
-      font-size: 18px;
+  .alert-left {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+
+    .alert-icon {
+      width: 40px;
+      height: 40px;
+      background: #e8f4ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      .el-icon {
+        color: #409eff;
+        font-size: 18px;
+      }
+    }
+
+    .alert-info {
+      flex: 1;
+
+      .alert-time {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .alert-location,
+      .alert-type {
+        display: flex;
+        align-items: center;
+        margin-bottom: 4px;
+        font-size: 14px;
+
+        .label {
+          color: #666;
+          margin-right: 4px;
+        }
+
+        .value {
+          color: #333;
+        }
+      }
     }
   }
-}
 
-.alert-content {
-  flex: 1;
-  min-width: 0;
+  .alert-right {
+    .alert-image {
+      width: 120px;
+      height: 80px;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #f5f5f5;
 
-  .alert-time {
-    font-size: 11px;
-    color: #909399;
-    margin-bottom: 3px;
-  }
-
-  .alert-area {
-    font-size: 13px;
-    color: #303133;
-    font-weight: 500;
-    margin-bottom: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .alert-type {
-    font-size: 11px;
-    color: #606266;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
   }
 }
 
@@ -211,35 +212,35 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #909399;
+  color: #999;
 
   .empty-icon {
-    font-size: 32px;
-    margin-bottom: 12px;
+    font-size: 48px;
+    margin-bottom: 16px;
     opacity: 0.5;
   }
 
   .empty-text {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
-// 滚动条样式
-.alert-list::-webkit-scrollbar {
-  width: 4px;
-}
+// 响应式设计
+@media (max-width: 768px) {
+  .alert-item {
+    .alert-content {
+      flex-direction: column;
+      gap: 12px;
+    }
 
-.alert-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 2px;
-}
+    .alert-right {
+      align-self: center;
 
-.alert-list::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 2px;
+      .alert-image {
+        width: 100px;
+        height: 66px;
+      }
+    }
+  }
 }
-
-.alert-list::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
-}
-</style> 
+</style>

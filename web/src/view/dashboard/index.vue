@@ -32,11 +32,29 @@
         <gva-card title="预警排名走势分析" custom-class="trend-card">
           <div class="chart-container">
             <div class="chart-tabs">
-              <el-button type="primary" size="small">24小时</el-button>
-              <el-button size="small">7天</el-button>
-              <el-button size="small">30天</el-button>
+              <el-button 
+                :type="activeTimeRange === '24h' ? 'primary' : ''" 
+                size="small"
+                @click="handleTimeRangeChange('24h')"
+              >
+                24小时
+              </el-button>
+              <el-button 
+                :type="activeTimeRange === '7d' ? 'primary' : ''" 
+                size="small"
+                @click="handleTimeRangeChange('7d')"
+              >
+                7天
+              </el-button>
+              <el-button 
+                :type="activeTimeRange === '30d' ? 'primary' : ''" 
+                size="small"
+                @click="handleTimeRangeChange('30d')"
+              >
+                30天
+              </el-button>
             </div>
-            <gva-chart :type="4" />
+            <gva-chart :type="4" :time-range="activeTimeRange" />
           </div>
         </gva-card>
       </div>
@@ -50,9 +68,7 @@
         
         <!-- Alert List -->
         <div class="alert-panel">
-          <gva-card title="最近预警列表清单" custom-class="alert-card">
-            <gva-alert-list />
-          </gva-card>
+          <gva-alert-list />
         </div>
       </div>
     </div>
@@ -60,15 +76,25 @@
 </template>
 
 <script setup>
+  import { ref } from 'vue'
   import {
     GvaChart,
     GvaQuickLink,
     GvaCard,
     GvaAlertList
   } from './components'
+  
   defineOptions({
     name: 'Dashboard'
   })
+
+  // 时间范围状态
+  const activeTimeRange = ref('24h')
+
+  // 处理时间范围切换
+  const handleTimeRangeChange = (range) => {
+    activeTimeRange.value = range
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -135,21 +161,17 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
-  height: calc(100vh - 280px);
+  height: calc(100vh - 300px);
 }
 
 .trend-analysis-panel {
   .trend-card {
-    height: 100%;
-    
     :deep(.el-card__body) {
-      height: calc(100% - 60px);
-      padding: 20px;
+      padding: 16px 20px 20px 20px;
     }
   }
 
   .chart-container {
-    height: 100%;
     display: flex;
     flex-direction: column;
 
@@ -158,10 +180,24 @@
       gap: 8px;
       margin-bottom: 16px;
       justify-content: flex-end;
+      flex-shrink: 0;
 
       .el-button {
         font-size: 12px;
         padding: 6px 12px;
+        transition: all 0.3s ease;
+        
+        &:not(.el-button--primary) {
+          background: #f5f7fa;
+          border-color: #dcdfe6;
+          color: #606266;
+          
+          &:hover {
+            background: #ecf5ff;
+            border-color: #409eff;
+            color: #409eff;
+          }
+        }
       }
     }
   }
@@ -181,22 +217,17 @@
 .alert-panel {
   flex: 1;
   min-height: 0;
-
-  .alert-card {
-    height: 100%;
-    
-    :deep(.el-card__body) {
-      height: calc(100% - 60px);
-      padding: 0;
-    }
-  }
 }
+
+
 
 // 响应式设计
 @media (max-width: 1200px) {
   .main-content-section {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+    gap: 16px;
   }
 
   .trend-analysis-panel {
@@ -206,11 +237,13 @@
   .right-panel {
     order: 2;
     flex-direction: row;
+    gap: 16px;
   }
 
   .video-panel,
   .alert-panel {
     flex: 1;
+    min-height: 300px;
   }
 }
 
