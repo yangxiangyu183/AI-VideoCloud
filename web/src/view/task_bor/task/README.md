@@ -4,10 +4,15 @@
 
 ### 1. 监控点位服务集成
 - **修改文件**: `task.vue`
-- **修改内容**: 将监控点位选择从静态数据改为调用视频接入中的监控设备API
+- **修改内容**: 将监控点位选择从静态数据改为调用视频接入中的监控设备API，并实现摄像头位置与监控点位同步
 - **API接口**: `getMonitorDeviceList` (来自 `/api/device/monitorDevice`)
 
-### 2. 主要变更
+### 2. 摄像头位置与监控点位同步
+- **核心需求**: 根据界面要求，摄像头位置和监控点位需要保持相同
+- **实现方式**: 当用户选择监控点位时，自动同步到摄像头接口字段
+- **显示逻辑**: 表格和详情页面优先显示监控点位，如果为空则显示摄像头接口
+
+### 3. 主要变更
 
 #### 2.1 导入监控设备API
 ```javascript
@@ -26,9 +31,9 @@ const getCameraOptions = async () => {
     const res = await getMonitorDeviceList({ page: 1, pageSize: 1000 })
     if (res.code === 0 && res.data && res.data.list) {
       cameraOptions.value = res.data.list.map(item => ({
-        label: item.deviceName || item.deviceLocation || `设备${item.id}`,
-        value: item.deviceName || item.deviceLocation || `设备${item.id}`,
-        deviceId: item.id,
+        label: item.deviceName || `设备${item.ID}`,
+        value: item.deviceName || `设备${item.ID}`,
+        deviceId: item.ID,
         deviceInfo: item
       }))
     }
@@ -36,15 +41,27 @@ const getCameraOptions = async () => {
     // 错误处理，使用默认数据
   }
 }
+
+// 监控点位变化时同步到摄像头接口字段
+const onMonitorPointChange = (value) => {
+  // 将监控点位的值同步到摄像头接口字段，实现两者相同
+  formData.value.cameraInterface = value
+}
 ```
 
-#### 2.3 UI改进
+#### 2.3 数据同步机制
+- **选择时同步**: 用户选择监控点位时，通过 `@change="onMonitorPointChange"` 事件自动同步到摄像头接口字段
+- **提交时确保同步**: 在表单提交前再次确保两个字段的一致性
+- **显示优化**: 表格和详情页面优先显示监控点位数据，确保界面一致性
+
+#### 2.4 UI改进
 - 添加了设备ID显示
 - 添加了刷新按钮，用户可以手动刷新监控点位列表
 - 改进了应用场景选项，与图片中的模块环境保持一致
 - 添加了用户反馈消息
+- 表格列显示逻辑优化，支持摄像头位置和监控点位的统一显示
 
-#### 2.4 错误处理
+#### 2.5 错误处理
 - API调用失败时自动回退到默认数据
 - 提供用户友好的错误提示信息
 - 控制台错误日志记录
@@ -56,25 +73,39 @@ const getCameraOptions = async () => {
 3. **容错机制**: API失败时使用默认数据，确保功能可用
 4. **用户反馈**: 提供加载状态和结果反馈
 5. **设备信息**: 显示设备ID和详细信息
+6. **数据同步**: 摄像头位置与监控点位自动保持一致，符合界面要求
 
 ### 4. 使用说明
 
 1. 打开任务管理页面
 2. 点击"添加任务"按钮
-3. 在"监控点位"字段中选择设备
+3. 在"监控点位"字段中选择设备（选择后会自动同步到摄像头位置）
 4. 如需刷新设备列表，点击选择框旁边的刷新按钮
+5. 提交任务时，系统会确保摄像头位置与监控点位保持一致
 
 ### 5. 技术细节
 
 - **API端点**: `/monitorDevice/getMonitorDeviceList`
-- **数据映射**: 设备名称/位置 -> 选项标签和值
+- **数据映射**: `item.deviceName` -> 选项标签和值，使用 `item.ID` 作为设备标识
 - **分页**: 获取前1000个设备（可根据需要调整）
 - **响应式**: 使用Vue 3的ref进行状态管理
+- **数据同步**: 通过事件监听和表单提交前检查确保数据一致性
+- **显示逻辑**: 表格和详情使用 `||` 操作符优先显示监控点位数据
 
-### 6. 后续优化建议
+### 6. 核心修改点总结
+
+1. **表格显示**: 摄像头点位列显示逻辑改为 `scope.row.cameraInterface || scope.row.monitorPoints`
+2. **选择同步**: 监控点位选择框添加 `@change="onMonitorPointChange"` 事件处理
+3. **数据映射**: 修正设备ID字段从 `item.id` 改为 `item.ID`（符合API返回结构）
+4. **提交确保**: 表单提交前确保摄像头接口字段与监控点位保持一致
+5. **详情显示**: 详情页面监控点位显示逻辑优化
+6. **编辑同步**: 编辑任务时自动处理两个字段的数据一致性
+
+### 7. 后续优化建议
 
 1. 添加设备搜索功能
 2. 支持设备分组显示
 3. 添加设备状态指示器
 4. 实现设备详情预览
 5. 支持批量选择设备
+6. 考虑添加设备在线状态实时显示

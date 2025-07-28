@@ -112,9 +112,9 @@
                 <el-option label="3" value="3" />
               </el-select>
             </el-form-item>
-            <el-form-item label="监控点位" prop="monitorPoints">
+            <el-form-item label="摄像头接口" prop="cameraInterface">
               <div style="display: flex; gap: 8px;">
-                <el-select v-model="formData.monitorPoints" placeholder="请选择监控点位" filterable clearable style="flex: 1;">
+                <el-select v-model="formData.cameraInterface" placeholder="请选择摄像头接口" filterable clearable style="flex: 1;">
                   <el-option 
                     v-for="item in cameraOptions" 
                     :key="item.value" 
@@ -125,7 +125,7 @@
                     <span v-if="item.deviceId" style="float: right; color: #8492a6; font-size: 13px">ID: {{ item.deviceId }}</span>
                   </el-option>
                 </el-select>
-                <el-button icon="refresh" @click="getCameraOptions" title="刷新监控点位" />
+                <el-button icon="refresh" @click="getCameraOptions" title="刷新摄像头接口" />
               </div>
             </el-form-item>
             <el-form-item label="应用场景" prop="applicationScenario">
@@ -194,7 +194,7 @@
           <el-descriptions :column="1" border>
             <el-descriptions-item label="任务名称">{{ detailForm.taskName }}</el-descriptions-item>
             <el-descriptions-item label="任务描述">{{ detailForm.taskDescription || '无' }}</el-descriptions-item>
-            <el-descriptions-item label="监控点位">{{ detailForm.cameraInterface }}</el-descriptions-item>
+            <el-descriptions-item label="监控点位">{{ detailForm.monitorPoints || detailForm.cameraInterface }}</el-descriptions-item>
             <el-descriptions-item label="监控分组">{{ detailForm.monitorGroup || '模拟环境1' }}</el-descriptions-item>
             <el-descriptions-item label="任务状态">{{ detailForm.taskStatus }}</el-descriptions-item>
             <el-descriptions-item label="告警级别">{{ detailForm.warnLevel }}</el-descriptions-item>
@@ -251,7 +251,6 @@ const showAllQuery = ref(false)
 
 // 自动化生成的字典（可能为空）以及字段
 const TaskpriorityOptions = ref([])
-const servenrityOptions = ref([])
 const ApplicationscenarioOptions = ref([])
 const TaskstatusOptions = ref([])
 const formData = ref({
@@ -356,9 +355,9 @@ const getCameraOptions = async () => {
     const res = await getMonitorDeviceList({ page: 1, pageSize: 1000 })
     if (res.code === 0 && res.data && res.data.list) {
       cameraOptions.value = res.data.list.map(item => ({
-        label: item.deviceName || item.deviceLocation || `设备${item.id}`,
-        value: item.deviceName || item.deviceLocation || `设备${item.id}`,
-        deviceId: item.id,
+        label: item.deviceName || `设备${item.ID}`,
+        value: item.deviceName || `设备${item.ID}`,
+        deviceId: item.ID,
         deviceInfo: item
       }))
       
@@ -403,10 +402,15 @@ const getCameraOptions = async () => {
   }
 }
 
+// 监控点位变化时同步到摄像头接口字段
+const onMonitorPointChange = (value) => {
+  // 将监控点位的值同步到摄像头接口字段，实现两者相同
+  formData.value.cameraInterface = value
+}
+
 // 获取需要的字典 可能为空 按需保留
 const setOptions = async () =>{
     TaskpriorityOptions.value = await getDictFunc('Taskpriority')
-    servenrityOptions.value = await getDictFunc('servenrity')
     ApplicationscenarioOptions.value = await getDictFunc('Applicationscenario')
     TaskstatusOptions.value = await getDictFunc('Taskstatus')
     
@@ -477,6 +481,12 @@ const updateTaskFunc = async(row) => {
     type.value = 'update'
     if (res.code === 0) {
         formData.value = res.data
+        // 编辑时确保监控点位和摄像头接口的一致性
+        if (formData.value.cameraInterface && !formData.value.monitorPoints) {
+          formData.value.monitorPoints = formData.value.cameraInterface
+        } else if (formData.value.monitorPoints && !formData.value.cameraInterface) {
+          formData.value.cameraInterface = formData.value.monitorPoints
+        }
         dialogFormVisible.value = true
     }
 }
@@ -532,6 +542,12 @@ const enterDialog = async () => {
      btnLoading.value = true
      elFormRef.value?.validate( async (valid) => {
              if (!valid) return btnLoading.value = false
+              
+              // 确保摄像头接口和监控点位保持同步
+              if (formData.value.monitorPoints) {
+                formData.value.cameraInterface = formData.value.monitorPoints
+              }
+              
               let res
               switch (type.value) {
                 case 'create':
