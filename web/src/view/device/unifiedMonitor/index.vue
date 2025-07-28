@@ -5,6 +5,10 @@
       <div class="tree-header">
         <h3>设备列表</h3>
         <div class="tree-controls">
+          <el-button size="small" type="primary" @click="showAddGroupDialog">
+            <el-icon><Plus /></el-icon>
+            添加分组
+          </el-button>
           <el-button size="small" type="primary" @click="refreshDeviceTree">
             <el-icon><Refresh /></el-icon>
           </el-button>
@@ -14,20 +18,26 @@
         </div>
       </div>
       
-      <!-- 分组时间选择 -->
-      <div class="time-selector">
-        <el-select v-model="selectedTimeRange" size="small" @change="handleTimeRangeChange">
-          <el-option label="1分钟" value="1" />
-          <el-option label="5分钟" value="5" />
-          <el-option label="4分钟" value="4" />
-        </el-select>
+      <!-- 搜索过滤 -->
+      <div class="search-filter">
+        <el-input 
+          v-model="searchKeyword" 
+          size="small" 
+          placeholder="输入分组或点位进行过滤"
+          clearable
+          @input="handleSearchFilter"
+        >
+          <template #prefix>
+            <el-icon><Search /></el-icon>
+          </template>
+        </el-input>
       </div>
 
       <!-- 设备树 -->
       <div class="device-tree">
         <el-tree
           ref="deviceTreeRef"
-          :data="deviceTreeData"
+          :data="filteredTreeData.length > 0 || searchKeyword ? filteredTreeData : deviceTreeData"
           :props="treeProps"
           node-key="id"
           :expand-on-click-node="false"
@@ -47,6 +57,27 @@
               <span v-if="data.type === 'device'" class="device-status" :class="getDeviceStatusClass(data.status)">
                 {{ getDeviceStatusText(data.status) }}
               </span>
+              <!-- 设备操作按钮 -->
+              <div v-if="data.type === 'device'" class="device-actions">
+                <el-button 
+                  type="primary" 
+                  size="small" 
+                  link 
+                  @click.stop="editDevice(data.device)"
+                  title="编辑设备"
+                >
+                  <el-icon><Edit /></el-icon>
+                </el-button>
+                <el-button 
+                  type="danger" 
+                  size="small" 
+                  link 
+                  @click.stop="deleteDevice(data.device)"
+                  title="删除设备"
+                >
+                  <el-icon><Delete /></el-icon>
+                </el-button>
+              </div>
             </div>
           </template>
         </el-tree>
@@ -70,6 +101,10 @@
           </el-select>
         </div>
         <div class="right-controls">
+          <el-button size="small" type="primary" @click="showAddDeviceDialog">
+            <el-icon><Plus /></el-icon>
+            添加设备
+          </el-button>
           <el-button size="small" type="success" @click="startAllStreams">全部播放</el-button>
           <el-button size="small" type="warning" @click="stopAllStreams">全部停止</el-button>
           <el-button size="small" type="info" @click="clearAllSlots">清空</el-button>
@@ -79,7 +114,7 @@
       <!-- 视频网格 -->
       <div class="video-grid" :class="`grid-${currentSplitMode}`">
         <div 
-          v-for="(slot, index) in videoSlots" 
+          v-for="(slot, index) in currentPageSlots" 
           :key="index" 
           class="video-slot"
           :class="{ 'has-stream': slot.device }"
@@ -153,7 +188,78 @@
           </div>
         </div>
       </div>
+
+      <!-- 分页组件 -->
+      <div v-if="videoSlots.length > pageSize" class="pagination-container">
+        <el-pagination
+          v-model:current-page="currentPage"
+          :page-size="pageSize"
+          :total="videoSlots.length"
+          layout="prev, pager, next, jumper, total"
+          :small="true"
+          background
+          @current-change="handlePageChange"
+        />
+      </div>
     </div>
+
+    <!-- 新增设备表单抽屉 -->
+    <el-drawer destroy-on-close :size="appStore.drawerSize" v-model="dialogFormVisible" :show-close="false" :before-close="closeDialog">
+       <template #header>
+              <div class="flex justify-between items-center">
+                <span class="text-lg">{{ formData.isEdit ? '编辑监控设备' : '新增监控设备' }}</span>
+                <div>
+                  <el-button :loading="btnLoading" type="primary" @click="enterDialog">确 定</el-button>
+                  <el-button @click="closeDialog">取 消</el-button>
+                </div>
+              </div>
+            </template>
+
+          <el-form :model="formData" label-position="top" ref="elFormRef" :rules="rule" label-width="80px">
+            <el-form-item label="摄像头点位:" prop="deviceName">
+              <el-input v-model="formData.deviceName" :clearable="true" placeholder="请输入摄像头点位" />
+            </el-form-item>
+            <el-form-item label="关联分组id:" prop="groupId">
+              <el-input v-model.number="formData.groupId" :clearable="true" placeholder="请输入关联分组id" />
+            </el-form-item>
+            <el-form-item label="视频流地址:" prop="streamUrl">
+              <el-input v-model="formData.streamUrl" :clearable="true" placeholder="请输入视频流地址" />
+            </el-form-item>
+            <el-form-item label="设备状态:" prop="status">
+              <el-select v-model="formData.status" placeholder="请选择设备状态" style="width:100%" filterable :clearable="true">
+                <el-option v-for="(item,key) in EquipmentStatusOptions" :key="key" :label="item.label" :value="item.value" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="分辨率:" prop="resolution">
+              <el-input v-model="formData.resolution" :clearable="true" placeholder="请输入分辨率" />
+            </el-form-item>
+          </el-form>
+    </el-drawer>
+
+    <!-- 新增分组表单抽屉 -->
+    <el-drawer destroy-on-close :size="appStore.drawerSize" v-model="groupDialogVisible" :show-close="false" :before-close="closeGroupDialog">
+       <template #header>
+              <div class="flex justify-between items-center">
+                <span class="text-lg">新增设备分组</span>
+                <div>
+                  <el-button :loading="groupBtnLoading" type="primary" @click="enterGroupDialog">确 定</el-button>
+                  <el-button @click="closeGroupDialog">取 消</el-button>
+                </div>
+              </div>
+            </template>
+
+          <el-form :model="groupFormData" label-position="top" ref="groupFormRef" :rules="groupRule" label-width="80px">
+            <el-form-item label="分组名称:" prop="groupName">
+              <el-input v-model="groupFormData.groupName" :clearable="true" placeholder="请输入分组名称" />
+            </el-form-item>
+            <el-form-item label="父级分组:" prop="pid">
+              <el-select v-model="groupFormData.pid" placeholder="请选择父级分组（可选）" style="width:100%" filterable :clearable="true">
+                <el-option label="无父级分组" :value="0" />
+                <el-option v-for="group in allGroups" :key="group.ID" :label="group.groupName" :value="group.ID" />
+              </el-select>
+            </el-form-item>
+          </el-form>
+    </el-drawer>
 
     <!-- 设备管理弹窗 -->
     <el-dialog 
@@ -225,8 +331,8 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted, nextTick } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive, onMounted, onUnmounted, nextTick, computed } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { 
   Plus, 
   VideoPlay, 
@@ -238,10 +344,15 @@ import {
   Folder,
   VideoCamera,
   Refresh,
-  Setting
+  Setting,
+  Edit,
+  Delete,
+  Search
 } from '@element-plus/icons-vue'
-import { getMonitorDeviceList } from '@/api/device/monitorDevice'
-import { getDeviceGroupList } from '@/api/device/deviceGroup'
+import { getMonitorDeviceList, createMonitorDevice, updateMonitorDevice, deleteMonitorDevice, findMonitorDevice } from '@/api/device/monitorDevice'
+import { getDeviceGroupList, createDeviceGroup } from '@/api/device/deviceGroup'
+import { getDictFunc } from '@/utils/format'
+import { useAppStore } from "@/pinia"
 
 defineOptions({
   name: 'UnifiedMonitor'
@@ -252,9 +363,76 @@ const currentSplitMode = ref('9')
 const selectedTimeRange = ref('5')
 const showDeviceManager = ref(false)
 const deviceTreeRef = ref()
+const searchKeyword = ref('')
+
+// 新增设备表单相关
+const appStore = useAppStore()
+const dialogFormVisible = ref(false)
+const btnLoading = ref(false)
+const elFormRef = ref()
+const EquipmentStatusOptions = ref([])
+
+const formData = ref({
+  deviceName: '',
+  groupId: undefined,
+  streamUrl: '',
+  status: '1',
+  resolution: '',
+})
+
+// 新增分组表单相关
+const groupDialogVisible = ref(false)
+const groupBtnLoading = ref(false)
+const groupFormRef = ref()
+
+const groupFormData = ref({
+  groupName: '',
+  pid: 0,
+})
+
+// 验证规则
+const rule = reactive({
+  deviceName: [{
+    required: true,
+    message: '摄像头点位不能为空',
+    trigger: ['input', 'blur'],
+  }, {
+    whitespace: true,
+    message: '不能只输入空格',
+    trigger: ['input', 'blur'],
+  }],
+  groupId: [{
+    required: true,
+    message: '关联分组id不能为空',
+    trigger: ['input', 'blur'],
+  }],
+  streamUrl: [{
+    required: true,
+    message: '视频流地址不能为空',
+    trigger: ['input', 'blur'],
+  }, {
+    whitespace: true,
+    message: '不能只输入空格',
+    trigger: ['input', 'blur'],
+  }],
+})
+
+// 分组表单验证规则
+const groupRule = reactive({
+  groupName: [{
+    required: true,
+    message: '分组名称不能为空',
+    trigger: ['input', 'blur'],
+  }, {
+    whitespace: true,
+    message: '不能只输入空格',
+    trigger: ['input', 'blur'],
+  }],
+})
 
 // 设备树相关
 const deviceTreeData = ref([])
+const filteredTreeData = ref([])
 const treeProps = {
   children: 'children',
   label: 'label'
@@ -263,6 +441,29 @@ const treeProps = {
 // 视频槽位数据
 const videoSlots = ref([])
 
+// 分页相关
+const currentPage = ref(1)
+const pageSize = computed(() => parseInt(currentSplitMode.value))
+
+// 计算当前页的视频槽位
+const currentPageSlots = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value
+  const end = start + pageSize.value
+  const currentSlots = videoSlots.value.slice(start, end)
+  
+  // 如果当前页的槽位不足，用空槽位填充
+  while (currentSlots.length < pageSize.value) {
+    currentSlots.push({ device: null, isPlaying: false, loading: false, error: false })
+  }
+  
+  return currentSlots
+})
+
+// 计算总页数
+const totalPages = computed(() => {
+  return Math.max(1, Math.ceil(videoSlots.value.length / pageSize.value))
+})
+
 // 设备管理相关
 const activeTab = ref('devices')
 const deviceSearchText = ref('')
@@ -270,15 +471,9 @@ const allDevices = ref([])
 const allGroups = ref([])
 const filteredDevices = ref([])
 
-// 初始化视频槽位
+// 初始化视频槽位 - 按需显示，不预先创建所有槽位
 const initVideoSlots = () => {
-  const slotCount = parseInt(currentSplitMode.value)
-  videoSlots.value = Array(slotCount).fill(null).map(() => ({
-    device: null,
-    isPlaying: false,
-    loading: false,
-    error: false
-  }))
+  videoSlots.value = []
 }
 
 // 构建设备树数据
@@ -376,14 +571,8 @@ const handleDeviceCheck = (data, { checkedNodes }) => {
   })
 }
 
-// 添加设备到空槽位
+// 添加设备到空槽位 - 支持分页
 const addDeviceToEmptySlot = (device) => {
-  const emptySlotIndex = videoSlots.value.findIndex(slot => !slot.device)
-  if (emptySlotIndex === -1) {
-    ElMessage.warning('没有可用的视频槽位')
-    return
-  }
-  
   // 检查设备是否已经在其他槽位中
   const existingSlot = videoSlots.value.find(slot => slot.device && slot.device.ID === device.ID)
   if (existingSlot) {
@@ -391,33 +580,44 @@ const addDeviceToEmptySlot = (device) => {
     return
   }
   
-  videoSlots.value[emptySlotIndex] = {
+  // 直接添加新的槽位（移除数量限制，支持分页）
+  videoSlots.value.push({
     device: device,
     isPlaying: false,
     loading: true,
     error: false
-  }
+  })
   
   ElMessage.success(`设备 ${device.deviceName} 已添加`)
   
-  // 自动开始播放
+  // 如果添加的设备不在当前页，自动跳转到包含该设备的页面
+  const deviceIndex = videoSlots.value.length - 1
+  const targetPage = Math.ceil((deviceIndex + 1) / pageSize.value)
+  if (targetPage !== currentPage.value) {
+    currentPage.value = targetPage
+  }
+  
+  // 自动开始播放（需要计算在当前页中的索引）
+  const pageStartIndex = (currentPage.value - 1) * pageSize.value
+  const slotIndexInPage = deviceIndex - pageStartIndex
   setTimeout(() => {
-    togglePlayPause(emptySlotIndex)
+    togglePlayPause(slotIndexInPage)
   }, 500)
 }
 
 // 分屏模式切换
 const handleSplitModeChange = () => {
   const oldSlots = [...videoSlots.value]
-  initVideoSlots()
-  
-  // 保留现有设备到新的槽位中
   const newSlotCount = parseInt(currentSplitMode.value)
-  oldSlots.slice(0, newSlotCount).forEach((slot, index) => {
-    if (slot.device) {
-      videoSlots.value[index] = slot
-    }
-  })
+  
+  // 如果当前设备数量超过新的分屏模式限制，只保留前面的设备
+  if (oldSlots.length > newSlotCount) {
+    videoSlots.value = oldSlots.slice(0, newSlotCount)
+    ElMessage.info(`已切换到${currentSplitMode.value}分屏模式，保留前${newSlotCount}个设备`)
+  } else {
+    // 如果当前设备数量没有超过限制，保持不变
+    videoSlots.value = oldSlots
+  }
 }
 
 // 时间范围变化
@@ -427,8 +627,10 @@ const handleTimeRangeChange = () => {
 
 // 播放/暂停切换
 const togglePlayPause = (slotIndex) => {
-  const slot = videoSlots.value[slotIndex]
-  if (!slot.device) return
+  // 计算实际的槽位索引（考虑分页）
+  const actualIndex = (currentPage.value - 1) * pageSize.value + slotIndex
+  const slot = videoSlots.value[actualIndex]
+  if (!slot || !slot.device) return
 
   slot.isPlaying = !slot.isPlaying
   
@@ -484,11 +686,16 @@ const clearAllSlots = () => {
 
 // 从槽位移除设备
 const removeDeviceFromSlot = (slotIndex) => {
-  const slot = videoSlots.value[slotIndex]
-  if (slot.device) {
+  // 计算实际的槽位索引（考虑分页）
+  const actualIndex = (currentPage.value - 1) * pageSize.value + slotIndex
+  const slot = videoSlots.value[actualIndex]
+  if (slot && slot.device) {
     // 停止播放
     if (slot.isPlaying) {
-      togglePlayPause(slotIndex)
+      const videoElement = document.querySelector(`#video-${slotIndex}`)
+      if (videoElement) {
+        videoElement.pause()
+      }
     }
     
     // 清除树中对应设备的选中状态
@@ -497,11 +704,12 @@ const removeDeviceFromSlot = (slotIndex) => {
       deviceTreeRef.value.setChecked(deviceKey, false)
     }
     
-    videoSlots.value[slotIndex] = {
-      device: null,
-      isPlaying: false,
-      loading: false,
-      error: false
+    // 从数组中移除该槽位
+    videoSlots.value.splice(actualIndex, 1)
+    
+    // 如果当前页没有设备了，跳转到上一页
+    if (currentPageSlots.value.every(slot => !slot.device) && currentPage.value > 1) {
+      currentPage.value = currentPage.value - 1
     }
     
     ElMessage.success('设备已移除')
@@ -576,11 +784,17 @@ const getDeviceStatusColor = (status) => {
   return colorMap[status] || '#E6A23C'
 }
 
+// 获取设备状态选项
+const setOptions = async () => {
+  EquipmentStatusOptions.value = await getDictFunc('EquipmentStatus')
+}
+
 // 生命周期
 onMounted(() => {
   initVideoSlots()
   loadDeviceTree()
   loadDeviceManagerData()
+  setOptions() // 获取设备状态选项
   
   // 定时刷新设备状态
   const statusInterval = setInterval(() => {
@@ -663,6 +877,148 @@ const resetDeviceSearch = () => {
   filteredDevices.value = allDevices.value
 }
 
+// 显示添加设备对话框 - 改为打开新增表单
+const showAddDeviceDialog = () => {
+  dialogFormVisible.value = true
+}
+
+// 关闭新增设备表单
+const closeDialog = () => {
+  dialogFormVisible.value = false
+  formData.value = {
+    deviceName: '',
+    groupId: undefined,
+    streamUrl: '',
+    status: '1',
+    resolution: '',
+  }
+}
+
+// 提交新增/编辑设备表单
+const enterDialog = async () => {
+  btnLoading.value = true
+  elFormRef.value?.validate(async (valid) => {
+    if (!valid) {
+      btnLoading.value = false
+      return
+    }
+    
+    try {
+      let res
+      if (formData.value.isEdit) {
+        // 编辑模式
+        res = await updateMonitorDevice(formData.value)
+      } else {
+        // 新增模式
+        res = await createMonitorDevice(formData.value)
+      }
+      
+      if (res.code === 0) {
+        ElMessage({
+          type: 'success',
+          message: formData.value.isEdit ? '设备更新成功' : '设备创建成功'
+        })
+        closeDialog()
+        // 刷新设备树和设备管理数据
+        loadDeviceTree()
+        loadDeviceManagerData()
+        
+        // 如果是编辑模式，更新视频槽位中的设备信息
+        if (formData.value.isEdit && res.data) {
+          updateDeviceInVideoSlots(res.data)
+        }
+        
+        // 如果是新增，自动将新创建的设备添加到监控中
+        if (!formData.value.isEdit && res.data) {
+          setTimeout(() => {
+            addDeviceToEmptySlot(res.data)
+          }, 500)
+        }
+      } else {
+        ElMessage.error(res.msg || (formData.value.isEdit ? '更新失败' : '创建失败'))
+      }
+    } catch (error) {
+      ElMessage.error('网络错误，操作失败')
+      console.error('操作设备失败:', error)
+    } finally {
+      btnLoading.value = false
+    }
+  })
+}
+
+// 更新视频槽位中的设备信息
+const updateDeviceInVideoSlots = (updatedDevice) => {
+  videoSlots.value.forEach(slot => {
+    if (slot.device && slot.device.ID === updatedDevice.ID) {
+      // 保持播放状态和其他状态不变，只更新设备信息
+      const currentPlayingState = slot.isPlaying
+      const currentLoadingState = slot.loading
+      const currentErrorState = slot.error
+      
+      slot.device = updatedDevice
+      slot.isPlaying = currentPlayingState
+      slot.loading = currentLoadingState
+      slot.error = currentErrorState
+    }
+  })
+  
+  ElMessage.success(`设备 ${updatedDevice.deviceName} 信息已更新`)
+}
+
+// 编辑设备
+const editDevice = async (device) => {
+  try {
+    const res = await findMonitorDevice({ ID: device.ID })
+    if (res.code === 0) {
+      formData.value = res.data
+      dialogFormVisible.value = true
+      // 设置为编辑模式
+      formData.value.isEdit = true
+      formData.value.editId = device.ID
+    }
+  } catch (error) {
+    ElMessage.error('获取设备信息失败')
+    console.error('获取设备信息失败:', error)
+  }
+}
+
+// 删除设备
+const deleteDevice = async (device) => {
+  ElMessageBox.confirm(
+    `确定要删除设备 "${device.deviceName}" 吗？`,
+    '删除确认',
+    {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }
+  ).then(async () => {
+    try {
+      const res = await deleteMonitorDevice({ ID: device.ID })
+      if (res.code === 0) {
+        ElMessage.success('设备删除成功')
+        
+        // 从视频槽位中移除该设备
+        const slotIndex = videoSlots.value.findIndex(slot => slot.device && slot.device.ID === device.ID)
+        if (slotIndex !== -1) {
+          removeDeviceFromSlot(slotIndex)
+        }
+        
+        // 刷新设备树和设备管理数据
+        loadDeviceTree()
+        loadDeviceManagerData()
+      } else {
+        ElMessage.error(res.msg || '删除失败')
+      }
+    } catch (error) {
+      ElMessage.error('网络错误，删除失败')
+      console.error('删除设备失败:', error)
+    }
+  }).catch(() => {
+    // 用户取消删除
+  })
+}
+
 // 从设备管理添加设备到监控
 const addDeviceToMonitor = (device) => {
   addDeviceToEmptySlot(device)
@@ -690,6 +1046,92 @@ const formatDate = (dateString) => {
     hour: '2-digit',
     minute: '2-digit'
   })
+}
+
+// 搜索过滤功能
+const handleSearchFilter = () => {
+  if (!searchKeyword.value.trim()) {
+    // 如果搜索关键词为空，显示所有数据
+    filteredTreeData.value = deviceTreeData.value
+  } else {
+    // 递归过滤树节点
+    filteredTreeData.value = filterTreeNodes(deviceTreeData.value, searchKeyword.value.toLowerCase())
+  }
+}
+
+// 递归过滤树节点
+const filterTreeNodes = (nodes, keyword) => {
+  const filtered = []
+  
+  nodes.forEach(node => {
+    // 检查当前节点是否匹配
+    const nodeMatches = node.label.toLowerCase().includes(keyword)
+    
+    // 递归检查子节点
+    const filteredChildren = node.children ? filterTreeNodes(node.children, keyword) : []
+    
+    // 如果当前节点匹配或有匹配的子节点，则包含此节点
+    if (nodeMatches || filteredChildren.length > 0) {
+      filtered.push({
+        ...node,
+        children: filteredChildren
+      })
+    }
+  })
+  
+  return filtered
+}
+
+// 显示添加分组对话框
+const showAddGroupDialog = () => {
+  groupDialogVisible.value = true
+}
+
+// 关闭新增分组表单
+const closeGroupDialog = () => {
+  groupDialogVisible.value = false
+  groupFormData.value = {
+    groupName: '',
+    pid: 0,
+  }
+}
+
+// 提交新增分组表单
+const enterGroupDialog = async () => {
+  groupBtnLoading.value = true
+  groupFormRef.value?.validate(async (valid) => {
+    if (!valid) {
+      groupBtnLoading.value = false
+      return
+    }
+    
+    try {
+      const res = await createDeviceGroup(groupFormData.value)
+      
+      if (res.code === 0) {
+        ElMessage({
+          type: 'success',
+          message: '分组创建成功'
+        })
+        closeGroupDialog()
+        // 刷新设备树和设备管理数据
+        loadDeviceTree()
+        loadDeviceManagerData()
+      } else {
+        ElMessage.error(res.msg || '创建失败')
+      }
+    } catch (error) {
+      ElMessage.error('网络错误，操作失败')
+      console.error('创建分组失败:', error)
+    } finally {
+      groupBtnLoading.value = false
+    }
+  })
+}
+
+// 分页处理函数
+const handlePageChange = (page) => {
+  currentPage.value = page
 }
 </script>
 
@@ -728,7 +1170,7 @@ const formatDate = (dateString) => {
   gap: 8px;
 }
 
-.time-selector {
+.search-filter {
   padding: 12px 16px;
   border-bottom: 1px solid #e4e7ed;
 }
@@ -758,12 +1200,34 @@ const formatDate = (dateString) => {
   color: white;
 }
 
+.device-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.tree-node:hover .device-actions {
+  opacity: 1;
+}
+
+.device-actions .el-button {
+  padding: 4px;
+  min-height: auto;
+}
+
+.device-actions .el-button .el-icon {
+  font-size: 14px;
+}
+
 /* 右侧视频监控面板 */
 .video-monitor-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .monitor-header {
@@ -830,11 +1294,17 @@ const formatDate = (dateString) => {
   gap: 8px;
   padding: 16px;
   overflow: hidden;
+  height: calc(100vh - 80px);
+  max-height: 800px;
+  justify-content: center;
+  align-content: center;
 }
 
 .grid-4 {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  max-width: 600px;
+  max-height: 600px;
 }
 
 .grid-9 {
@@ -853,7 +1323,7 @@ const formatDate = (dateString) => {
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-  min-height: 200px;
+  aspect-ratio: 1/1;
 }
 
 .video-slot.has-stream {
@@ -1040,5 +1510,24 @@ const formatDate = (dateString) => {
     width: 100% !important;
     margin-right: 0 !important;
   }
+}
+
+/* 分页组件样式 */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background-color: #ffffff;
+  border-top: 1px solid #e4e7ed;
+}
+
+.pagination-container :deep(.el-pagination) {
+  justify-content: center;
+}
+
+.pagination-container :deep(.el-pagination.is-background .el-pager li:not(.is-disabled).is-active) {
+  background-color: #409EFF;
+  color: #fff;
 }
 </style>
