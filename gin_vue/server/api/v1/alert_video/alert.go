@@ -142,38 +142,7 @@ func (alertApi *AlertApi) FindAlert(c *gin.Context) {
 	}
 	response.OkWithData(realert, c)
 }
-// GetAlertList 分页获取alert表列表
-// @Tags Alert
-// @Summary 分页获取alert表列表
-// @Security ApiKeyAuth
-// @Accept application/json
-// @Produce application/json
-// @Param data query alert_videoReq.AlertSearch true "分页获取alert表列表"
-// @Success 200 {object} response.Response{data=response.PageResult,msg=string} "获取成功"
-// @Router /alert/getAlertList [get]
-func (alertApi *AlertApi) GetAlertList(c *gin.Context) {
-    // 创建业务用Context
-    ctx := c.Request.Context()
 
-	var pageInfo alert_videoReq.AlertSearch
-	err := c.ShouldBindQuery(&pageInfo)
-	if err != nil {
-		response.FailWithMessage(err.Error(), c)
-		return
-	}
-	list, total, err := alertService.GetAlertInfoList(ctx,pageInfo)
-	if err != nil {
-	    global.GVA_LOG.Error("获取失败!", zap.Error(err))
-        response.FailWithMessage("获取失败:" + err.Error(), c)
-        return
-    }
-    response.OkWithDetailed(response.PageResult{
-        List:     list,
-        Total:    total,
-        Page:     pageInfo.Page,
-        PageSize: pageInfo.PageSize,
-    }, "获取成功", c)
-}
 
 // GetAlertPublic 不需要鉴权的alert表接口
 // @Tags Alert

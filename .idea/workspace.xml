@@ -7,24 +7,32 @@
     <list default="true" id="bd4e9b50-b16b-4193-a0e8-e6d9a4ac09fa" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/GOHCache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GOHCache.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/v1/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/v1/enter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/v1/user/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/v1/user/ai_user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/v1/user/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/v1/user/enter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/initialize/gorm_biz.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/initialize/gorm_biz.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/initialize/router_biz.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/initialize/router_biz.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/user/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/user/ai_user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/user/request/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/user/request/ai_user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/router/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/enter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/router/example/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/example/enter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/router/user/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/user/ai_user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/router/user/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/user/enter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/enter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/user/ai_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/user/ai_user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/user/enter.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/user/enter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/rm_file/346586800/server/api/v1/alert_video/alert.go" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/rm_file/346586800/server/api/v1/alert_video/alert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/rm_file/346586800/server/router/alert_video/alert.go" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/rm_file/346586800/server/router/alert_video/alert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/rm_file/346586800/web/src/api/alert_video/alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/rm_file/346586800/web/src/api/alert_video/alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/rm_file/346586800/web/src/view/alert_video/alert/alert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/rm_file/346586800/web/src/view/alert_video/alert/alert.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/rm_file/580479600/web/src/view/alert_video/alert/alert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/rm_file/580479600/web/src/view/alert_video/alert/alert.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/rm_file/620830900/server/api/v1/alert_video/alert.go" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/rm_file/620830900/server/api/v1/alert_video/alert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/rm_file/620830900/server/router/alert_video/alert.go" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/rm_file/620830900/server/router/alert_video/alert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/rm_file/620830900/web/src/api/alert_video/alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/rm_file/620830900/web/src/api/alert_video/alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/rm_file/620830900/web/src/view/alert_video/alert/alert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/rm_file/620830900/web/src/view/alert_video/alert/alert.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/server/api/v1/alert_video/alert.go" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/server/api/v1/alert_video/alert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/server/router/alert_video/alert.go" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/server/router/alert_video/alert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/web/src/api/alert_video/alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/web/src/api/alert_video/alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gin_vue/web/src/view/dashboard/components/banner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/gin_vue/web/src/view/dashboard/components/banner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rm_file/580479600/web/src/view/alert_video/alert/alert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rm_file/580479600/web/src/view/alert_video/alert/alert.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rm_file/620830900/server/router/alert_video/alert.go" beforeDir="false" afterPath="$PROJECT_DIR$/rm_file/620830900/server/router/alert_video/alert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rm_file/620830900/web/src/api/alert_video/alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/rm_file/620830900/web/src/api/alert_video/alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rm_file/620830900/web/src/view/alert_video/alert/alert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rm_file/620830900/web/src/view/alert_video/alert/alert.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/v1/alert_video/alert.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/v1/alert_video/alert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/alert_video/alert.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/alert_video/alert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/api/alert_video/alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/api/alert_video/alert.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/pathInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/pathInfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/view/user/aiUser/aiUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/view/user/aiUser/aiUser.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/view/user/aiUser/aiUserForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/view/user/aiUser/aiUserForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/view/dashboard/components/alertList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/view/dashboard/components/alertList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/view/dashboard/components/banner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/view/dashboard/components/banner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/view/dashboard/components/charts-content-numbers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/view/dashboard/components/charts-content-numbers.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/view/dashboard/components/charts.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/view/dashboard/components/charts.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/view/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/view/dashboard/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,13 +69,14 @@
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "zy",
+    "git-widget-placeholder": "zys",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "last_opened_file_path": "C:/Users/31905",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.editor",
     "ts.external.directory.path": "E:\\GoLand 2025.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -92,6 +101,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
