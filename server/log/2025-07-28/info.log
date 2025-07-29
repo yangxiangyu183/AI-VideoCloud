@@ -45,3 +45,6 @@
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-28 22:08:26.315	[34minfo[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/api/v1/device/monitor_device.go:210	已将MinIO URL设置为设备的stream_url	{"originalUrl": "http://www.baidu.com/link?url=Uiq_YZeHXbvfVQW--uvhWKXfhbnyB_qONRHBMT13moI3rCVR4DMnx__fYzJxqflT58lyMuCAXYCx7pcx4sk58K", "minioUrl": "http://14.103.149.194:9000/test/monitor_content_1753711706.bin"}
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-28 22:11:55.640	[34minfo[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/core/server_run.go:48	关闭WEB服务...
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-28 22:11:55.641	[34minfo[0m	D:/GoWork/SX/xm/AI-VideoCloud/server/core/server_run.go:59	WEB服务已关闭
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-28 09:26:21.232	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/vc/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-28 09:26:21.262	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/vc/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-28 09:26:23.282	[34minfo[0m	C:/Users/有啤酒肚的小仙女/Desktop/vc/AI-VideoCloud/server/initialize/router.go:120	router register success
