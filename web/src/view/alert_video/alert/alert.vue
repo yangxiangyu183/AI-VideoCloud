@@ -94,6 +94,7 @@
                 end-placeholder="结束时间"
                 size="small"
                 style="width: 100%"
+                @change="onCustomTimeRangeChange"
             />
           </el-form-item>
           <el-form-item>
@@ -105,21 +106,29 @@
       <!-- 右侧卡片内容区 -->
       <div class="card-list-area">
         <div class="card-list-header">
-          <div class="statistics-info">
+          <div class="statistics-section">
             <span class="total-count">共有 {{ total }} 条警告事件</span>
-            <div class="status-statistics">
-              <span class="status-item">
-                <span class="status-dot" style="background-color: #52c41a;"></span>
-                在线设备: {{ onlineDeviceCount }}
-              </span>
-              <span class="status-item">
-                <span class="status-dot" style="background-color: #ff4d4f;"></span>
-                离线设备: {{ offlineDeviceCount }}
-              </span>
-              <span class="status-item">
-                <span class="status-dot" style="background-color: #fa8c16;"></span>
-                故障设备: {{ faultDeviceCount }}
-              </span>
+            <div v-if="hasActiveFilters" class="filter-summary">
+              <span class="filter-label">当前筛选:</span>
+              <el-tag 
+                v-for="tag in activeFilterTags" 
+                :key="tag.key"
+                size="small"
+                type="info"
+                closable
+                @close="removeFilterTag(tag)"
+                style="margin-right: 8px;"
+              >
+                {{ tag.label }}
+              </el-tag>
+              <el-button 
+                type="text" 
+                size="small" 
+                @click="clearAllFilters"
+                style="color: #409eff;"
+              >
+                清空筛选
+              </el-button>
             </div>
           </div>
           <el-input
@@ -127,6 +136,7 @@
               placeholder="摄像头点位/报警类型/设备名称"
               size="small"
               class="search-input"
+              @input="onKeywordChange"
               @keyup.enter="onSubmit"
               style="width: 260px; margin-left: 20px;"
           >
@@ -136,7 +146,25 @@
           </el-input>
         </div>
         <div class="card-scroll-container">
-          <div class="card-grid">
+          <!-- 空状态提示 -->
+          <div v-if="tableData.length === 0" class="empty-state">
+            <div class="empty-icon">
+              <el-icon size="64" color="#666">
+                <Search />
+              </el-icon>
+            </div>
+            <div class="empty-text">
+              <h3>暂无数据</h3>
+              <p v-if="hasActiveFilters">当前筛选条件下没有找到相关告警事件，请尝试调整筛选条件</p>
+              <p v-else>暂时没有告警事件数据</p>
+            </div>
+            <div v-if="hasActiveFilters" class="empty-actions">
+              <el-button type="primary" @click="clearAllFilters">清空筛选条件</el-button>
+            </div>
+          </div>
+          
+          <!-- 卡片网格 -->
+          <div v-else class="card-grid">
             <div v-for="item in tableData" :key="item.ID" class="card-item">
               <el-card shadow="hover" class="event-card">
                 <div class="card-img-box" @click="getDetails(item)">
@@ -144,45 +172,17 @@
                   <div class="img-red-rect"></div>
                 </div>
                 <div class="card-info">
-                  <!-- 设备状态行 -->
-                  <div class="card-info-row device-status-row">
+                  <div class="card-info-row">
                     <span class="device-status" :style="{ color: getDeviceStatusColor(item.deviceStatus) }">
                       <span class="status-dot" :style="{ backgroundColor: getDeviceStatusColor(item.deviceStatus) }"></span>
                       {{ getDeviceStatusText(item.deviceStatus) }}
                     </span>
-                    <span class="device-group">分组{{ item.groupId || 'N/A' }}</span>
                   </div>
-
-                  <!-- 设备基本信息 -->
-                  <div class="card-info-section">
-                    <div class="section-title">设备信息</div>
-                    <div class="card-info-row"><b>设备名称：</b>{{ item.deviceName || '未知设备' }}</div>
-                    <div class="card-info-row"><b>设备厂商：</b>{{ item.manufacturer || '未知' }}</div>
-                    <div class="card-info-row"><b>设备型号：</b>{{ item.deviceModel || '未知' }}</div>
-                  </div>
-
-                  <!-- 网络配置信息 -->
-                  <div class="card-info-section">
-                    <div class="section-title">网络配置</div>
-                    <div class="card-info-row"><b>IP地址：</b>{{ item.ipAddress || '未配置' }}</div>
-                    <div class="card-info-row"><b>分辨率：</b>{{ item.resolution || '未知' }}</div>
-                    <div class="card-info-row"><b>视频流：</b>{{ item.streamUrl ? '已配置' : '未配置' }}</div>
-                  </div>
-
-                  <!-- 告警信息 -->
-                  <div class="card-info-section">
-                    <div class="section-title">告警信息</div>
-                    <div class="card-info-row"><b>摄像头点位：</b>{{ item.cameraAddress || '未知点位' }}</div>
-                    <div class="card-info-row"><b>预警类型：</b>{{ getAlertTypeLabel(item.alertType) }}</div>
-                    <div class="card-info-row"><b>预警时间：</b>{{ formatDate(item.alertTime) }}</div>
-                  </div>
-
-                  <!-- 维护信息 -->
-                  <div class="card-info-section">
-                    <div class="section-title">维护信息</div>
-                    <div class="card-info-row"><b>安装日期：</b>{{ item.installDate || '未知' }}</div>
-                    <div class="card-info-row"><b>维护日期：</b>{{ item.maintenanceDate || '未知' }}</div>
-                  </div>
+                  <div class="card-info-row"><b>摄像头点位：</b>{{ item.cameraAddress || '未知点位' }}</div>
+                  <div class="card-info-row"><b>预警类型：</b>{{ getAlertTypeLabel(item.alertType) }}</div>
+                  <div class="card-info-row"><b>预警时间：</b>{{ formatDate(item.alertTime) }}</div>
+                  <div class="card-info-row"><b>分辨率：</b>{{ item.resolution || '未知' }}</div>
+                  <div class="card-info-row"><b>视频流地址：</b>{{ item.streamUrl || '未配置' }}</div>
                 </div>
                 <div class="card-actions">
                   <el-button type="primary" link @click="getDetails(item)">查看</el-button>
@@ -207,29 +207,18 @@
     <!-- 详情弹窗 -->
     <el-drawer destroy-on-close :size="appStore.drawerSize" v-model="detailShow" :show-close="true" :before-close="closeDetailShow" title="告警详情">
       <el-descriptions :column="1" border>
-        <el-descriptions-item label="告警ID">{{ detailForm.ID }}</el-descriptions-item>
         <el-descriptions-item label="设备状态">
           <span :style="{ color: getDeviceStatusColor(detailForm.deviceStatus) }">
             <span class="status-dot" :style="{ backgroundColor: getDeviceStatusColor(detailForm.deviceStatus) }"></span>
             {{ getDeviceStatusText(detailForm.deviceStatus) }}
           </span>
         </el-descriptions-item>
-        <el-descriptions-item label="设备名称">{{ detailForm.deviceName || '未知设备' }}</el-descriptions-item>
         <el-descriptions-item label="摄像头点位">{{ detailForm.cameraAddress || '未知点位' }}</el-descriptions-item>
         <el-descriptions-item label="预警类型">{{ getAlertTypeLabel(detailForm.alertType) }}</el-descriptions-item>
         <el-descriptions-item label="预警时间">{{ formatDate(detailForm.alertTime) }}</el-descriptions-item>
-        <el-descriptions-item label="设备厂商">{{ detailForm.manufacturer || '未知' }}</el-descriptions-item>
-        <el-descriptions-item label="设备型号">{{ detailForm.deviceModel || '未知' }}</el-descriptions-item>
         <el-descriptions-item label="分辨率">{{ detailForm.resolution || '未知' }}</el-descriptions-item>
-        <el-descriptions-item label="IP地址">{{ detailForm.ipAddress || '未配置' }}</el-descriptions-item>
         <el-descriptions-item label="视频流地址">{{ detailForm.streamUrl || '未配置' }}</el-descriptions-item>
-        <el-descriptions-item label="设备分组ID">{{ detailForm.groupId || '未分组' }}</el-descriptions-item>
-        <el-descriptions-item label="安装日期">{{ detailForm.installDate || '未知' }}</el-descriptions-item>
-        <el-descriptions-item label="维护日期">{{ detailForm.maintenanceDate || '未知' }}</el-descriptions-item>
-        <el-descriptions-item label="摄像头ID">{{ detailForm.cameraId || '未知' }}</el-descriptions-item>
-        <el-descriptions-item label="监控视频">
-          <img :src="detailForm.video" style="max-width: 100%; height: auto;" />
-        </el-descriptions-item>
+        <el-descriptions-item label="监控视频">{{ detailForm.video || '无' }}</el-descriptions-item>
       </el-descriptions>
     </el-drawer>
   </div>
@@ -242,9 +231,23 @@ import {
 } from '@/api/alert_video/alert'
 import { getDictFunc, formatDate, filterDict } from '@/utils/format'
 import { getDeviceStatusText, getDeviceStatusColor, getDeviceStatusOptions } from '@/utils/deviceStatus'
-import { ref, watch, computed } from 'vue'
+import { ref, watch, nextTick, computed } from 'vue'
+
+// 防抖函数
+const debounce = (func, wait) => {
+  let timeout
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
 import { useAppStore } from "@/pinia"
 import { ElMessage } from 'element-plus'
+import { Search } from '@element-plus/icons-vue'
 
 const appStore = useAppStore()
 
@@ -271,7 +274,6 @@ const setOptions = async () =>{
     alert_typeOptions.value = [
       { value: 'smoking_detection', label: '吸烟检测', checked: false },
       { value: 'ground_garbage', label: '地面垃圾', checked: false },
-      { value: 'vendor_recognition', label: '游摊小贩识别', checked: false },
       { value: 'yacht_boat_recognition', label: '游艇小艇识别', checked: false },
       { value: 'vehicle_type_recognition', label: '车辆类型识别', checked: false },
       { value: 'non_motor_vehicle_recognition', label: '非机动车识别', checked: false },
@@ -302,216 +304,16 @@ setOptions()
 const initializeData = () => {
   console.log('=== 初始化数据 ===')
 
-  const initialData = [
-    {
-      // alert表字段
-      ID: 1,
-      video: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
-      cameraAddress: '1228106',
-      alertType: 'small_boat_raft_recognition',
-      alertTime: '2025-07-17 11:40:00',
-      cameraId: 1001,
-      // monitor_device表字段（基于真实数据）
-      deviceName: '1228106',
-      deviceStatus: '1',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.100:1935/live/stream1001',
-      groupId: 1,
-      manufacturer: '海康威视',
-      installDate: '2024-03-15',
-      maintenanceDate: '2025-01-10',
-      deviceModel: 'DS-2CD2T47G1-L',
-      ipAddress: '192.168.1.100'
-    },
-    {
-      // alert表字段
-      ID: 2,
-      video: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop',
-      cameraAddress: '1',
-      alertType: 'small_boat_raft_recognition',
-      alertTime: '2025-07-17 10:28:00',
-      cameraId: 1002,
-      // monitor_device表字段（基于真实数据）
-      deviceName: '1',
-      deviceStatus: '1',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.101:1935/live/stream1002',
-      groupId: 1,
-      manufacturer: '大华技术',
-      installDate: '2024-03-15',
-      maintenanceDate: '2025-01-10',
-      deviceModel: 'DH-IPC-HFW4433M-I2',
-      ipAddress: '192.168.1.101'
-    },
-    {
-      // alert表字段
-      ID: 3,
-      video: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop',
-      cameraAddress: '2',
-      alertType: 'vehicle_type_recognition',
-      alertTime: '2025-07-17 16:27:00',
-      cameraId: 1003,
-      // monitor_device表字段（基于真实数据）
-      deviceName: '2',
-      deviceStatus: '1',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.102:1935/live/stream1003',
-      groupId: 2,
-      manufacturer: '宇视科技',
-      installDate: '2024-04-20',
-      maintenanceDate: '2025-02-15',
-      deviceModel: 'IPC6322LR-X',
-      ipAddress: '192.168.1.102'
-    },
-    {
-      // alert表字段
-      ID: 4,
-      video: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop',
-      cameraAddress: 'seventeen',
-      alertType: 'drone_recognition',
-      alertTime: '2025-07-17 16:20:00',
-      cameraId: 1004,
-      // monitor_device表字段（基于真实数据）
-      deviceName: 'seventeen',
-      deviceStatus: '1',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.103:1935/live/stream1004',
-      groupId: 2,
-      manufacturer: '海康威视',
-      installDate: '2024-05-10',
-      maintenanceDate: '2025-03-05',
-      deviceModel: 'DS-2CD2T85G1-I8',
-      ipAddress: '192.168.1.103'
-    },
-    {
-      // alert表字段
-      ID: 5,
-      video: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-      cameraAddress: 's',
-      alertType: 'non_motor_vehicle_recognition',
-      alertTime: '2025-07-17 17:32:00',
-      cameraId: 1005,
-      // monitor_device表字段（基于真实数据）
-      deviceName: 's',
-      deviceStatus: '1',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.104:1935/live/stream1005',
-      groupId: 3,
-      manufacturer: '大华技术',
-      installDate: '2024-06-01',
-      maintenanceDate: '2025-04-01',
-      deviceModel: 'DH-IPC-HFW4831E-SE',
-      ipAddress: '192.168.1.104'
-    },
-    {
-      // alert表字段
-      ID: 6,
-      video: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=300&fit=crop',
-      cameraAddress: '怀柔密云',
-      alertType: 'yacht_boat_recognition',
-      alertTime: '2025-07-17 09:23:00',
-      cameraId: 1006,
-      // monitor_device表字段（基于真实数据）
-      deviceName: '怀柔密云水域监控设备UV-006',
-      deviceStatus: '1',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.105:1935/live/stream1006',
-      groupId: 4,
-      manufacturer: '宇视科技',
-      installDate: '2024-07-15',
-      maintenanceDate: '2025-05-10',
-      deviceModel: 'IPC6618SR-X',
-      ipAddress: '192.168.1.105'
-    },
-    {
-      // alert表字段
-      ID: 7,
-      video: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
-      cameraAddress: '新济南广场',
-      alertType: 'person_intrusion',
-      alertTime: '2025-07-17 09:05:00',
-      cameraId: 1007,
-      // monitor_device表字段
-      deviceName: '新济南广场人员监控设备DH-007',
-      deviceStatus: '2',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.106:1935/live/stream1007',
-      groupId: 4,
-      manufacturer: '大华技术',
-      installDate: '2024-08-20',
-      maintenanceDate: '2025-06-15',
-      deviceModel: 'DH-IPC-HFW5831E-ZE',
-      ipAddress: '192.168.1.106'
-    },
-    {
-      // alert表字段
-      ID: 8,
-      video: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&h=300&fit=crop',
-      cameraAddress: '村村桥中',
-      alertType: 'ground_garbage',
-      alertTime: '2025-07-17 11:26:00',
-      cameraId: 1008,
-      // monitor_device表字段
-      deviceName: '村村桥垃圾监控设备HK-008',
-      deviceStatus: '1',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.107:1935/live/stream1008',
-      groupId: 3,
-      manufacturer: '海康威视',
-      installDate: '2024-06-01',
-      maintenanceDate: '2025-04-01',
-      deviceModel: 'DS-2CD2T47G2-L',
-      ipAddress: '192.168.1.107'
-    },
-    {
-      // alert表字段
-      ID: 9,
-      video: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
-      cameraAddress: '杭州市区',
-      alertType: 'smoking_detection',
-      alertTime: '2025-07-17 08:15:00',
-      cameraId: 1009,
-      // monitor_device表字段
-      deviceName: '杭州市区吸烟监控设备HK-009',
-      deviceStatus: '3',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.108:1935/live/stream1009',
-      groupId: 1,
-      manufacturer: '海康威视',
-      installDate: '2024-03-15',
-      maintenanceDate: '2025-01-10',
-      deviceModel: 'DS-2CD2T47G1-L',
-      ipAddress: '192.168.1.108'
-    },
-    {
-      // alert表字段
-      ID: 10,
-      video: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop',
-      cameraAddress: '十字路',
-      alertType: 'vendor_recognition',
-      alertTime: '2025-07-17 14:30:00',
-      cameraId: 1010,
-      // monitor_device表字段
-      deviceName: '十字路口小贩监控设备UV-010',
-      deviceStatus: '2',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.109:1935/live/stream1010',
-      groupId: 2,
-      manufacturer: '宇视科技',
-      installDate: '2024-05-10',
-      maintenanceDate: '2025-03-05',
-      deviceModel: 'IPC6322LR-X',
-      ipAddress: '192.168.1.109'
-    }
-  ]
-
-  // 直接设置数据
-  tableData.value = initialData
-  allTableData.value = initialData // 保存完整数据
-  total.value = initialData.length
+  // 设置完整的筛选结果为所有数据
+  filteredResults.value = [...allMockData.value]
+  total.value = allMockData.value.length
   page.value = 1
+  
+  // 应用分页显示
+  applyPagination()
 
-  console.log('✅ 初始化完成，数据数量:', tableData.value.length)
+  console.log('✅ 初始化完成，总数据数量:', filteredResults.value.length)
+  console.log('✅ 当前页显示数量:', tableData.value.length)
   console.log('✅ 初始化数据:', tableData.value.map(item => `ID${item.ID}:${item.alertType}`))
 }
 
@@ -563,7 +365,29 @@ const timeRangeOptions = ref([
   { value: 'lastMonth', label: '上月', checked: false }
 ])
 
-// 查询条件
+// 统一的筛选状态管理
+const filterState = ref({
+  deviceStatus: {
+    all: false,
+    selected: []
+  },
+  alertType: {
+    all: false,
+    selected: []
+  },
+  cameraAddress: {
+    all: false,
+    selected: []
+  },
+  timeRange: {
+    all: false,
+    selected: [],
+    customRange: []
+  },
+  keyword: ''
+})
+
+// 保持向后兼容的查询条件
 const searchInfo = ref({
   alertTypeAll: false,
   alertTypeList: [],
@@ -579,32 +403,426 @@ const searchInfo = ref({
   keyword: ''
 })
 
+// 完整的模拟数据集
+const allMockData = ref([
+  {
+    ID: 1,
+    video: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+    cameraAddress: '杭州市区',
+    alertType: 'small_boat_raft_recognition',
+    alertTime: '2025-07-17 11:40:00',
+    deviceName: '杭州市区小船监控设备HK-001',
+    deviceStatus: '1',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.100:1935/live/stream1001'
+  },
+  {
+    ID: 2,
+    video: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop',
+    cameraAddress: '杭州市区',
+    alertType: 'small_boat_raft_recognition',
+    alertTime: '2025-07-17 10:28:00',
+    deviceName: '杭州市区小船监控设备DH-002',
+    deviceStatus: '1',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.101:1935/live/stream1002'
+  },
+  {
+    ID: 3,
+    video: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop',
+    cameraAddress: '马路路段',
+    alertType: 'vehicle_type_recognition',
+    alertTime: '2025-07-17 16:27:00',
+    deviceName: '马路路段车辆监控设备UV-003',
+    deviceStatus: '1',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.102:1935/live/stream1003'
+  },
+  {
+    ID: 4,
+    video: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop',
+    cameraAddress: '十字路',
+    alertType: 'drone_recognition',
+    alertTime: '2025-07-17 16:20:00',
+    deviceName: '十字路口无人机监控设备HK-004',
+    deviceStatus: '1',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.103:1935/live/stream1004'
+  },
+  {
+    ID: 5,
+    video: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
+    cameraAddress: '村村桥中',
+    alertType: 'non_motor_vehicle_recognition',
+    alertTime: '2025-07-17 17:32:00',
+    deviceName: '村村桥非机动车监控设备DH-005',
+    deviceStatus: '1',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.104:1935/live/stream1005'
+  },
+  {
+    ID: 6,
+    video: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=300&fit=crop',
+    cameraAddress: '怀柔密云',
+    alertType: 'yacht_boat_recognition',
+    alertTime: '2025-07-17 09:23:00',
+    deviceName: '怀柔密云水域监控设备UV-006',
+    deviceStatus: '1',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.105:1935/live/stream1006'
+  },
+  {
+    ID: 7,
+    video: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+    cameraAddress: '新济南广场',
+    alertType: 'person_intrusion',
+    alertTime: '2025-07-17 09:05:00',
+    deviceName: '新济南广场人员监控设备DH-007',
+    deviceStatus: '1',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.106:1935/live/stream1007'
+  },
+  {
+    ID: 8,
+    video: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&h=300&fit=crop',
+    cameraAddress: '村村桥中',
+    alertType: 'ground_garbage',
+    alertTime: '2025-07-17 11:26:00',
+    deviceName: '村村桥垃圾监控设备HK-008',
+    deviceStatus: '1',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.107:1935/live/stream1008'
+  },
+  {
+    ID: 9,
+    video: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+    cameraAddress: '杭州市区',
+    alertType: 'smoking_detection',
+    alertTime: '2025-07-17 08:15:00',
+    deviceName: '杭州市区吸烟监控设备HK-009',
+    deviceStatus: '1',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.108:1935/live/stream1009'
+  },
+  {
+    ID: 10,
+    video: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=300&fit=crop',
+    cameraAddress: '马路路段',
+    alertType: 'smoking_detection',
+    alertTime: '2025-07-17 14:22:00',
+    deviceName: '马路路段吸烟监控设备UV-010',
+    deviceStatus: '2',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.109:1935/live/stream1010'
+  },
+  {
+    ID: 11,
+    video: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop',
+    cameraAddress: '十字路',
+    alertType: 'ground_garbage',
+    alertTime: '2025-07-17 13:45:00',
+    deviceName: '十字路垃圾监控设备HK-011',
+    deviceStatus: '3',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.110:1935/live/stream1011'
+  },
+  {
+    ID: 12,
+    video: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+    cameraAddress: '怀柔密云',
+    alertType: 'person_intrusion',
+    alertTime: '2025-07-17 15:30:00',
+    deviceName: '怀柔密云人员监控设备UV-012',
+    deviceStatus: '2',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.111:1935/live/stream1012'
+  },
+  {
+    ID: 13,
+    video: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&h=300&fit=crop',
+    cameraAddress: '新济南广场',
+    alertType: 'yacht_boat_recognition',
+    alertTime: '2025-07-17 12:15:00',
+    deviceName: '新济南广场水域监控设备HK-013',
+    deviceStatus: '3',
+    resolution: '1920x1080',
+    streamUrl: 'rtmp://192.168.1.112:1935/live/stream1013'
+  }
+])
+
+// 核心筛选引擎
+const applyAllFilters = (data, filters) => {
+  try {
+    if (!data || !Array.isArray(data)) {
+      console.warn('筛选数据无效:', data)
+      return []
+    }
+    
+    let result = [...data]
+    let filterCount = 0
+    
+    // 按设备状态筛选
+    if (!filters.deviceStatus.all && filters.deviceStatus.selected.length > 0) {
+      result = result.filter(item => 
+        filters.deviceStatus.selected.includes(item.deviceStatus)
+      )
+      filterCount++
+      console.log(`设备状态筛选后数量: ${result.length}`)
+    }
+    
+    // 按预警类型筛选
+    if (!filters.alertType.all && filters.alertType.selected.length > 0) {
+      result = result.filter(item => 
+        filters.alertType.selected.includes(item.alertType)
+      )
+      filterCount++
+      console.log(`预警类型筛选后数量: ${result.length}`)
+    }
+    
+    // 按摄像头点位筛选
+    if (!filters.cameraAddress.all && filters.cameraAddress.selected.length > 0) {
+      result = result.filter(item => 
+        filters.cameraAddress.selected.includes(item.cameraAddress)
+      )
+      filterCount++
+      console.log(`摄像头点位筛选后数量: ${result.length}`)
+    }
+    
+    // 按时间范围筛选
+    if (filters.timeRange.customRange && filters.timeRange.customRange.length === 2) {
+      const [startTime, endTime] = filters.timeRange.customRange
+      result = result.filter(item => {
+        try {
+          const itemTime = new Date(item.alertTime)
+          return itemTime >= startTime && itemTime <= endTime
+        } catch (error) {
+          console.warn('时间解析错误:', item.alertTime, error)
+          return false
+        }
+      })
+      filterCount++
+      console.log(`时间范围筛选后数量: ${result.length}`)
+    }
+    
+    // 按关键词筛选
+    if (filters.keyword && filters.keyword.trim()) {
+      const keyword = filters.keyword.trim().toLowerCase()
+      result = result.filter(item => {
+        try {
+          return item.cameraAddress.toLowerCase().includes(keyword) ||
+                 getAlertTypeLabel(item.alertType).toLowerCase().includes(keyword) ||
+                 item.deviceName.toLowerCase().includes(keyword)
+        } catch (error) {
+          console.warn('关键词筛选错误:', item, error)
+          return false
+        }
+      })
+      filterCount++
+      console.log(`关键词筛选后数量: ${result.length}`)
+    }
+    
+    console.log(`应用了 ${filterCount} 个筛选条件，最终结果数量: ${result.length}`)
+    return result
+    
+  } catch (error) {
+    console.error('筛选过程中发生错误:', error)
+    return data || []
+  }
+}
+
+// 单独的筛选函数，用于性能优化
+const filterByDeviceStatus = (data, statusList) => {
+  if (!statusList || statusList.length === 0) return data
+  return data.filter(item => statusList.includes(item.deviceStatus))
+}
+
+const filterByAlertType = (data, typeList) => {
+  if (!typeList || typeList.length === 0) return data
+  return data.filter(item => typeList.includes(item.alertType))
+}
+
+const filterByCameraAddress = (data, addressList) => {
+  if (!addressList || addressList.length === 0) return data
+  return data.filter(item => addressList.includes(item.cameraAddress))
+}
+
+const filterByTimeRange = (data, timeRange) => {
+  if (!timeRange || timeRange.length !== 2) return data
+  const [startTime, endTime] = timeRange
+  return data.filter(item => {
+    try {
+      const itemTime = new Date(item.alertTime)
+      return itemTime >= startTime && itemTime <= endTime
+    } catch (error) {
+      console.warn('时间解析错误:', item.alertTime, error)
+      return false
+    }
+  })
+}
+
+const filterByKeyword = (data, keyword) => {
+  if (!keyword || !keyword.trim()) return data
+  const searchTerm = keyword.trim().toLowerCase()
+  return data.filter(item => {
+    try {
+      return item.cameraAddress.toLowerCase().includes(searchTerm) ||
+             getAlertTypeLabel(item.alertType).toLowerCase().includes(searchTerm) ||
+             item.deviceName.toLowerCase().includes(searchTerm)
+    } catch (error) {
+      console.warn('关键词筛选错误:', item, error)
+      return false
+    }
+  })
+}
+
+// 筛选结果缓存
+const filterCache = ref(new Map())
+const lastFilterState = ref(null)
+
+// 生成筛选条件的缓存键
+const generateCacheKey = (filters) => {
+  return JSON.stringify({
+    deviceStatus: filters.deviceStatus.selected.sort(),
+    alertType: filters.alertType.selected.sort(),
+    cameraAddress: filters.cameraAddress.selected.sort(),
+    timeRange: filters.timeRange.customRange,
+    keyword: filters.keyword
+  })
+}
+
+// 检查筛选条件是否发生变化
+const hasFilterChanged = (newFilters, oldFilters) => {
+  if (!oldFilters) return true
+  return generateCacheKey(newFilters) !== generateCacheKey(oldFilters)
+}
+
+// 存储完整的筛选结果，用于分页
+const filteredResults = ref([])
+
+// 优化的筛选函数，支持缓存和增量筛选
+const optimizedFilter = () => {
+  const startTime = performance.now()
+  
+  try {
+    // 检查是否有缓存
+    const cacheKey = generateCacheKey(filterState.value)
+    if (filterCache.value.has(cacheKey)) {
+      const cachedResult = filterCache.value.get(cacheKey)
+      filteredResults.value = cachedResult
+      total.value = cachedResult.length
+      page.value = 1
+      
+      // 应用分页显示
+      applyPagination()
+      
+      const endTime = performance.now()
+      console.log(`✅ 使用缓存筛选完成，结果数量: ${cachedResult.length}，耗时: ${(endTime - startTime).toFixed(2)}ms`)
+      return
+    }
+    
+    // 执行筛选
+    const filteredData = applyAllFilters(allMockData.value, filterState.value)
+    
+    // 缓存结果（限制缓存大小）
+    if (filterCache.value.size > 50) {
+      // 清除最旧的缓存项
+      const firstKey = filterCache.value.keys().next().value
+      filterCache.value.delete(firstKey)
+    }
+    filterCache.value.set(cacheKey, filteredData)
+    
+    // 更新筛选结果
+    filteredResults.value = filteredData
+    total.value = filteredData.length
+    page.value = 1
+    
+    // 应用分页显示
+    applyPagination()
+    
+    // 记录最后的筛选状态
+    lastFilterState.value = JSON.parse(JSON.stringify(filterState.value))
+    
+    const endTime = performance.now()
+    console.log(`✅ 筛选完成，结果数量: ${filteredData.length}，耗时: ${(endTime - startTime).toFixed(2)}ms`)
+    
+  } catch (error) {
+    console.error('筛选过程中发生错误:', error)
+    // 发生错误时显示所有数据
+    filteredResults.value = [...allMockData.value]
+    total.value = allMockData.value.length
+    page.value = 1
+    applyPagination()
+  }
+}
+
+// 应用分页逻辑
+const applyPagination = () => {
+  const startIndex = (page.value - 1) * pageSize.value
+  const endIndex = startIndex + pageSize.value
+  tableData.value = filteredResults.value.slice(startIndex, endIndex)
+  
+  console.log(`📄 分页显示: 第${page.value}页，每页${pageSize.value}条，显示${startIndex + 1}-${Math.min(endIndex, filteredResults.value.length)}条，共${filteredResults.value.length}条`)
+  console.log(`📄 当前页数据:`, tableData.value.map(item => `ID${item.ID}`))
+}
+
+// 防抖处理的筛选函数
+const debouncedFilter = debounce(optimizedFilter, 300)
+
+// 智能触发筛选（只在条件真正变化时触发）
+const triggerFilter = () => {
+  if (hasFilterChanged(filterState.value, lastFilterState.value)) {
+    console.log('筛选条件发生变化，触发筛选')
+    debouncedFilter()
+  } else {
+    console.log('筛选条件未变化，跳过筛选')
+  }
+}
+
+// 更新筛选条件并触发筛选
+const updateFilterCondition = (category, selectedValues, isAll = false) => {
+  filterState.value[category].selected = selectedValues
+  filterState.value[category].all = isAll
+  
+  // 同步到旧的searchInfo结构以保持兼容性
+  if (category === 'deviceStatus') {
+    searchInfo.value.deviceStatusAll = isAll
+    searchInfo.value.deviceStatusList = selectedValues
+  } else if (category === 'alertType') {
+    searchInfo.value.alertTypeAll = isAll
+    searchInfo.value.alertTypeList = selectedValues
+  } else if (category === 'cameraAddress') {
+    searchInfo.value.cameraAddressAll = isAll
+  } else if (category === 'timeRange') {
+    searchInfo.value.timeRangeAll = isAll
+  }
+  
+  triggerFilter()
+}
+
 // 全选逻辑处理
 const onAlertTypeAllChange = (val) => {
   alert_typeOptions.value.forEach(item => {
     item.checked = val
   })
-  // 自动触发查询
-  onSubmit()
+  
+  const selectedValues = val ? alert_typeOptions.value.map(item => item.value) : []
+  updateFilterCondition('alertType', selectedValues, val)
 }
 
 const onAlertTypeChange = () => {
   console.log('=== 预警类型筛选触发 ===')
+
+  // 获取选中的预警类型
   const selectedAlertTypes = alert_typeOptions.value.filter(item => item.checked).map(item => item.value)
   console.log('选中的预警类型:', selectedAlertTypes)
-  console.log('全部数据数量:', allTableData.value.length)
 
-  if (selectedAlertTypes.length > 0) {
-    tableData.value = allTableData.value.filter(item => selectedAlertTypes.includes(item.alertType))
-    console.log('筛选后数据数量:', tableData.value.length)
-    console.log('筛选后的数据:', tableData.value.map(item => `${item.ID}:${item.alertType}`))
-  } else {
-    tableData.value = allTableData.value
-    console.log('显示所有数据，数量:', tableData.value.length)
-  }
-  total.value = tableData.value.length
-  page.value = 1
-  console.log('✅ 筛选完成，当前显示数量:', total.value)
+  // 检查是否需要更新全选状态
+  const checkedCount = selectedAlertTypes.length
+  const isAllSelected = checkedCount === alert_typeOptions.value.length
+  searchInfo.value.alertTypeAll = isAllSelected
+
+  // 更新筛选条件并触发筛选
+  updateFilterCondition('alertType', selectedAlertTypes, isAllSelected)
 }
 
 // 测试筛选功能
@@ -704,144 +922,262 @@ const testFilter = () => {
       deviceStatus: '1',
       resolution: '1920x1080',
       streamUrl: 'rtmp://192.168.1.107:1935/live/stream1008'
-    },
-    {
-      ID: 9,
-      video: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
-      cameraAddress: '杭州市区',
-      alertType: 'smoking_detection',
-      alertTime: '2025-07-17 08:15:00',
-      deviceName: '杭州市区吸烟监控设备HK-009',
-      deviceStatus: '1',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.108:1935/live/stream1009'
-    },
-    {
-      ID: 10,
-      video: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop',
-      cameraAddress: '十字路',
-      alertType: 'vendor_recognition',
-      alertTime: '2025-07-17 14:30:00',
-      deviceName: '十字路口小贩监控设备',
-      deviceStatus: '1',
-      resolution: '1920x1080',
-      streamUrl: 'rtmp://192.168.1.109:1935/live/stream1010'
     }
   ]
 
-  // 根据选中的预警类型筛选数据
-  let filteredData = allMockData
   if (selectedAlertTypes.length > 0) {
-    filteredData = allMockData.filter(item => selectedAlertTypes.includes(item.alertType))
+    const filteredData = allMockData.filter(item => selectedAlertTypes.includes(item.alertType))
     console.log('筛选后的数据:', filteredData)
     console.log('筛选后的数据数量:', filteredData.length)
+
+    // 直接设置到tableData进行显示
+    tableData.value = filteredData
+    total.value = filteredData.length
+    console.log('✅ 成功设置tableData，数量:', tableData.value.length)
   } else {
     console.log('没有选中预警类型，显示所有数据')
+    tableData.value = allMockData
+    total.value = allMockData.length
+    console.log('✅ 显示所有数据，数量:', tableData.value.length)
   }
-
-  // 直接设置数据
-  tableData.value = filteredData
-  total.value = filteredData.length
-  page.value = 1
-
-  console.log('✅ 设置完成 - tableData数量:', tableData.value.length)
-  console.log('✅ 设置完成 - total:', total.value)
-  console.log('✅ 当前显示的数据:', tableData.value.map(item => `ID${item.ID}:${item.alertType}`))
 }
 
 const onCameraAddressAllChange = (val) => {
   cameraAddressOptions.value.forEach(item => {
     item.checked = val
   })
-  // 自动触发查询
-  onSubmit()
+  
+  const selectedValues = val ? cameraAddressOptions.value.map(item => item.value) : []
+  updateFilterCondition('cameraAddress', selectedValues, val)
 }
 
 const onCameraAddressChange = () => {
-  const checkedCount = cameraAddressOptions.value.filter(item => item.checked).length
-  searchInfo.value.cameraAddressAll = checkedCount === cameraAddressOptions.value.length
-  // 自动触发查询
-  onSubmit()
+  console.log('=== 摄像头点位筛选触发 ===')
+  
+  // 获取选中的摄像头点位
+  const selectedCameraAddress = cameraAddressOptions.value.filter(item => item.checked).map(item => item.value)
+  console.log('选中的摄像头点位:', selectedCameraAddress)
+  
+  // 检查是否需要更新全选状态
+  const checkedCount = selectedCameraAddress.length
+  const isAllSelected = checkedCount === cameraAddressOptions.value.length
+  searchInfo.value.cameraAddressAll = isAllSelected
+  
+  // 更新筛选条件并触发筛选
+  updateFilterCondition('cameraAddress', selectedCameraAddress, isAllSelected)
 }
 
 const onTimeRangeAllChange = (val) => {
   timeRangeOptions.value.forEach(item => {
     item.checked = val
   })
+  
   // 如果全选，则清空具体时间范围
   if (val) {
+    filterState.value.timeRange.customRange = []
     searchInfo.value.createdAtRange = []
   }
-  // 自动触发查询
-  onSubmit()
+  
+  const selectedValues = val ? timeRangeOptions.value.map(item => item.value) : []
+  updateFilterCondition('timeRange', selectedValues, val)
 }
 
 const onTimeRangeChange = () => {
-  const checkedCount = timeRangeOptions.value.filter(item => item.checked).length
-  searchInfo.value.timeRangeAll = checkedCount === timeRangeOptions.value.length
+  console.log('=== 时间范围筛选触发 ===')
+  
+  // 获取选中的时间范围
+  const selectedTimeRanges = timeRangeOptions.value.filter(item => item.checked).map(item => item.value)
+  console.log('选中的时间范围:', selectedTimeRanges)
+  
+  // 检查是否需要更新全选状态
+  const checkedCount = selectedTimeRanges.length
+  const isAllSelected = checkedCount === timeRangeOptions.value.length
+  searchInfo.value.timeRangeAll = isAllSelected
 
   // 根据选中的时间范围设置时间筛选条件
-  const checkedRanges = timeRangeOptions.value.filter(item => item.checked)
-  if (checkedRanges.length === 1) {
+  if (selectedTimeRanges.length === 1) {
     // 如果只选择了一个时间范围，设置对应的时间区间
-    const selectedRange = checkedRanges[0].value
-    onTopNavTimeRangeChange(selectedRange)
-  } else {
-    // 如果选择了多个或没有选择，清空时间范围
+    const selectedRange = selectedTimeRanges[0]
+    setTimeRangeFilter(selectedRange)
+  } else if (selectedTimeRanges.length === 0) {
+    // 如果没有选择，清空时间范围
+    filterState.value.timeRange.customRange = []
     searchInfo.value.createdAtRange = []
-    onSubmit()
   }
+  
+  // 更新筛选条件并触发筛选
+  updateFilterCondition('timeRange', selectedTimeRanges, isAllSelected)
 }
 
-const onDeviceStatusAllChange = (val) => {
-  deviceStatusOptions.value.forEach(item => {
-    item.checked = val
-  })
-  // 自动触发查询
-  onSubmit()
+// 关键词搜索处理
+const onKeywordChange = (value) => {
+  console.log('=== 关键词搜索触发 ===', value)
+  
+  filterState.value.keyword = value
+  triggerFilter()
 }
 
-const onDeviceStatusChange = () => {
-  const checkedCount = deviceStatusOptions.value.filter(item => item.checked).length
-  searchInfo.value.deviceStatusAll = checkedCount === deviceStatusOptions.value.length
-  // 自动触发查询
-  onSubmit()
-}
-
-// 顶部导航栏下拉列表处理
-const onTopNavCameraAddressChange = (value) => {
-  // 根据选择的摄像头点位进行筛选
-  searchInfo.value.cameraAddress = value
-
-  // 同步到左侧筛选栏：如果选择了特定点位，则只选中该点位
-  if (value) {
-    // 先清空所有选择
-    cameraAddressOptions.value.forEach(item => {
+// 自定义时间范围变化处理
+const onCustomTimeRangeChange = (value) => {
+  console.log('=== 自定义时间范围变化 ===', value)
+  
+  if (value && value.length === 2) {
+    filterState.value.timeRange.customRange = value
+    
+    // 清空预设时间范围的选择
+    timeRangeOptions.value.forEach(item => {
       item.checked = false
     })
-    // 选中对应的点位
-    const selectedItem = cameraAddressOptions.value.find(item => item.value === value)
-    if (selectedItem) {
-      selectedItem.checked = true
-    }
-    searchInfo.value.cameraAddressAll = false
+    searchInfo.value.timeRangeAll = false
+    topNavTimeRange.value = ''
   } else {
-    // 如果清空选择，则重置左侧筛选栏
-    cameraAddressOptions.value.forEach(item => {
-      item.checked = false
-    })
-    searchInfo.value.cameraAddressAll = false
+    filterState.value.timeRange.customRange = []
   }
-
-  onSubmit()
+  
+  triggerFilter()
 }
 
-const onTopNavTimeRangeChange = (value) => {
-  // 根据选择的时间范围设置时间筛选条件
+// 计算是否有活跃的筛选条件
+const hasActiveFilters = computed(() => {
+  return filterState.value.deviceStatus.selected.length > 0 ||
+         filterState.value.alertType.selected.length > 0 ||
+         filterState.value.cameraAddress.selected.length > 0 ||
+         filterState.value.timeRange.selected.length > 0 ||
+         (filterState.value.timeRange.customRange && filterState.value.timeRange.customRange.length > 0) ||
+         (filterState.value.keyword && filterState.value.keyword.trim())
+})
+
+// 计算活跃筛选条件的标签
+const activeFilterTags = computed(() => {
+  const tags = []
+  
+  // 设备状态标签
+  if (filterState.value.deviceStatus.selected.length > 0) {
+    const statusLabels = filterState.value.deviceStatus.selected.map(status => 
+      getDeviceStatusText(status)
+    ).join('、')
+    tags.push({
+      key: 'deviceStatus',
+      label: `设备状态: ${statusLabels}`,
+      category: 'deviceStatus'
+    })
+  }
+  
+  // 预警类型标签
+  if (filterState.value.alertType.selected.length > 0) {
+    const typeLabels = filterState.value.alertType.selected.map(type => 
+      getAlertTypeLabel(type)
+    ).join('、')
+    tags.push({
+      key: 'alertType',
+      label: `预警类型: ${typeLabels}`,
+      category: 'alertType'
+    })
+  }
+  
+  // 摄像头点位标签
+  if (filterState.value.cameraAddress.selected.length > 0) {
+    const addressLabels = filterState.value.cameraAddress.selected.join('、')
+    tags.push({
+      key: 'cameraAddress',
+      label: `摄像头点位: ${addressLabels}`,
+      category: 'cameraAddress'
+    })
+  }
+  
+  // 时间范围标签
+  if (filterState.value.timeRange.selected.length > 0) {
+    const rangeLabels = filterState.value.timeRange.selected.map(range => {
+      const option = timeRangeOptions.value.find(opt => opt.value === range)
+      return option ? option.label : range
+    }).join('、')
+    tags.push({
+      key: 'timeRange',
+      label: `时间范围: ${rangeLabels}`,
+      category: 'timeRange'
+    })
+  }
+  
+  // 自定义时间范围标签
+  if (filterState.value.timeRange.customRange && filterState.value.timeRange.customRange.length === 2) {
+    const [start, end] = filterState.value.timeRange.customRange
+    const startStr = formatDate(start).split(' ')[0]
+    const endStr = formatDate(end).split(' ')[0]
+    tags.push({
+      key: 'customTimeRange',
+      label: `自定义时间: ${startStr} 至 ${endStr}`,
+      category: 'customTimeRange'
+    })
+  }
+  
+  // 关键词标签
+  if (filterState.value.keyword && filterState.value.keyword.trim()) {
+    tags.push({
+      key: 'keyword',
+      label: `关键词: ${filterState.value.keyword.trim()}`,
+      category: 'keyword'
+    })
+  }
+  
+  return tags
+})
+
+// 移除单个筛选标签
+const removeFilterTag = (tag) => {
+  console.log('=== 移除筛选标签 ===', tag)
+  
+  switch (tag.category) {
+    case 'deviceStatus':
+      deviceStatusOptions.value.forEach(item => {
+        item.checked = false
+      })
+      updateFilterCondition('deviceStatus', [], false)
+      break
+    case 'alertType':
+      alert_typeOptions.value.forEach(item => {
+        item.checked = false
+      })
+      updateFilterCondition('alertType', [], false)
+      break
+    case 'cameraAddress':
+      cameraAddressOptions.value.forEach(item => {
+        item.checked = false
+      })
+      updateFilterCondition('cameraAddress', [], false)
+      topNavCameraAddress.value = ''
+      break
+    case 'timeRange':
+      timeRangeOptions.value.forEach(item => {
+        item.checked = false
+      })
+      updateFilterCondition('timeRange', [], false)
+      topNavTimeRange.value = ''
+      break
+    case 'customTimeRange':
+      filterState.value.timeRange.customRange = []
+      searchInfo.value.createdAtRange = []
+      triggerFilter()
+      break
+    case 'keyword':
+      filterState.value.keyword = ''
+      searchInfo.value.keyword = ''
+      triggerFilter()
+      break
+  }
+}
+
+// 清空所有筛选条件
+const clearAllFilters = () => {
+  console.log('=== 清空所有筛选条件 ===')
+  onReset()
+}
+
+// 设置时间范围筛选
+const setTimeRangeFilter = (rangeValue) => {
   const now = new Date()
   let startTime, endTime
 
-  switch (value) {
+  switch (rangeValue) {
     case 'today':
       startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate())
       endTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59)
@@ -878,8 +1214,79 @@ const onTopNavTimeRangeChange = (value) => {
   }
 
   if (startTime && endTime) {
+    filterState.value.timeRange.customRange = [startTime, endTime]
     searchInfo.value.createdAtRange = [startTime, endTime]
+  }
+}
+
+const onDeviceStatusAllChange = (val) => {
+  deviceStatusOptions.value.forEach(item => {
+    item.checked = val
+  })
+  
+  const selectedValues = val ? deviceStatusOptions.value.map(item => item.value) : []
+  updateFilterCondition('deviceStatus', selectedValues, val)
+}
+
+const onDeviceStatusChange = () => {
+  console.log('=== 设备状态筛选触发 ===')
+  
+  // 获取选中的设备状态
+  const selectedDeviceStatus = deviceStatusOptions.value.filter(item => item.checked).map(item => item.value)
+  console.log('选中的设备状态:', selectedDeviceStatus)
+  console.log('设备状态选项:', deviceStatusOptions.value.map(item => `${item.label}(${item.value}): ${item.checked}`))
+  
+  // 检查是否需要更新全选状态
+  const checkedCount = selectedDeviceStatus.length
+  const isAllSelected = checkedCount === deviceStatusOptions.value.length
+  searchInfo.value.deviceStatusAll = isAllSelected
+  
+  console.log(`设备状态全选状态: ${isAllSelected} (${checkedCount}/${deviceStatusOptions.value.length})`)
+  
+  // 更新筛选条件并触发筛选
+  updateFilterCondition('deviceStatus', selectedDeviceStatus, isAllSelected)
+}
+
+// 顶部导航栏下拉列表处理
+const onTopNavCameraAddressChange = (value) => {
+  console.log('=== 顶部导航栏摄像头点位变化 ===', value)
+  
+  // 根据选择的摄像头点位进行筛选
+  searchInfo.value.cameraAddress = value
+
+  // 同步到左侧筛选栏：如果选择了特定点位，则只选中该点位
+  if (value) {
+    // 先清空所有选择
+    cameraAddressOptions.value.forEach(item => {
+      item.checked = false
+    })
+    // 选中对应的点位
+    const selectedItem = cameraAddressOptions.value.find(item => item.value === value)
+    if (selectedItem) {
+      selectedItem.checked = true
+    }
+    
+    // 更新筛选条件
+    updateFilterCondition('cameraAddress', [value], false)
   } else {
+    // 如果清空选择，则重置左侧筛选栏
+    cameraAddressOptions.value.forEach(item => {
+      item.checked = false
+    })
+    
+    // 更新筛选条件
+    updateFilterCondition('cameraAddress', [], false)
+  }
+}
+
+const onTopNavTimeRangeChange = (value) => {
+  console.log('=== 顶部导航栏时间范围变化 ===', value)
+  
+  // 设置时间范围筛选
+  if (value) {
+    setTimeRangeFilter(value)
+  } else {
+    filterState.value.timeRange.customRange = []
     searchInfo.value.createdAtRange = []
   }
 
@@ -894,16 +1301,18 @@ const onTopNavTimeRangeChange = (value) => {
     if (selectedItem) {
       selectedItem.checked = true
     }
-    searchInfo.value.timeRangeAll = false
+    
+    // 更新筛选条件
+    updateFilterCondition('timeRange', [value], false)
   } else {
     // 如果清空选择，则重置左侧筛选栏
     timeRangeOptions.value.forEach(item => {
       item.checked = false
     })
-    searchInfo.value.timeRangeAll = false
+    
+    // 更新筛选条件
+    updateFilterCondition('timeRange', [], false)
   }
-
-  onSubmit()
 }
 
 // 选择模式切换处理
@@ -933,19 +1342,6 @@ const page = ref(1)
 const total = ref(0)
 const pageSize = ref(6)
 const tableData = ref([])
-
-// 实时统计计算
-const onlineDeviceCount = computed(() => {
-  return tableData.value.filter(item => item.deviceStatus === '1').length
-})
-
-const offlineDeviceCount = computed(() => {
-  return tableData.value.filter(item => item.deviceStatus === '2').length
-})
-
-const faultDeviceCount = computed(() => {
-  return tableData.value.filter(item => item.deviceStatus === '3').length
-})
 const allTableData = ref([]) // 存储所有数据用于滚动显示
 
 // 查询
@@ -1430,10 +1826,37 @@ const getTableData = async() => {
 }
 
 const onSubmit = () => {
+  console.log('=== 手动搜索触发 ===')
   page.value = 1
-  getTableData()
+  triggerFilter()
 }
+
 const onReset = () => {
+  console.log('=== 重置筛选条件 ===')
+  
+  // 重置筛选状态
+  filterState.value = {
+    deviceStatus: {
+      all: false,
+      selected: []
+    },
+    alertType: {
+      all: false,
+      selected: []
+    },
+    cameraAddress: {
+      all: false,
+      selected: []
+    },
+    timeRange: {
+      all: false,
+      selected: [],
+      customRange: []
+    },
+    keyword: ''
+  }
+  
+  // 重置旧的搜索信息结构
   searchInfo.value = {
     alertTypeAll: false,
     alertTypeList: [],
@@ -1448,6 +1871,7 @@ const onReset = () => {
     createdAtRange: [],
     keyword: ''
   }
+  
   // 重置所有复选框状态
   alert_typeOptions.value.forEach(item => {
     item.checked = false
@@ -1461,19 +1885,30 @@ const onReset = () => {
   timeRangeOptions.value.forEach(item => {
     item.checked = false
   })
+  
   // 重置顶部导航栏选择
   topNavCameraAddress.value = ''
   topNavTimeRange.value = ''
+  
+  // 重置分页并显示所有数据
   page.value = 1
-  getTableData()
+  filteredResults.value = [...allMockData.value]
+  total.value = allMockData.value.length
+  
+  // 应用分页显示
+  applyPagination()
+  
+  console.log('✅ 重置完成，显示所有数据，数量:', total.value)
 }
 const handleSizeChange = (val) => {
   pageSize.value = val
-  getTableData()
+  page.value = 1 // 重置到第一页
+  applyPagination() // 重新应用分页
 }
+
 const handleCurrentChange = (val) => {
   page.value = val
-  getTableData()
+  applyPagination() // 重新应用分页
 }
 
 // 详情弹窗
@@ -1639,13 +2074,39 @@ const getAlertTypeLabel = (alertType) => {
 .card-list-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 24px;
   padding: 20px 24px;
   background: #2d2d2d;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   flex-shrink: 0;
+}
+
+.statistics-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.total-count {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e1e5e9;
+}
+
+.filter-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.filter-label {
+  font-size: 12px;
+  color: #cccccc;
+  white-space: nowrap;
 }
 
 .card-list-header span {
@@ -1656,6 +2117,66 @@ const getAlertTypeLabel = (alertType) => {
 
 .search-input {
   max-width: 300px;
+}
+
+/* 筛选标签样式 */
+.filter-summary :deep(.el-tag) {
+  background-color: rgba(64, 158, 255, 0.1) !important;
+  border-color: rgba(64, 158, 255, 0.3) !important;
+  color: #409eff !important;
+  font-size: 12px;
+}
+
+.filter-summary :deep(.el-tag .el-tag__close) {
+  color: #409eff !important;
+}
+
+.filter-summary :deep(.el-tag .el-tag__close:hover) {
+  background-color: rgba(64, 158, 255, 0.2) !important;
+}
+
+.filter-summary :deep(.el-button--text) {
+  padding: 0 !important;
+  font-size: 12px !important;
+  height: auto !important;
+  line-height: 1 !important;
+  color: #409eff !important;
+}
+
+/* 空状态样式 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  color: #999;
+  min-height: 400px;
+}
+
+.empty-icon {
+  margin-bottom: 24px;
+  opacity: 0.6;
+}
+
+.empty-text h3 {
+  font-size: 18px;
+  color: #e1e5e9;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+}
+
+.empty-text p {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+.empty-actions {
+  margin-top: 24px;
 }
 
 /* 滚动容器样式 */
@@ -1913,388 +2434,5 @@ const getAlertTypeLabel = (alertType) => {
   background: #ffffff;
   border-color: #d1d5db;
   color: #000000;
-}
-
-.alert-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #1a1a1a;
-  color: #ffffff;
-}
-
-.top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  background-color: #2a2a2a;
-  border-bottom: 1px solid #3a3a3a;
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.nav-item {
-  font-size: 16px;
-  font-weight: 500;
-  color: #ffffff;
-}
-
-.nav-item.active {
-  color: #409eff;
-}
-
-.main-content {
-  flex: 1;
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  overflow: hidden;
-}
-
-.filter-bar {
-  width: 280px;
-  background-color: #2a2a2a !important;
-  border: 1px solid #3a3a3a !important;
-}
-
-.filter-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #3a3a3a;
-}
-
-.filter-group-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: #e1e5e9;
-  margin: 16px 0 8px 0;
-}
-
-.filter-checkbox-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.card-list-area {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.card-list-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 16px 20px;
-  background-color: #2a2a2a;
-  border-radius: 8px;
-  border: 1px solid #3a3a3a;
-}
-
-.statistics-info {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.total-count {
-  font-size: 18px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.status-statistics {
-  display: flex;
-  gap: 24px;
-}
-
-.status-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  color: #b0b0b0;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.card-scroll-container {
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 8px;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
-  padding: 4px;
-}
-
-.card-item {
-  transition: transform 0.2s ease;
-}
-
-.card-item:hover {
-  transform: translateY(-2px);
-}
-
-.event-card {
-  background-color: #2a2a2a !important;
-  border: 1px solid #3a3a3a !important;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.card-img-box {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.card-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.card-img-box:hover .card-img {
-  transform: scale(1.05);
-}
-
-.img-red-rect {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 60px;
-  height: 40px;
-  border: 2px solid #ff4d4f;
-  border-radius: 4px;
-  background-color: rgba(255, 77, 79, 0.1);
-}
-
-.card-info {
-  padding: 16px;
-}
-
-.card-info-row {
-  margin-bottom: 8px;
-  font-size: 12px;
-  line-height: 1.4;
-  color: #b0b0b0;
-}
-
-.card-info-row:last-child {
-  margin-bottom: 0;
-}
-
-.card-info-row b {
-  color: #e1e5e9;
-  font-weight: 600;
-  margin-right: 4px;
-}
-
-/* 设备状态行样式 */
-.device-status-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #3a3a3a;
-}
-
-.device-group {
-  font-size: 11px;
-  color: #888;
-  background-color: #3a3a3a;
-  padding: 2px 6px;
-  border-radius: 3px;
-}
-
-/* 信息分区样式 */
-.card-info-section {
-  margin-bottom: 12px;
-  padding: 8px;
-  background-color: rgba(58, 58, 58, 0.3);
-  border-radius: 4px;
-  border-left: 3px solid #409eff;
-}
-
-.card-info-section:last-child {
-  margin-bottom: 0;
-}
-
-.section-title {
-  font-size: 11px;
-  font-weight: 600;
-  color: #409eff;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.card-info-section .card-info-row {
-  margin-bottom: 4px;
-  font-size: 11px;
-}
-
-.card-info-section .card-info-row:last-child {
-  margin-bottom: 0;
-}
-
-.device-status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 600;
-  font-size: 13px;
-}
-
-.card-actions {
-  padding: 0 16px 16px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.gva-pagination {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-/* Element Plus 组件样式覆盖 */
-:deep(.el-card__body) {
-  padding: 0 !important;
-}
-
-:deep(.el-checkbox) {
-  color: #b0b0b0 !important;
-}
-
-:deep(.el-checkbox__label) {
-  color: #b0b0b0 !important;
-}
-
-:deep(.el-checkbox.is-checked .el-checkbox__label) {
-  color: #409eff !important;
-}
-
-:deep(.el-form-item) {
-  margin-bottom: 16px;
-}
-
-:deep(.el-input__inner) {
-  background-color: #3a3a3a !important;
-  border-color: #4a4a4a !important;
-  color: #ffffff !important;
-}
-
-:deep(.el-input__inner::placeholder) {
-  color: #888888 !important;
-}
-
-:deep(.el-button--primary) {
-  background-color: #409eff !important;
-  border-color: #409eff !important;
-}
-
-:deep(.el-button) {
-  background-color: #3a3a3a !important;
-  border-color: #4a4a4a !important;
-  color: #b0b0b0 !important;
-}
-
-:deep(.el-select .el-input__inner) {
-  background-color: #3a3a3a !important;
-  border-color: #4a4a4a !important;
-  color: #ffffff !important;
-}
-
-:deep(.el-date-editor .el-input__inner) {
-  background-color: #3a3a3a !important;
-  border-color: #4a4a4a !important;
-  color: #ffffff !important;
-}
-
-:deep(.el-pagination) {
-  color: #b0b0b0 !important;
-}
-
-:deep(.el-pagination .el-pager li) {
-  background-color: #3a3a3a !important;
-  color: #b0b0b0 !important;
-  border: 1px solid #4a4a4a !important;
-}
-
-:deep(.el-pagination .el-pager li.active) {
-  background-color: #409eff !important;
-  color: #ffffff !important;
-}
-
-:deep(.el-pagination .btn-prev),
-:deep(.el-pagination .btn-next) {
-  background-color: #3a3a3a !important;
-  color: #b0b0b0 !important;
-  border: 1px solid #4a4a4a !important;
-}
-
-:deep(.el-descriptions) {
-  background-color: #2a2a2a !important;
-}
-
-:deep(.el-descriptions__label) {
-  color: #e1e5e9 !important;
-  background-color: #3a3a3a !important;
-}
-
-:deep(.el-descriptions__content) {
-  color: #b0b0b0 !important;
-  background-color: #2a2a2a !important;
-}
-
-:deep(.el-drawer) {
-  background-color: #2a2a2a !important;
-}
-
-:deep(.el-drawer__header) {
-  color: #ffffff !important;
-  border-bottom: 1px solid #3a3a3a !important;
-}
-
-/* 滚动条样式 */
-.card-scroll-container::-webkit-scrollbar {
-  width: 6px;
-}
-
-.card-scroll-container::-webkit-scrollbar-track {
-  background: #3a3a3a;
-  border-radius: 3px;
-}
-
-.card-scroll-container::-webkit-scrollbar-thumb {
-  background: #5a5a5a;
-  border-radius: 3px;
-}
-
-.card-scroll-container::-webkit-scrollbar-thumb:hover {
-  background: #6a6a6a;
 }
 </style>

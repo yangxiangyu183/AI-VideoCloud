@@ -84,8 +84,8 @@ export const findAlert = (params) => {
 // @Security ApiKeyAuth
 // @Accept application/json
 // @Produce application/json
-// @Param data query request.PageInfo true "分页获取alert表列表"
-// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Param data query alert_videoReq.AlertSearch true "分页获取alert表列表"
+// @Success 200 {object} response.Response{data=object,msg=string} "获取成功"
 // @Router /alert/getAlertList [get]
 export const getAlertList = (params) => {
   return service({

@@ -112,13 +112,36 @@
                 <el-option label="3" value="3" />
               </el-select>
             </el-form-item>
-            <el-form-item label="监控点位" prop="monitorPoints">
-              <el-select v-model="formData.monitorPoints" placeholder="请选择监控点位" filterable clearable>
-                <el-option v-for="item in cameraOptions" :key="item.value" :label="item.label" :value="item.value" />
-              </el-select>
+            <el-form-item label="摄像头接口" prop="cameraInterface">
+              <div style="display: flex; gap: 8px;">
+                <el-select v-model="formData.cameraInterface" placeholder="请选择摄像头接口" filterable clearable style="flex: 1;">
+                  <el-option 
+                    v-for="item in cameraOptions" 
+                    :key="item.value" 
+                    :label="item.label" 
+                    :value="item.value"
+                  >
+                    <span style="float: left">{{ item.label }}</span>
+                    <span v-if="item.deviceId" style="float: right; color: #8492a6; font-size: 13px">ID: {{ item.deviceId }}</span>
+                  </el-option>
+                </el-select>
+                <el-button icon="refresh" @click="getCameraOptions" title="刷新摄像头接口" />
+              </div>
             </el-form-item>
             <el-form-item label="应用场景" prop="applicationScenario">
               <el-select v-model="formData.applicationScenario" placeholder="请选择应用场景" filterable clearable>
+                <el-option label="模块环境1" value="模块环境1">
+                  <span style="float: left">模块环境1</span>
+                  <span style="float: right; color: #8492a6; font-size: 13px">宜城市政务服务</span>
+                </el-option>
+                <el-option label="模块环境2" value="模块环境2">
+                  <span style="float: left">模块环境2</span>
+                  <span style="float: right; color: #8492a6; font-size: 13px">惠州市惠城区西湖</span>
+                </el-option>
+                <el-option label="模块环境3" value="模块环境3">
+                  <span style="float: left">模块环境3</span>
+                  <span style="float: right; color: #8492a6; font-size: 13px">深圳光明电脑汇</span>
+                </el-option>
                 <el-option v-for="item in ApplicationscenarioOptions" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
             </el-form-item>
@@ -171,7 +194,7 @@
           <el-descriptions :column="1" border>
             <el-descriptions-item label="任务名称">{{ detailForm.taskName }}</el-descriptions-item>
             <el-descriptions-item label="任务描述">{{ detailForm.taskDescription || '无' }}</el-descriptions-item>
-            <el-descriptions-item label="监控点位">{{ detailForm.cameraInterface }}</el-descriptions-item>
+            <el-descriptions-item label="监控点位">{{ detailForm.monitorPoints || detailForm.cameraInterface }}</el-descriptions-item>
             <el-descriptions-item label="监控分组">{{ detailForm.monitorGroup || '模拟环境1' }}</el-descriptions-item>
             <el-descriptions-item label="任务状态">{{ detailForm.taskStatus }}</el-descriptions-item>
             <el-descriptions-item label="告警级别">{{ detailForm.warnLevel }}</el-descriptions-item>
@@ -202,6 +225,9 @@ import {
   getTaskList
 } from '@/api/task_bor/task'
 
+// 引入监控设备API
+import { getMonitorDeviceList } from '@/api/device/monitorDevice'
+
 // 全量引入格式化工具 请按需保留
 import { getDictFunc, formatDate, formatBoolean, filterDict ,filterDataSource, returnArrImg, onDownloadFile } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -225,7 +251,6 @@ const showAllQuery = ref(false)
 
 // 自动化生成的字典（可能为空）以及字段
 const TaskpriorityOptions = ref([])
-const servenrityOptions = ref([])
 const ApplicationscenarioOptions = ref([])
 const TaskstatusOptions = ref([])
 const formData = ref({
@@ -319,12 +344,78 @@ getTableData()
 
 // ============== 表格控制部分结束 ===============
 
+// 获取监控设备列表
+const getCameraOptions = async () => {
+  try {
+    ElMessage({
+      type: 'info',
+      message: '正在获取监控设备列表...'
+    })
+    
+    const res = await getMonitorDeviceList({ page: 1, pageSize: 1000 })
+    if (res.code === 0 && res.data && res.data.list) {
+      cameraOptions.value = res.data.list.map(item => ({
+        label: item.deviceName || `设备${item.ID}`,
+        value: item.deviceName || `设备${item.ID}`,
+        deviceId: item.ID,
+        deviceInfo: item
+      }))
+      
+      ElMessage({
+        type: 'success',
+        message: `成功获取${cameraOptions.value.length}个监控设备`
+      })
+    } else {
+      // 如果API调用失败，使用默认数据
+      cameraOptions.value = [
+        { label: '惠州市惠城区西湖', value: '惠州市惠城区西湖' },
+        { label: '新沂新悦广场', value: '新沂新悦广场' },
+        { label: '杭州市西湖', value: '杭州市西湖' },
+        { label: '山东泰安泰山', value: '山东泰安泰山' },
+        { label: '桂林阳桥', value: '桂林阳桥' },
+        { label: '深圳光明电脑汇', value: '深圳光明电脑汇' },
+        { label: '淄博市沂源县', value: '淄博市沂源县' }
+      ]
+      
+      ElMessage({
+        type: 'warning',
+        message: '获取监控设备失败，使用默认数据'
+      })
+    }
+  } catch (error) {
+    console.error('获取监控设备列表失败:', error)
+    // 使用默认数据
+    cameraOptions.value = [
+      { label: '惠州市惠城区西湖', value: '惠州市惠城区西湖' },
+      { label: '新沂新悦广场', value: '新沂新悦广场' },
+      { label: '杭州市西湖', value: '杭州市西湖' },
+      { label: '山东泰安泰山', value: '山东泰安泰山' },
+      { label: '桂林阳桥', value: '桂林阳桥' },
+      { label: '深圳光明电脑汇', value: '深圳光明电脑汇' },
+      { label: '淄博市沂源县', value: '淄博市沂源县' }
+    ]
+    
+    ElMessage({
+      type: 'error',
+      message: '获取监控设备失败，使用默认数据'
+    })
+  }
+}
+
+// 监控点位变化时同步到摄像头接口字段
+const onMonitorPointChange = (value) => {
+  // 将监控点位的值同步到摄像头接口字段，实现两者相同
+  formData.value.cameraInterface = value
+}
+
 // 获取需要的字典 可能为空 按需保留
 const setOptions = async () =>{
     TaskpriorityOptions.value = await getDictFunc('Taskpriority')
-    servenrityOptions.value = await getDictFunc('servenrity')
     ApplicationscenarioOptions.value = await getDictFunc('Applicationscenario')
     TaskstatusOptions.value = await getDictFunc('Taskstatus')
+    
+    // 获取监控设备列表
+    await getCameraOptions()
 }
 
 // 获取需要的字典 可能为空 按需保留
@@ -390,6 +481,12 @@ const updateTaskFunc = async(row) => {
     type.value = 'update'
     if (res.code === 0) {
         formData.value = res.data
+        // 编辑时确保监控点位和摄像头接口的一致性
+        if (formData.value.cameraInterface && !formData.value.monitorPoints) {
+          formData.value.monitorPoints = formData.value.cameraInterface
+        } else if (formData.value.monitorPoints && !formData.value.cameraInterface) {
+          formData.value.cameraInterface = formData.value.monitorPoints
+        }
         dialogFormVisible.value = true
     }
 }
@@ -445,6 +542,12 @@ const enterDialog = async () => {
      btnLoading.value = true
      elFormRef.value?.validate( async (valid) => {
              if (!valid) return btnLoading.value = false
+              
+              // 确保摄像头接口和监控点位保持同步
+              if (formData.value.monitorPoints) {
+                formData.value.cameraInterface = formData.value.monitorPoints
+              }
+              
               let res
               switch (type.value) {
                 case 'create':
@@ -505,15 +608,8 @@ const taskTypeOptions = [
   { label: '目标统计', value: 'stat' },
   { label: '文字检测', value: 'text' }
 ]
-const cameraOptions = [
-  { label: '惠州市惠城区西湖', value: '惠州市惠城区西湖' },
-  { label: '新沂新悦广场', value: '新沂新悦广场' },
-  { label: '杭州市西湖', value: '杭州市西湖' },
-  { label: '山东泰安泰山', value: '山东泰安泰山' },
-  { label: '桂林阳桥', value: '桂林阳桥' },
-  { label: '深圳光明电脑汇', value: '深圳光明电脑汇' },
-  { label: '淄博市沂源县', value: '淄博市沂源县' }
-]
+// 监控点位选项数据，从API动态获取
+const cameraOptions = ref([])
 // 表单项补充
 formData.value = {
   ...formData.value,

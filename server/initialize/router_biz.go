@@ -26,14 +26,8 @@ func initBizRouter(routers ...*gin.RouterGroup) {
 		deviceRouter.InitDeviceGroupRouter(privateGroup, publicGroup)
 		deviceRouter.InitMonitorDeviceRouter(privateGroup, publicGroup)
 	}
-	{
-		userRouter := router.RouterGroupApp.User
-		userRouter.InitAiUserRouter(privateGroup, publicGroup)
-		userRouter.InitAdminUserRouter(privateGroup, publicGroup)
-	} // 占位方法，保证文件可以正确加载，避免go空变量检测报错，请勿删除。
-	// 占位方法，保证文件可以正确加载，避免go空变量检测报错，请勿删除。
-	{
-		alert_videoRouter := router.RouterGroupApp.Alert_video
-		alert_videoRouter.InitAlertRouter(privateGroup, publicGroup)
-	}
+
 }
+
+// 占位方法，保证文件可以正确加载，避免go空变量检测报错，请勿删除。
+// 占位方法，保证文件可以正确加载，避免go空变量检测报错，请勿删除。
