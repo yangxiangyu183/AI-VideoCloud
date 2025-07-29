@@ -89,10 +89,6 @@
   "/src/view/task/task/task.vue": "Task",
   "/src/view/task_bor/task/task.vue": "Task",
   "/src/view/task_bor/task/taskForm.vue": "TaskForm",
-  "/src/view/user/adminUser/adminUser.vue": "AdminUser",
-  "/src/view/user/adminUser/adminUserForm.vue": "AdminUserForm",
-  "/src/view/user/aiUser/aiUser.vue": "AiUser",
-  "/src/view/user/aiUser/aiUserForm.vue": "AiUserForm",
   "/src/plugin/announcement/form/info.vue": "InfoForm",
   "/src/plugin/announcement/view/info.vue": "Info",
   "/src/plugin/email/view/index.vue": "Email"

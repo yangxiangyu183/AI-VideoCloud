@@ -1,6 +1,3 @@
 package user
 
-type ServiceGroup struct {
-	AiUserService
-	AdminUserService
-}
+type ServiceGroup struct{}
