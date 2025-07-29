@@ -98,13 +98,13 @@ mcp:
     message_path: /message
     url_prefix: ""
 minio:
-    endpoint: 14.103.235.213:9000
-    access-key-id: minio
-    access-key-secret: minio123456
-    bucket-name: test
+    endpoint: yourEndpoint
+    access-key-id: yourAccessKeyId
+    access-key-secret: yourAccessKeySecret
+    bucket-name: yourBucketName
     use-ssl: false
     base-path: ""
-    bucket-url: http://14.103.235.213:9000/test
+    bucket-url: http://host:9000/yourBucketName
 mongo:
     coll: ""
     options: ""
@@ -220,7 +220,7 @@ sqlite:
     log-zap: false
 system:
     db-type: mysql
-    oss-type: minio
+    oss-type: local
     router-prefix: ""
     addr: 8888
     iplimit-count: 15000
@@ -231,9 +231,9 @@ system:
     use-strict-auth: false
 tencent-cos:
     bucket: xxxxx-10005608
-    region: ap-shanghai
-    secret-id: your-secret-id
-    secret-key: your-secret-key
+    region: vm.ap-shanghai.tencentcloudapi.com
+    secret-id:
+    secret-key:
     base-url: https://gin.vue.admin
     path-prefix: github.com/flipped-aurora/gin-vue-admin/server
 zap:

@@ -11,7 +11,7 @@
               <a href="https://github.com/flipped-aurora/gin-vue-admin">
                   <img
                     class="org-img dom-center"
-                    src="../../assets/logo1.png"
+                    src="@/assets/logo.png"
                     alt="gin-vue-admin"
                   />
                 </a>

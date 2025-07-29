@@ -4,8 +4,8 @@
 const greenText = (text) => `\x1b[32m${text}\x1b[0m`
 
 const config = {
-  appName: '视频监控',
-  appLogo: 'logo.jpg',
+  appName: 'AI-VideoCloud',
+  appLogo: 'img.png',
   showViteLogo: true,
   logs: []
 }

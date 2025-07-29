@@ -2400,7 +2400,7 @@
         <entry key="file://$PROJECT_DIR$/gin_vue/rm_file/346586800/server/api/v1/alert_video/alert.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753437820217" />
+              <option name="lastModified" value="1753761609136" />
               <option name="schema">
                 <list>
                   <option value="AlertApi" />
@@ -2436,7 +2436,7 @@
         <entry key="file://$PROJECT_DIR$/gin_vue/rm_file/346586800/server/router/alert_video/alert.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753437820218" />
+              <option name="lastModified" value="1753761609136" />
               <option name="schema">
                 <list>
                   <option value="AlertRouter" />
@@ -2580,7 +2580,7 @@
         <entry key="file://$PROJECT_DIR$/gin_vue/rm_file/620830900/server/api/v1/alert_video/alert.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753437820226" />
+              <option name="lastModified" value="1753761609137" />
               <option name="schema">
                 <list>
                   <option value="AlertApi" />
@@ -2616,7 +2616,7 @@
         <entry key="file://$PROJECT_DIR$/gin_vue/rm_file/620830900/server/router/alert_video/alert.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753437820236" />
+              <option name="lastModified" value="1753761609137" />
               <option name="schema">
                 <list>
                   <option value="AlertRouter" />
@@ -2652,7 +2652,7 @@
         <entry key="file://$PROJECT_DIR$/gin_vue/server/api/v1/alert_video/alert.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753437820238" />
+              <option name="lastModified" value="1753761609140" />
               <option name="schema">
                 <list>
                   <option value="AlertApi" />
@@ -4662,7 +4662,7 @@
         <entry key="file://$PROJECT_DIR$/gin_vue/server/router/alert_video/alert.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753437820290" />
+              <option name="lastModified" value="1753761609140" />
               <option name="schema">
                 <list>
                   <option value="AlertRouter" />
@@ -6664,7 +6664,7 @@
         <entry key="file://$PROJECT_DIR$/rm_file/620830900/server/router/alert_video/alert.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753437820405" />
+              <option name="lastModified" value="1753761609141" />
               <option name="schema">
                 <list>
                   <option value="AlertRouter" />
@@ -6940,7 +6940,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/alert_video/alert.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753619941784" />
+              <option name="lastModified" value="1753761609143" />
               <option name="schema">
                 <list>
                   <option value="AlertApi" />
@@ -6988,7 +6988,7 @@
         <entry key="file://$PROJECT_DIR$/server/api/v1/device/monitor_device.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753437820415" />
+              <option name="lastModified" value="1753761609143" />
               <option name="schema">
                 <list>
                   <option value="MonitorDeviceApi" />
@@ -9174,7 +9174,7 @@
         <entry key="file://$PROJECT_DIR$/server/router/alert_video/alert.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753502835194" />
+              <option name="lastModified" value="1753761609144" />
               <option name="schema">
                 <list>
                   <option value="AlertRouter" />
@@ -10180,7 +10180,7 @@
         <entry key="file://$PROJECT_DIR$/server/source/system/menu.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1753437820923" />
+              <option name="lastModified" value="1753761609144" />
               <option name="schema">
                 <list>
                   <option value="initMenu" />

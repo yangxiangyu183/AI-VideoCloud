@@ -15,10 +15,30 @@ export default ({ mode }) => {
   const NODE_ENV = mode || 'development'
   const envFiles = [`.env.${NODE_ENV}`]
   for (const file of envFiles) {
-    const envConfig = dotenv.parse(fs.readFileSync(file))
-    for (const k in envConfig) {
-      process.env[k] = envConfig[k]
+    try {
+      if (fs.existsSync(file)) {
+        const envConfig = dotenv.parse(fs.readFileSync(file))
+        for (const k in envConfig) {
+          process.env[k] = envConfig[k]
+        }
+      }
+    } catch (error) {
+      console.warn(`无法读取环境变量文件: ${file}`)
     }
+  }
+  
+  // 设置默认环境变量
+  if (!process.env.VITE_BASE_API) {
+    process.env.VITE_BASE_API = '/api'
+  }
+  if (!process.env.VITE_BASE_PATH) {
+    process.env.VITE_BASE_PATH = 'http://127.0.0.1'
+  }
+  if (!process.env.VITE_SERVER_PORT) {
+    process.env.VITE_SERVER_PORT = '8888'
+  }
+  if (!process.env.VITE_CLI_PORT) {
+    process.env.VITE_CLI_PORT = '8080'
   }
 
   viteLogo(process.env)
