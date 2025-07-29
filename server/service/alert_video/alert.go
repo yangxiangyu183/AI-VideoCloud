@@ -85,6 +85,9 @@ func (alertService *AlertService)GetAlertInfoList(ctx context.Context, info aler
     if info.AlertTime != nil {
         db = db.Where("alert_time = ?", *info.AlertTime)
     }
+    if info.CameraId != nil {
+        db = db.Where("camera_id = ?", *info.CameraId)
+    }
 	err = db.Count(&total).Error
 	if err!=nil {
     	return
@@ -96,6 +99,69 @@ func (alertService *AlertService)GetAlertInfoList(ctx context.Context, info aler
 
 	err = db.Find(&alerts).Error
 	return  alerts, total, err
+}
+
+// GetAlertInfoListWithDevice 分页获取包含设备信息的alert表记录
+func (alertService *AlertService)GetAlertInfoListWithDevice(ctx context.Context, info alert_videoReq.AlertSearch) (list []alert_video.AlertWithDevice, total int64, err error) {
+	limit := info.PageSize
+	offset := info.PageSize * (info.Page - 1)
+    
+    // 创建关联查询
+	db := global.GVA_DB.Table("alert a").
+		Select("a.*, md.device_name, md.status as device_status, md.resolution, md.stream_url, md.group_id").
+		Joins("LEFT JOIN monitor_device md ON a.camera_id = md.id")
+    
+    var alerts []alert_video.AlertWithDevice
+    
+    // 条件搜索
+    if len(info.CreatedAtRange) == 2 {
+        db = db.Where("a.created_at BETWEEN ? AND ?", info.CreatedAtRange[0], info.CreatedAtRange[1])
+    }
+    
+    if info.Video != nil && *info.Video != "" {
+        db = db.Where("a.video = ?", *info.Video)
+    }
+    if info.CameraAddress != nil && *info.CameraAddress != "" {
+        db = db.Where("a.camera_address LIKE ?", "%"+*info.CameraAddress+"%")
+    }
+    if info.AlertType != nil && *info.AlertType != "" {
+        db = db.Where("a.alert_type = ?", *info.AlertType)
+    }
+    if info.AlertTime != nil {
+        db = db.Where("a.alert_time = ?", *info.AlertTime)
+    }
+    if info.CameraId != nil {
+        db = db.Where("a.camera_id = ?", *info.CameraId)
+    }
+    
+    // 新增的设备相关筛选
+    if info.DeviceStatus != nil && *info.DeviceStatus != "" {
+        db = db.Where("md.status = ?", *info.DeviceStatus)
+    }
+    if info.DeviceName != nil && *info.DeviceName != "" {
+        db = db.Where("md.device_name LIKE ?", "%"+*info.DeviceName+"%")
+    }
+    if info.Keyword != nil && *info.Keyword != "" {
+        keyword := "%" + *info.Keyword + "%"
+        db = db.Where("a.camera_address LIKE ? OR a.alert_type LIKE ? OR md.device_name LIKE ?", keyword, keyword, keyword)
+    }
+    
+    // 计算总数
+    err = db.Count(&total).Error
+    if err != nil {
+        return
+    }
+
+    // 分页
+    if limit != 0 {
+        db = db.Limit(limit).Offset(offset)
+    }
+
+    // 排序
+    db = db.Order("a.created_at DESC")
+
+    err = db.Find(&alerts).Error
+    return alerts, total, err
 }
 func (alertService *AlertService)GetAlertPublic(ctx context.Context) {
     // 此方法为获取数据源定义的数据
