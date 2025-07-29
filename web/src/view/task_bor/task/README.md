@@ -67,7 +67,6 @@ const onMonitorPointChange = (value) => {
 - 控制台错误日志记录
 
 ### 3. 功能特性
-
 1. **自动加载**: 页面初始化时自动获取监控设备列表
 2. **手动刷新**: 用户可以点击刷新按钮重新获取设备列表
 3. **容错机制**: API失败时使用默认数据，确保功能可用
@@ -76,7 +75,6 @@ const onMonitorPointChange = (value) => {
 6. **数据同步**: 摄像头位置与监控点位自动保持一致，符合界面要求
 
 ### 4. 使用说明
-
 1. 打开任务管理页面
 2. 点击"添加任务"按钮
 3. 在"监控点位"字段中选择设备（选择后会自动同步到摄像头位置）
@@ -84,7 +82,6 @@ const onMonitorPointChange = (value) => {
 5. 提交任务时，系统会确保摄像头位置与监控点位保持一致
 
 ### 5. 技术细节
-
 - **API端点**: `/monitorDevice/getMonitorDeviceList`
 - **数据映射**: `item.deviceName` -> 选项标签和值，使用 `item.ID` 作为设备标识
 - **分页**: 获取前1000个设备（可根据需要调整）
@@ -93,7 +90,6 @@ const onMonitorPointChange = (value) => {
 - **显示逻辑**: 表格和详情使用 `||` 操作符优先显示监控点位数据
 
 ### 6. 核心修改点总结
-
 1. **表格显示**: 摄像头点位列显示逻辑改为 `scope.row.cameraInterface || scope.row.monitorPoints`
 2. **选择同步**: 监控点位选择框添加 `@change="onMonitorPointChange"` 事件处理
 3. **数据映射**: 修正设备ID字段从 `item.id` 改为 `item.ID`（符合API返回结构）
@@ -102,7 +98,6 @@ const onMonitorPointChange = (value) => {
 6. **编辑同步**: 编辑任务时自动处理两个字段的数据一致性
 
 ### 7. 后续优化建议
-
 1. 添加设备搜索功能
 2. 支持设备分组显示
 3. 添加设备状态指示器

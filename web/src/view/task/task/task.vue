@@ -18,9 +18,24 @@
         </el-form-item>
         <el-form-item>
           <el-select v-model="searchInfo.warnLevel" placeholder="请选择告警级别" clearable style="width: 150px">
-            <el-option label="高" value="高" />
-            <el-option label="中" value="中" />
-            <el-option label="低" value="低" />
+            <el-option label="高" value="高">
+              <div class="warn-level-option-container">
+                <span class="warn-level-circle warn-level-circle-高"></span>
+                <span>高</span>
+              </div>
+            </el-option>
+            <el-option label="中" value="中">
+              <div class="warn-level-option-container">
+                <span class="warn-level-circle warn-level-circle-中"></span>
+                <span>中</span>
+              </div>
+            </el-option>
+            <el-option label="低" value="低">
+              <div class="warn-level-option-container">
+                <span class="warn-level-circle warn-level-circle-低"></span>
+                <span>低</span>
+              </div>
+            </el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -55,9 +70,9 @@
         </el-table-column>
         <el-table-column align="left" label="告警级别" prop="warnLevel" width="100">
           <template #default="scope">
-            <span :class="['warn-level-badge', `warn-level-${scope.row.warnLevel}`]">
-              {{ scope.row.warnLevel || '中' }}
-            </span>
+            <div class="warn-level-display">
+              <span :class="['warn-level-circle', `warn-level-circle-${scope.row.warnLevel || '中'}`]"></span>
+            </div>
           </template>
         </el-table-column>
         <el-table-column align="left" label="创建时间" prop="createdAt" width="160">
@@ -252,10 +267,14 @@ const page = ref(1)
 const total = ref(0)
 const pageSize = ref(10)
 const tableData = ref([])
-const searchInfo = ref({})
+const searchInfo = ref({
+  activeTab: 'target'
+})
 // 重置
 const onReset = () => {
-  searchInfo.value = {}
+  searchInfo.value = {
+    activeTab: activeTab.value
+  }
   getTableData()
 }
 
@@ -264,6 +283,16 @@ const onSubmit = () => {
   elSearchFormRef.value?.validate(async(valid) => {
     if (!valid) return
     page.value = 1
+    // 处理日期范围
+    if (searchInfo.value.dateRange && searchInfo.value.dateRange.length === 2) {
+      searchInfo.value.startDate = searchInfo.value.dateRange[0]
+      searchInfo.value.endDate = searchInfo.value.dateRange[1]
+    } else {
+      searchInfo.value.startDate = null
+      searchInfo.value.endDate = null
+    }
+    // 添加当前选中的tab
+    searchInfo.value.activeTab = activeTab.value
     getTableData()
   })
 }
@@ -282,7 +311,21 @@ const handleCurrentChange = (val) => {
 
 // 查询
 const getTableData = async() => {
-  const table = await getTaskList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
+  // 构建查询参数
+  const queryParams = {
+    page: page.value,
+    pageSize: pageSize.value,
+    ...searchInfo.value
+  }
+  
+  // 移除空值和undefined值
+  Object.keys(queryParams).forEach(key => {
+    if (queryParams[key] === '' || queryParams[key] === null || queryParams[key] === undefined) {
+      delete queryParams[key]
+    }
+  })
+  
+  const table = await getTaskList(queryParams)
   if (table.code === 0) {
     tableData.value = table.data.list
     total.value = table.data.total
@@ -473,7 +516,11 @@ const closeDetailShow = () => {
 
 // 新增：tab切换、筛选项、表单项等相关数据
 const activeTab = ref('target')
-const onTabChange = () => { getTableData() }
+const onTabChange = () => { 
+  // tab切换时更新搜索条件
+  searchInfo.value.activeTab = activeTab.value
+  getTableData() 
+}
 const taskTypeOptions = [
   { label: '目标检测', value: 'target' },
   { label: '姿势检测', value: 'pose' },
@@ -525,6 +572,41 @@ formData.value = {
   border: 1px solid #b3d8ff;
 }
 
+/* 警告级别圆形标识样式 - 与服务端一致 */
+.warn-level-circle {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.warn-level-circle-高 {
+  background-color: #f56c6c; /* 红色 */
+}
+
+.warn-level-circle-中 {
+  background-color: #e6a23c; /* 橙色 */
+}
+
+.warn-level-circle-低 {
+  background-color: #909399; /* 灰色 */
+}
+
+/* 下拉选项容器样式 */
+.warn-level-option-container {
+  display: flex;
+  align-items: center;
+}
+
+/* 表格中的警告级别显示 */
+.warn-level-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 保留原有的badge样式作为备用 */
 .warn-level-badge {
   display: inline-block;
   padding: 4px 12px;
