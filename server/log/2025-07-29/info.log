@@ -1,3 +1,6 @@
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-29 09:15:54.198	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-29 09:15:54.259	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
 [github.com/flipped-aurora/gin-vue-admin/server]2025-07-29 09:15:54.524	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-29 12:00:28.450	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/gorm.go:77	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-29 12:00:28.490	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:71	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2025-07-29 12:00:29.262	[34minfo[0m	D:/GoWok/three/AI-VideoCloud/server/initialize/router.go:120	router register success
