@@ -20,6 +20,7 @@ func (s *AlertRouter) InitAlertRouter(Router *gin.RouterGroup,PublicRouter *gin.
 	}
 	{
 		alertRouterWithoutRecord.GET("findAlert", alertApi.FindAlert)        // 根据ID获取alert表
+		alertRouterWithoutRecord.GET("getAlertList", alertApi.GetAlertList)  // 获取alert表列表
 	}
 	{
 	    alertRouterWithoutAuth.GET("getAlertPublic", alertApi.GetAlertPublic)  // alert表开放接口

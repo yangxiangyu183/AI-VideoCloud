@@ -23,22 +23,19 @@
           />
        </el-form-item>
       
-            <el-form-item label="监控视频" prop="video">
-  <el-input v-model="searchInfo.video" placeholder="搜索条件" />
+            <el-form-item label="摄像头点位" prop="deviceName">
+  <el-input v-model="searchInfo.deviceName" placeholder="搜索条件" />
 </el-form-item>
             
-            <el-form-item label="摄像头点位" prop="cameraAddress">
-  <el-input v-model="searchInfo.cameraAddress" placeholder="搜索条件" />
+            <el-form-item label="关联分组id" prop="groupId">
+  <el-input v-model.number="searchInfo.groupId" placeholder="搜索条件" />
 </el-form-item>
             
-            <el-form-item label="预警类型" prop="alertType">
-  <el-select v-model="searchInfo.alertType" clearable filterable placeholder="请选择" @clear="()=>{searchInfo.alertType=undefined}">
-    <el-option v-for="(item,key) in alert_typeOptions" :key="key" :label="item.label" :value="item.value" />
+            <el-form-item label="设备状态：1-在线 2-离线 3-故障" prop="status">
+  <el-select v-model="searchInfo.status" clearable filterable placeholder="请选择" @clear="()=>{searchInfo.status=undefined}">
+    <el-option v-for="(item,key) in EquipmentStatusOptions" :key="key" :label="item.label" :value="item.value" />
   </el-select>
 </el-form-item>
-            
-            <el-form-item label="预警时间" prop="alertTime">
-<el-date-picker v-model="searchInfo.alertTime" type="datetime" placeholder="搜索条件"></el-date-picker></el-form-item>
             
 
         <template v-if="showAllQuery">
@@ -57,9 +54,9 @@
         <div class="gva-btn-list">
             <el-button v-auth="btnAuth.add" type="primary" icon="plus" @click="openDialog()">新增</el-button>
             <el-button v-auth="btnAuth.batchDelete" icon="delete" style="margin-left: 10px;" :disabled="!multipleSelection.length" @click="onDelete">删除</el-button>
-            <ExportTemplate v-auth="btnAuth.exportTemplate" template-id="alert_video_Alert" />
-            <ExportExcel v-auth="btnAuth.exportExcel" template-id="alert_video_Alert" filterDeleted/>
-            <ImportExcel v-auth="btnAuth.importExcel" template-id="alert_video_Alert" @on-success="getTableData" />
+            <ExportTemplate v-auth="btnAuth.exportTemplate" template-id="device_MonitorDevice" />
+            <ExportExcel v-auth="btnAuth.exportExcel" template-id="device_MonitorDevice" filterDeleted/>
+            <ImportExcel v-auth="btnAuth.importExcel" template-id="device_MonitorDevice" @on-success="getTableData" />
         </div>
         <el-table
         ref="multipleTable"
@@ -75,22 +72,23 @@
             <template #default="scope">{{ formatDate(scope.row.CreatedAt) }}</template>
         </el-table-column>
         
-            <el-table-column align="left" label="监控视频" prop="video" width="120" />
+            <el-table-column align="left" label="摄像头点位" prop="deviceName" width="120" />
 
-            <el-table-column align="left" label="摄像头点位" prop="cameraAddress" width="120" />
+            <el-table-column align="left" label="关联分组id" prop="groupId" width="120" />
 
-            <el-table-column align="left" label="预警类型" prop="alertType" width="120">
+            <el-table-column align="left" label="视频流地址" prop="streamUrl" width="120" />
+
+            <el-table-column align="left" label="设备状态：1-在线 2-离线 3-故障" prop="status" width="120">
     <template #default="scope">
-    {{ filterDict(scope.row.alertType,alert_typeOptions) }}
+    {{ filterDict(scope.row.status,EquipmentStatusOptions) }}
     </template>
 </el-table-column>
-            <el-table-column align="left" label="预警时间" prop="alertTime" width="180">
-   <template #default="scope">{{ formatDate(scope.row.alertTime) }}</template>
-</el-table-column>
+            <el-table-column align="left" label="分辨率" prop="resolution" width="120" />
+
         <el-table-column align="left" label="操作" fixed="right" :min-width="appStore.operateMinWith">
             <template #default="scope">
             <el-button v-auth="btnAuth.info" type="primary" link class="table-button" @click="getDetails(scope.row)"><el-icon style="margin-right: 5px"><InfoFilled /></el-icon>查看</el-button>
-            <el-button v-auth="btnAuth.edit" type="primary" link icon="edit" class="table-button" @click="updateAlertFunc(scope.row)">编辑</el-button>
+            <el-button v-auth="btnAuth.edit" type="primary" link icon="edit" class="table-button" @click="updateMonitorDeviceFunc(scope.row)">编辑</el-button>
             <el-button  v-auth="btnAuth.delete" type="primary" link icon="delete" @click="deleteRow(scope.row)">删除</el-button>
             </template>
         </el-table-column>
@@ -119,36 +117,42 @@
             </template>
 
           <el-form :model="formData" label-position="top" ref="elFormRef" :rules="rule" label-width="80px">
-            <el-form-item label="监控视频:" prop="video">
-    <el-input v-model="formData.video" :clearable="true" placeholder="请输入监控视频" />
+            <el-form-item label="摄像头点位:" prop="deviceName">
+    <el-input v-model="formData.deviceName" :clearable="true" placeholder="请输入摄像头点位" />
 </el-form-item>
-            <el-form-item label="摄像头点位:" prop="cameraAddress">
-    <el-input v-model="formData.cameraAddress" :clearable="true" placeholder="请输入摄像头点位" />
+            <el-form-item label="关联分组id:" prop="groupId">
+    <el-input v-model.number="formData.groupId" :clearable="true" placeholder="请输入关联分组id" />
 </el-form-item>
-            <el-form-item label="预警类型:" prop="alertType">
-    <el-select v-model="formData.alertType" placeholder="请选择预警类型" style="width:100%" filterable :clearable="true">
-        <el-option v-for="(item,key) in alert_typeOptions" :key="key" :label="item.label" :value="item.value" />
+            <el-form-item label="视频流地址:" prop="streamUrl">
+    <el-input v-model="formData.streamUrl" :clearable="true" placeholder="请输入视频流地址" />
+</el-form-item>
+            <el-form-item label="设备状态：1-在线 2-离线 3-故障:" prop="status">
+    <el-select v-model="formData.status" placeholder="请选择设备状态：1-在线 2-离线 3-故障" style="width:100%" filterable :clearable="true">
+        <el-option v-for="(item,key) in EquipmentStatusOptions" :key="key" :label="item.label" :value="item.value" />
     </el-select>
 </el-form-item>
-            <el-form-item label="预警时间:" prop="alertTime">
-    <el-date-picker v-model="formData.alertTime" type="date" style="width:100%" placeholder="选择日期" :clearable="true" />
+            <el-form-item label="分辨率:" prop="resolution">
+    <el-input v-model="formData.resolution" :clearable="true" placeholder="请输入分辨率" />
 </el-form-item>
           </el-form>
     </el-drawer>
 
     <el-drawer destroy-on-close :size="appStore.drawerSize" v-model="detailShow" :show-close="true" :before-close="closeDetailShow" title="查看">
             <el-descriptions :column="1" border>
-                    <el-descriptions-item label="监控视频">
-    {{ detailForm.video }}
-</el-descriptions-item>
                     <el-descriptions-item label="摄像头点位">
-    {{ detailForm.cameraAddress }}
+    {{ detailForm.deviceName }}
 </el-descriptions-item>
-                    <el-descriptions-item label="预警类型">
-    {{ detailForm.alertType }}
+                    <el-descriptions-item label="关联分组id">
+    {{ detailForm.groupId }}
 </el-descriptions-item>
-                    <el-descriptions-item label="预警时间">
-    {{ detailForm.alertTime }}
+                    <el-descriptions-item label="视频流地址">
+    {{ detailForm.streamUrl }}
+</el-descriptions-item>
+                    <el-descriptions-item label="设备状态：1-在线 2-离线 3-故障">
+    {{ detailForm.status }}
+</el-descriptions-item>
+                    <el-descriptions-item label="分辨率">
+    {{ detailForm.resolution }}
 </el-descriptions-item>
             </el-descriptions>
         </el-drawer>
@@ -158,13 +162,13 @@
 
 <script setup>
 import {
-  createAlert,
-  deleteAlert,
-  deleteAlertByIds,
-  updateAlert,
-  findAlert,
-  getAlertList
-} from '@/api/alert_video/alert'
+  createMonitorDevice,
+  deleteMonitorDevice,
+  deleteMonitorDeviceByIds,
+  updateMonitorDevice,
+  findMonitorDevice,
+  getMonitorDeviceList
+} from '@/api/device/monitorDevice'
 
 // 全量引入格式化工具 请按需保留
 import { getDictFunc, formatDate, formatBoolean, filterDict ,filterDataSource, returnArrImg, onDownloadFile } from '@/utils/format'
@@ -183,7 +187,7 @@ import ExportTemplate from '@/components/exportExcel/exportTemplate.vue'
 
 
 defineOptions({
-    name: 'Alert'
+    name: 'MonitorDevice'
 })
 // 按钮权限实例化
     const btnAuth = useBtnAuth()
@@ -196,19 +200,20 @@ const appStore = useAppStore()
 const showAllQuery = ref(false)
 
 // 自动化生成的字典（可能为空）以及字段
-const alert_typeOptions = ref([])
+const EquipmentStatusOptions = ref([])
 const formData = ref({
-            video: '',
-            cameraAddress: '',
-            alertType: '',
-            alertTime: new Date(),
+            deviceName: '',
+            groupId: undefined,
+            streamUrl: '',
+            status: '',
+            resolution: '',
         })
 
 
 
 // 验证规则
 const rule = reactive({
-               video : [{
+               deviceName : [{
                    required: true,
                    message: '',
                    trigger: ['input','blur'],
@@ -219,7 +224,13 @@ const rule = reactive({
                    trigger: ['input', 'blur'],
               }
               ],
-               cameraAddress : [{
+               groupId : [{
+                   required: true,
+                   message: '',
+                   trigger: ['input','blur'],
+               },
+              ],
+               streamUrl : [{
                    required: true,
                    message: '',
                    trigger: ['input','blur'],
@@ -229,23 +240,6 @@ const rule = reactive({
                    message: '不能只输入空格',
                    trigger: ['input', 'blur'],
               }
-              ],
-               alertType : [{
-                   required: true,
-                   message: '',
-                   trigger: ['input','blur'],
-               },
-               {
-                   whitespace: true,
-                   message: '不能只输入空格',
-                   trigger: ['input', 'blur'],
-              }
-              ],
-               alertTime : [{
-                   required: true,
-                   message: '',
-                   trigger: ['input','blur'],
-               },
               ],
 })
 
@@ -287,7 +281,7 @@ const handleCurrentChange = (val) => {
 
 // 查询
 const getTableData = async() => {
-  const table = await getAlertList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
+  const table = await getMonitorDeviceList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
   if (table.code === 0) {
     tableData.value = table.data.list
     total.value = table.data.total
@@ -302,7 +296,7 @@ getTableData()
 
 // 获取需要的字典 可能为空 按需保留
 const setOptions = async () =>{
-    alert_typeOptions.value = await getDictFunc('alert_type')
+    EquipmentStatusOptions.value = await getDictFunc('EquipmentStatus')
 }
 
 // 获取需要的字典 可能为空 按需保留
@@ -323,7 +317,7 @@ const deleteRow = (row) => {
         cancelButtonText: '取消',
         type: 'warning'
     }).then(() => {
-            deleteAlertFunc(row)
+            deleteMonitorDeviceFunc(row)
         })
     }
 
@@ -346,7 +340,7 @@ const onDelete = async() => {
         multipleSelection.value.map(item => {
           IDs.push(item.ID)
         })
-      const res = await deleteAlertByIds({ IDs })
+      const res = await deleteMonitorDeviceByIds({ IDs })
       if (res.code === 0) {
         ElMessage({
           type: 'success',
@@ -364,8 +358,8 @@ const onDelete = async() => {
 const type = ref('')
 
 // 更新行
-const updateAlertFunc = async(row) => {
-    const res = await findAlert({ ID: row.ID })
+const updateMonitorDeviceFunc = async(row) => {
+    const res = await findMonitorDevice({ ID: row.ID })
     type.value = 'update'
     if (res.code === 0) {
         formData.value = res.data
@@ -375,8 +369,8 @@ const updateAlertFunc = async(row) => {
 
 
 // 删除行
-const deleteAlertFunc = async (row) => {
-    const res = await deleteAlert({ ID: row.ID })
+const deleteMonitorDeviceFunc = async (row) => {
+    const res = await deleteMonitorDevice({ ID: row.ID })
     if (res.code === 0) {
         ElMessage({
                 type: 'success',
@@ -402,10 +396,11 @@ const openDialog = () => {
 const closeDialog = () => {
     dialogFormVisible.value = false
     formData.value = {
-        video: '',
-        cameraAddress: '',
-        alertType: '',
-        alertTime: new Date(),
+        deviceName: '',
+        groupId: undefined,
+        streamUrl: '',
+        status: '',
+        resolution: '',
         }
 }
 // 弹窗确定
@@ -416,13 +411,13 @@ const enterDialog = async () => {
               let res
               switch (type.value) {
                 case 'create':
-                  res = await createAlert(formData.value)
+                  res = await createMonitorDevice(formData.value)
                   break
                 case 'update':
-                  res = await updateAlert(formData.value)
+                  res = await updateMonitorDevice(formData.value)
                   break
                 default:
-                  res = await createAlert(formData.value)
+                  res = await createMonitorDevice(formData.value)
                   break
               }
               btnLoading.value = false
@@ -452,7 +447,7 @@ const openDetailShow = () => {
 // 打开详情
 const getDetails = async (row) => {
   // 打开弹窗
-  const res = await findAlert({ ID: row.ID })
+  const res = await findMonitorDevice({ ID: row.ID })
   if (res.code === 0) {
     detailForm.value = res.data
     openDetailShow()

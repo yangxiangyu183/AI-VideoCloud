@@ -80,6 +80,22 @@ export const findAlert = (params) => {
 }
 
 // @Tags Alert
+// @Summary 分页获取alert表列表
+// @Security ApiKeyAuth
+// @Accept application/json
+// @Produce application/json
+// @Param data query request.PageInfo true "分页获取alert表列表"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
+// @Router /alert/getAlertList [get]
+export const getAlertList = (params) => {
+  return service({
+    url: '/alert/getAlertList',
+    method: 'get',
+    params
+  })
+}
+
+// @Tags Alert
 // @Summary 不需要鉴权的alert表接口
 // @Accept application/json
 // @Produce application/json
