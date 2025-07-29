@@ -1,8 +1,16 @@
 package device
 
 import (
+	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"os"
+	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
@@ -16,6 +24,149 @@ import (
 )
 
 type MonitorDeviceApi struct{}
+
+// downloadAndUploadVideoStream 从视频流URL下载视频内容并上传到MinIO
+func (monitorDeviceApi *MonitorDeviceApi) downloadAndUploadVideoStream(ctx context.Context, streamUrl string) (string, error) {
+	global.GVA_LOG.Info("开始从视频流下载内容", zap.String("streamUrl", streamUrl))
+
+	var videoData []byte
+	var contentType string
+	var err error
+
+	// 检查是否为HTTP/HTTPS URL
+	if parsedURL, err := url.Parse(streamUrl); err == nil && (parsedURL.Scheme == "http" || parsedURL.Scheme == "https") {
+		// 处理HTTP/HTTPS URL
+		global.GVA_LOG.Info("检测到HTTP/HTTPS URL，开始下载")
+
+		// 创建HTTP客户端，设置超时时间
+		client := &http.Client{
+			Timeout: 30 * time.Second,
+		}
+
+		// 发起HTTP请求获取视频流
+		req, err := http.NewRequestWithContext(ctx, "GET", streamUrl, nil)
+		if err != nil {
+			return "", fmt.Errorf("创建请求失败: %v", err)
+		}
+
+		// 设置请求头，模拟视频播放器
+		req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
+		req.Header.Set("Accept", "video/mp4,video/*,*/*")
+
+		resp, err := client.Do(req)
+		if err != nil {
+			return "", fmt.Errorf("请求视频流失败: %v", err)
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode != http.StatusOK {
+			return "", fmt.Errorf("视频流响应状态码错误: %d", resp.StatusCode)
+		}
+
+		// 检查内容类型
+		contentType = resp.Header.Get("Content-Type")
+		global.GVA_LOG.Info("视频流内容类型", zap.String("contentType", contentType))
+
+		// 限制下载大小（例如最大100MB）
+		const maxSize = 100 * 1024 * 1024 // 100MB
+		limitedReader := io.LimitReader(resp.Body, maxSize)
+
+		// 读取视频内容到内存
+		videoData, err = io.ReadAll(limitedReader)
+		if err != nil {
+			return "", fmt.Errorf("读取视频流数据失败: %v", err)
+		}
+	} else {
+		// 处理本地文件路径
+		global.GVA_LOG.Info("检测到本地文件路径，开始读取文件")
+
+		// 检查文件是否存在
+		if _, err := os.Stat(streamUrl); os.IsNotExist(err) {
+			return "", fmt.Errorf("文件不存在: %s", streamUrl)
+		}
+
+		// 读取本地文件
+		videoData, err = os.ReadFile(streamUrl)
+		if err != nil {
+			return "", fmt.Errorf("读取本地文件失败: %v", err)
+		}
+
+		// 根据文件扩展名确定内容类型
+		ext := strings.ToLower(filepath.Ext(streamUrl))
+		switch ext {
+		case ".mp4":
+			contentType = "video/mp4"
+		case ".avi":
+			contentType = "video/avi"
+		case ".mov":
+			contentType = "video/quicktime"
+		case ".wmv":
+			contentType = "video/x-ms-wmv"
+		case ".flv":
+			contentType = "video/x-flv"
+		case ".webm":
+			contentType = "video/webm"
+		case ".jpg", ".jpeg":
+			contentType = "image/jpeg"
+		case ".png":
+			contentType = "image/png"
+		case ".webp":
+			contentType = "image/webp"
+		default:
+			contentType = "application/octet-stream"
+		}
+
+		global.GVA_LOG.Info("本地文件内容类型", zap.String("contentType", contentType))
+	}
+
+	if len(videoData) == 0 {
+		return "", fmt.Errorf("视频数据为空")
+	}
+
+	global.GVA_LOG.Info("视频内容读取完成", zap.Int("size", len(videoData)))
+
+	// 生成文件名
+	timestamp := time.Now().Unix()
+	var fileName string
+
+	// 根据内容类型确定文件扩展名
+	if strings.Contains(contentType, "video/mp4") {
+		fileName = fmt.Sprintf("monitor_video_%d.mp4", timestamp)
+	} else if strings.Contains(contentType, "video/") {
+		fileName = fmt.Sprintf("monitor_video_%d.mp4", timestamp) // 默认使用mp4
+	} else if strings.Contains(contentType, "image/") {
+		// 处理图片文件
+		if strings.Contains(contentType, "jpeg") {
+			fileName = fmt.Sprintf("monitor_image_%d.jpg", timestamp)
+		} else if strings.Contains(contentType, "png") {
+			fileName = fmt.Sprintf("monitor_image_%d.png", timestamp)
+		} else if strings.Contains(contentType, "webp") {
+			fileName = fmt.Sprintf("monitor_image_%d.webp", timestamp)
+		} else {
+			fileName = fmt.Sprintf("monitor_image_%d.jpg", timestamp)
+		}
+	} else {
+		// 如果不是视频或图片类型
+		fileName = fmt.Sprintf("monitor_content_%d.bin", timestamp)
+	}
+
+	// 上传到MinIO
+	reader := bytes.NewReader(videoData)
+	uploadInfo, err := middleware.Upload(fileName, reader, int64(len(videoData)))
+	if err != nil {
+		return "", fmt.Errorf("上传到MinIO失败: %v", err)
+	}
+
+	// 构建MinIO访问URL
+	minioURL := fmt.Sprintf("http://14.103.149.194:9000/test/%s", fileName)
+
+	global.GVA_LOG.Info("视频流上传到MinIO成功",
+		zap.String("fileName", fileName),
+		zap.String("location", uploadInfo.Location),
+		zap.String("minioURL", minioURL))
+
+	return minioURL, nil
+}
 
 // CreateMonitorDevice 创建monitorDevice表
 // @Tags MonitorDevice
@@ -42,74 +193,90 @@ func (monitorDeviceApi *MonitorDeviceApi) CreateMonitorDevice(c *gin.Context) {
 	if monitorDevice.StreamUrl != nil && *monitorDevice.StreamUrl != "" {
 		global.GVA_LOG.Info("开始视频审核流程", zap.String("streamUrl", *monitorDevice.StreamUrl))
 
-		//上传本地文件到腾讯云cos
-		/*cos, err := middleware.UploadVideoToCOS(*monitorDevice.StreamUrl)
+		// 保存原始视频流URL用于下载
+		originalStreamUrl := *monitorDevice.StreamUrl
+
+		// 1. 先将监控设备视频流上传到MinIO
+		minioURL, err := monitorDeviceApi.downloadAndUploadVideoStream(ctx, originalStreamUrl)
 		if err != nil {
-			return
-		}*/
-		// 1. 提交视频审核任务
-		fmt.Println("提交视频审核任务...")
-		taskId, err := middleware.SubmitVideoModerationTask(*monitorDevice.StreamUrl)
-		if err != nil {
-			global.GVA_LOG.Error("提交审核任务失败", zap.Error(err))
-			// 不中断流程，继续创建设备
-			global.GVA_LOG.Warn("视频审核失败，继续创建设备", zap.Error(err))
+			global.GVA_LOG.Error("上传视频流到MinIO失败", zap.Error(err))
+			// 不中断流程，继续创建设备，但记录错误
+			global.GVA_LOG.Warn("视频流上传失败，继续创建设备", zap.Error(err))
 		} else {
-			fmt.Printf("审核任务已提交，任务ID: %s\n", taskId)
+			global.GVA_LOG.Info("视频流上传到MinIO成功", zap.String("minioURL", minioURL))
 
-			// 2. 等待审核完成（视频审核是异步过程，设置超时时间）
-			fmt.Println("等待审核完成...")
-			var result map[string]interface{}
-			timeout := time.After(2 * time.Minute)     // 2分钟超时
-			ticker := time.NewTicker(10 * time.Second) // 每10秒查询一次
-			defer ticker.Stop()
+			// 将MinIO URL存储到数据库的stream_url字段中
+			monitorDevice.StreamUrl = &minioURL
+			global.GVA_LOG.Info("已将MinIO URL设置为设备的stream_url",
+				zap.String("originalUrl", originalStreamUrl),
+				zap.String("minioUrl", minioURL))
 
-			auditCompleted := false
-			for !auditCompleted {
-				select {
-				case <-timeout:
-					global.GVA_LOG.Warn("视频审核超时，继续创建设备")
-					auditCompleted = true
-				case <-ticker.C:
-					result, err = middleware.QueryModerationResult(taskId)
-					if err != nil {
-						global.GVA_LOG.Error("查询审核结果失败", zap.Error(err))
+			// 2. 提交视频审核任务（暂时跳过，因为腾讯云无法访问MinIO URL）
+
+			taskId, err := middleware.SubmitVideoModerationTask(minioURL)
+			if err != nil {
+				global.GVA_LOG.Error("提交审核任务失败",
+					zap.Error(err),
+					zap.String("minioURL", minioURL))
+				// 不中断流程，继续创建设备
+				global.GVA_LOG.Warn("视频审核失败，继续创建设备", zap.Error(err))
+			} else {
+				fmt.Printf("审核任务已提交，任务ID: %s\n", taskId)
+
+				// 3. 等待审核完成（视频审核是异步过程，设置超时时间）
+				fmt.Println("等待审核完成...")
+				var result map[string]interface{}
+				timeout := time.After(2 * time.Minute)     // 2分钟超时
+				ticker := time.NewTicker(10 * time.Second) // 每10秒查询一次
+				defer ticker.Stop()
+
+				auditCompleted := false
+				for !auditCompleted {
+					select {
+					case <-timeout:
+						global.GVA_LOG.Warn("视频审核超时，继续创建设备")
 						auditCompleted = true
-						break
-					}
+					case <-ticker.C:
+						result, err = middleware.QueryModerationResult(taskId)
+						if err != nil {
+							global.GVA_LOG.Error("查询审核结果失败", zap.Error(err))
+							auditCompleted = true
+							break
+						}
 
-					resp, ok := result["Response"].(map[string]interface{})
-					if !ok {
-						global.GVA_LOG.Error("无效的响应格式")
-						auditCompleted = true
-						break
-					}
+						resp, ok := result["Response"].(map[string]interface{})
+						if !ok {
+							global.GVA_LOG.Error("无效的响应格式")
+							auditCompleted = true
+							break
+						}
 
-					// 任务状态：PENDING(处理中)、SUCCESS(成功)、FAILED(失败)
-					if status, ok := resp["Status"].(string); ok {
-						if status == "SUCCESS" {
-							// 审核完成，处理结果
-							global.GVA_LOG.Info("视频审核完成", zap.String("taskId", taskId))
+						// 任务状态：PENDING(处理中)、SUCCESS(成功)、FAILED(失败)
+						if status, ok := resp["Status"].(string); ok {
+							if status == "SUCCESS" {
+								// 审核完成，处理结果
+								global.GVA_LOG.Info("视频审核完成", zap.String("taskId", taskId))
 
-							// 3. 处理审核结果
-							fmt.Println("处理审核结果...")
-							middleware.PrintModerationResult(result)
+								// 4. 处理审核结果
+								fmt.Println("处理审核结果...")
+								middleware.PrintModerationResult(result)
 
-							// 输出完整JSON结果
-							if resultJson, err := json.MarshalIndent(result, "", "  "); err == nil {
-								fmt.Println("\n完整JSON结果:")
-								fmt.Println(string(resultJson))
+								// 输出完整JSON结果
+								if resultJson, err := json.MarshalIndent(result, "", "  "); err == nil {
+									fmt.Println("\n完整JSON结果:")
+									fmt.Println(string(resultJson))
 
-								// 将审核结果存储到设备信息中（可选）
-								// monitorDevice.AuditResult = string(resultJson)
+									// 将审核结果存储到设备信息中（可选）
+									// monitorDevice.AuditResult = string(resultJson)
+								}
+
+								auditCompleted = true
+							} else if status == "FAILED" {
+								global.GVA_LOG.Error("审核任务失败", zap.Any("response", resp))
+								auditCompleted = true
+							} else {
+								fmt.Println("审核中，10秒后再次查询...")
 							}
-
-							auditCompleted = true
-						} else if status == "FAILED" {
-							global.GVA_LOG.Error("审核任务失败", zap.Any("response", resp))
-							auditCompleted = true
-						} else {
-							fmt.Println("审核中，10秒后再次查询...")
 						}
 					}
 				}

@@ -4,6 +4,7 @@ import (
 	"github.com/flipped-aurora/gin-vue-admin/server/core"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	"github.com/flipped-aurora/gin-vue-admin/server/initialize"
+	"github.com/flipped-aurora/gin-vue-admin/server/middleware"
 	_ "go.uber.org/automaxprocs"
 	"go.uber.org/zap"
 )
@@ -32,6 +33,7 @@ func main() {
 	initializeSystem()
 	// 运行服务器
 	core.RunServer()
+	middleware.InitMinio()
 }
 
 // initializeSystem 初始化系统所有组件
