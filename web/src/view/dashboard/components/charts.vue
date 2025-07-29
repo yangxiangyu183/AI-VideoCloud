@@ -25,7 +25,7 @@
         <charts-people-number v-if="type === 2" :data="data[1]" height="100%" />
         <charts-people-number v-if="type === 3" :data="data[2]" height="100%" />
       </div>
-      <charts-content-number v-if="type === 4" height="14rem" />
+      <charts-content-number v-if="type === 4" height="320px" :time-range="props.timeRange" />
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@
 <script setup>
   import chartsPeopleNumber from './charts-people-numbers.vue'
   import chartsContentNumber from './charts-content-numbers.vue'
-  defineProps({
+  const props = defineProps({
     type: {
       type: Number,
       default: 1
@@ -41,6 +41,10 @@
     title: {
       type: String,
       default: ''
+    },
+    timeRange: {
+      type: String,
+      default: '24h'
     }
   })
 
@@ -51,4 +55,13 @@
   ]
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.w-full {
+  height: 100%;
+  
+  &.relative {
+    display: flex;
+    flex-direction: column;
+  }
+}
+</style>

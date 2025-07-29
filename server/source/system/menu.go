@@ -80,7 +80,6 @@ func (i *initMenu) InitializeData(ctx context.Context) (next context.Context, er
 	childMenus := []SysBaseMenu{
 		// device子菜单
 		{MenuLevel: 1, Hidden: false, ParentId: menuNameMap["device"], Path: "monitorDevice", Name: "monitorDevice", Component: "view/device/monitorDevice/monitorDevice.vue", Sort: 1, Meta: Meta{Title: "监控设备", Icon: "camera"}},
-		{MenuLevel: 1, Hidden: false, ParentId: menuNameMap["device"], Path: "videoMonitor", Name: "videoMonitor", Component: "view/device/videoMonitor/index.vue", Sort: 2, Meta: Meta{Title: "视频监控", Icon: "video-play"}},
 
 		// superAdmin子菜单
 		{MenuLevel: 1, Hidden: false, ParentId: menuNameMap["superAdmin"], Path: "authority", Name: "authority", Component: "view/superAdmin/authority/authority.vue", Sort: 1, Meta: Meta{Title: "角色管理", Icon: "avatar"}},

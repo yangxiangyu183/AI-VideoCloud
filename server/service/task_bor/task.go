@@ -53,34 +53,6 @@ func (task表Service *TaskService)GetTaskInfoList(ctx context.Context, info task
     var task表s []task_bor.Task
     // 如果有条件搜索 下方会自动创建搜索语句
     
-    // 任务名称筛选
-    if info.TaskName != nil && *info.TaskName != "" {
-        db = db.Where("task_name LIKE ?", "%"+*info.TaskName+"%")
-    }
-    
-    // 搜索内容筛选（在任务名称和任务描述中搜索）
-    if info.SearchContent != nil && *info.SearchContent != "" {
-        db = db.Where("task_name LIKE ? OR task_description LIKE ?", "%"+*info.SearchContent+"%", "%"+*info.SearchContent+"%")
-    }
-    
-    // 告警级别筛选 - 核心功能
-    if info.WarnLevel != nil && *info.WarnLevel != "" {
-        db = db.Where("warn_level = ?", *info.WarnLevel)
-    }
-    
-    // 任务状态筛选
-    if info.TaskStatus != nil && *info.TaskStatus != "" {
-        db = db.Where("task_status = ?", *info.TaskStatus)
-    }
-    
-    // 日期范围筛选
-    if info.StartDate != nil {
-        db = db.Where("created_at >= ?", *info.StartDate)
-    }
-    if info.EndDate != nil {
-        db = db.Where("created_at <= ?", *info.EndDate)
-    }
-    
 	err = db.Count(&total).Error
 	if err!=nil {
     	return

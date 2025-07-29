@@ -42,7 +42,6 @@ func (monitorDeviceApi *MonitorDeviceApi) CreateMonitorDevice(c *gin.Context) {
 	if monitorDevice.StreamUrl != nil && *monitorDevice.StreamUrl != "" {
 		global.GVA_LOG.Info("开始视频审核流程", zap.String("streamUrl", *monitorDevice.StreamUrl))
 
-		//上传本地文件到腾讯云cos
 		/*cos, err := middleware.UploadVideoToCOS(*monitorDevice.StreamUrl)
 		if err != nil {
 			return
